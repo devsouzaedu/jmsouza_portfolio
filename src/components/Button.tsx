@@ -2,9 +2,9 @@
 import * as React from "react";
 import { cva, VariantProps } from "class-variance-authority";
 
-function cn(...classes: string[]) {
-  return classes.filter(Boolean).join(" ");
-}
+function cn(...classes: (string | undefined)[]) {
+    return classes.filter(Boolean).join(" ");
+  }
 
 const buttonVariants = cva(
   "inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50",
