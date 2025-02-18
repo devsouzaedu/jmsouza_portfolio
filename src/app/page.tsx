@@ -1,7 +1,6 @@
 // src/app/page.tsx
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import Projects from '@/components/Projects';
 import { Button } from '@/components/Button';
 
 export default function Home() {
