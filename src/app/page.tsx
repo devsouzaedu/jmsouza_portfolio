@@ -34,7 +34,7 @@ export default function Home() {
                 <div
                   className="border border-gray-700 p-6 rounded-md shadow-sm bg-black hover:bg-gray-900 transition-colors relative overflow-hidden cursor-pointer flex flex-col h-full"
                   style={{
-                    backgroundImage: `url(/opera_dd3DQtwf08.png)`,
+                    backgroundImage: `url(/opera_TGia9OiBNt.png)`,
                     backgroundSize: 'cover',
                     backgroundPosition: 'center',
                   }}
@@ -54,7 +54,7 @@ export default function Home() {
                 <div
                   className="border border-gray-700 p-6 rounded-md shadow-sm bg-black hover:bg-gray-900 transition-colors relative overflow-hidden cursor-pointer flex flex-col h-full"
                   style={{
-                    backgroundImage: `url(/opera_s8bkasJJpo.png)`,
+                    backgroundImage: `url(/opera_dd3DQtwf08.png)`,
                     backgroundSize: 'cover',
                     backgroundPosition: 'center',
                   }}
@@ -74,7 +74,7 @@ export default function Home() {
                 <div
                   className="border border-gray-700 p-6 rounded-md shadow-sm bg-black hover:bg-gray-900 transition-colors relative overflow-hidden cursor-pointer flex flex-col h-full"
                   style={{
-                    backgroundImage: `url(/opera_TGia9OiBNt.png)`,
+                    backgroundImage: `url(/opera_s8bkasJJpo.png)`,
                     backgroundSize: 'cover',
                     backgroundPosition: 'center',
                   }}
