@@ -2,6 +2,8 @@
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/Button';
+import { ContactButton } from '@/components/ContactButton'; // Novo import
+import Link from 'next/link';
 
 export default function Home() {
   return (
@@ -27,27 +29,65 @@ export default function Home() {
           <div className="max-w-5xl mx-auto px-4">
             <h2 className="text-3xl font-bold text-white mb-8">Meus Projetos</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {/* Projeto 1 */}
-              <div className="border border-gray-700 p-6 rounded-md shadow-sm bg-black hover:bg-gray-900 transition-colors">
-                <h3 className="text-xl font-semibold text-white">Unia.App</h3>
-                <p className="mt-4 text-gray-300">
-                  Uma plataforma inovadora que integra diversas soluções para conectar pessoas e negócios de forma simples e eficiente.
-                </p>
-              </div>
-              {/* Projeto 2 */}
-              <div className="border border-gray-700 p-6 rounded-md shadow-sm bg-black hover:bg-gray-900 transition-colors">
-                <h3 className="text-xl font-semibold text-white">Jazzy</h3>
-                <p className="mt-4 text-gray-300">
-                  Um projeto que une tecnologia e criatividade para desenvolver experiências digitais interativas e envolventes.
-                </p>
-              </div>
-              {/* Projeto 3 */}
-              <div className="border border-gray-700 p-6 rounded-md shadow-sm bg-black hover:bg-gray-900 transition-colors">
-                <h3 className="text-xl font-semibold text-white">Libracom Wind Banners Site</h3>
-                <p className="mt-4 text-gray-300">
-                  Um site moderno e responsivo para a Libracom, com foco em design minimalista e funcionalidade, apresentando banners dinâmicos e interativos.
-                </p>
-              </div>
+              {/* Projeto 1 - Unia.App */}
+              <Link href="https://unia-app-nail-designer.vercel.app" target="_blank">
+                <div
+                  className="border border-gray-700 p-6 rounded-md shadow-sm bg-black hover:bg-gray-900 transition-colors relative overflow-hidden cursor-pointer flex flex-col h-full"
+                  style={{
+                    backgroundImage: `url(/opera_dd3DQtwf08.png)`,
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
+                  }}
+                >
+                  <div className="absolute inset-0 bg-black/70 backdrop-blur-sm"></div>
+                  <div className="relative z-10 flex flex-col h-full">
+                    <h3 className="text-xl font-semibold text-white">Unia.App</h3>
+                    <p className="mt-4 text-gray-300 flex-grow">
+                      Uma plataforma inovadora que integra diversas soluções para entregar um canivete suiço para Nail designers.
+                    </p>
+                  </div>
+                </div>
+              </Link>
+
+              {/* Projeto 2 - HotAir */}
+              <Link href="https://devsouzaedu.github.io/Hotair_Hot_air_balloon_game/" target="_blank">
+                <div
+                  className="border border-gray-700 p-6 rounded-md shadow-sm bg-black hover:bg-gray-900 transition-colors relative overflow-hidden cursor-pointer flex flex-col h-full"
+                  style={{
+                    backgroundImage: `url(/opera_s8bkasJJpo.png)`,
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
+                  }}
+                >
+                  <div className="absolute inset-0 bg-black/70 backdrop-blur-sm"></div>
+                  <div className="relative z-10 flex flex-col h-full">
+                    <h3 className="text-xl font-semibold text-white">HotAir - Jogo de Balão Multiplayer</h3>
+                    <p className="mt-4 text-gray-300 flex-grow">
+                      Um projeto que une tecnologia e criatividade (e muito Three.js) para criar um jogo de voo de balão de ar quente competitivo.
+                    </p>
+                  </div>
+                </div>
+              </Link>
+
+              {/* Projeto 3 - Libracom */}
+              <Link href="https://libracomwindbanner.com.br" target="_blank">
+                <div
+                  className="border border-gray-700 p-6 rounded-md shadow-sm bg-black hover:bg-gray-900 transition-colors relative overflow-hidden cursor-pointer flex flex-col h-full"
+                  style={{
+                    backgroundImage: `url(/opera_TGia9OiBNt.png)`,
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
+                  }}
+                >
+                  <div className="absolute inset-0 bg-black/70 backdrop-blur-sm"></div>
+                  <div className="relative z-10 flex flex-col h-full">
+                    <h3 className="text-xl font-semibold text-white">Libracom Wind Banners Site</h3>
+                    <p className="mt-4 text-gray-300 flex-grow">
+                      Um site moderno e responsivo para a Libracom, com foco em design, SEO e Vendas, para a minha empresa de comunicação visual.
+                    </p>
+                  </div>
+                </div>
+              </Link>
             </div>
           </div>
         </section>
@@ -63,6 +103,11 @@ export default function Home() {
               em estar sempre um passo à frente, inovando e superando desafios.
             </p>
           </div>
+        </section>
+
+        {/* Seção de Contato */}
+        <section className="py-8 bg-black flex justify-center">
+          <ContactButton variant="default" size="lg" />
         </section>
       </main>
       <Footer />
