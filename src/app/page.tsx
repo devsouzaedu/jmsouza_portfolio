@@ -1,27 +1,69 @@
+"use client";
+
 // src/app/page.tsx
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/Button';
 import { ContactButton } from '@/components/ContactButton'; // Novo import
 import Link from 'next/link';
+import { useEffect, useRef } from 'react';
 
 export default function Home() {
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    // Ajusta a velocidade de reprodução do vídeo para câmera lenta
+    if (videoRef.current) {
+      videoRef.current.playbackRate = 0.5;
+    }
+  }, []);
+
   return (
     <>
       <Navbar />
       <main className="min-h-screen bg-black text-white">
         {/* Seção de Introdução */}
-        <section className="py-16 flex flex-col items-center justify-center px-4 text-center">
-          <h1 className="text-5xl font-bold mb-4">Olá, eu sou J.M Souza</h1>
-          <p className="text-xl mb-8 max-w-3xl">
-            Sou um desenvolvedor full-stack obcecado por criar soluções para os mais variados problemas.
-            Minha paixão por tecnologia me impulsiona a buscar sempre o próximo desafio e transformar ideias
-            em aplicações reais e funcionais. Com experiência em diversas linguagens e frameworks, estou sempre
-            em busca de inovações e melhorias para tornar o mundo digital um lugar melhor.
-          </p>
-          <Button variant="default" size="lg">
-            Confira meus projetos
-          </Button>
+        <section 
+          className="py-16 flex flex-col items-center justify-center px-4 text-center relative overflow-hidden"
+          style={{
+            minHeight: '80vh',
+            position: 'relative',
+          }}
+        >
+          {/* Vídeo de fundo */}
+          <div className="absolute inset-0 z-0 overflow-hidden">
+            <video 
+              ref={videoRef}
+              autoPlay 
+              loop 
+              muted 
+              playsInline
+              className="absolute w-full h-full object-cover"
+              style={{
+                filter: 'blur(2px)',
+                opacity: 0.7,
+              }}
+            >
+              <source src="/dots_video.mp4" type="video/mp4" />
+            </video>
+            
+            {/* Gradiente para melhorar a legibilidade do texto */}
+            <div className="absolute inset-0 z-0 bg-gradient-to-b from-black/30 to-black/80"></div>
+          </div>
+          
+          {/* Conteúdo diretamente sobre o vídeo, sem o card */}
+          <div className="relative z-10 max-w-3xl mx-auto">
+            <h1 className="text-5xl font-bold mb-4 animate-slideUp text-white">Olá, eu sou J.M Souza</h1>
+            <p className="text-xl mb-8 max-w-3xl animate-slideUp text-white" style={{animationDelay: '0.2s'}}>
+              Sou um desenvolvedor full-stack obcecado por criar soluções para os mais variados problemas.
+              Minha paixão por tecnologia me impulsiona a buscar sempre o próximo desafio e transformar ideias
+              em aplicações reais e funcionais. Com experiência em diversas linguagens e frameworks, estou sempre
+              em busca de inovações e melhorias para tornar o mundo digital um lugar melhor.
+            </p>
+            <Button variant="default" size="lg" className="animate-slideUp" style={{animationDelay: '0.4s'}}>
+              Confira meus projetos
+            </Button>
+          </div>
         </section>
 
         {/* Seção de Projetos */}
