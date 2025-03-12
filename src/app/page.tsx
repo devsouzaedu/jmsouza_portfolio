@@ -6,16 +6,52 @@ import Footer from '@/components/Footer';
 import { Button } from '@/components/Button';
 import { ContactButton } from '@/components/ContactButton'; // Novo import
 import Link from 'next/link';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 export default function Home() {
-  const videoRef = useRef<HTMLVideoElement>(null);
+  const video1Ref = useRef<HTMLVideoElement>(null);
+  const video2Ref = useRef<HTMLVideoElement>(null);
+  const [activeVideo, setActiveVideo] = useState<1 | 2>(1);
 
   useEffect(() => {
-    // Ajusta a velocidade de reprodução do vídeo para câmera lenta
-    if (videoRef.current) {
-      videoRef.current.playbackRate = 0.5;
+    // Ajusta a velocidade de reprodução dos vídeos para câmera lenta
+    if (video1Ref.current) {
+      video1Ref.current.playbackRate = 0.5;
     }
+    if (video2Ref.current) {
+      video2Ref.current.playbackRate = 0.5;
+    }
+
+    // Configura os eventos para alternar entre os vídeos
+    const setupVideoEvents = () => {
+      if (video1Ref.current && video2Ref.current) {
+        // Quando o primeiro vídeo terminar, inicia o segundo e o torna visível
+        video1Ref.current.addEventListener('ended', () => {
+          video2Ref.current!.currentTime = 0;
+          video2Ref.current!.play();
+          setActiveVideo(2);
+        });
+
+        // Quando o segundo vídeo terminar, inicia o primeiro e o torna visível
+        video2Ref.current.addEventListener('ended', () => {
+          video1Ref.current!.currentTime = 0;
+          video1Ref.current!.play();
+          setActiveVideo(1);
+        });
+      }
+    };
+
+    setupVideoEvents();
+
+    // Limpeza dos event listeners quando o componente for desmontado
+    return () => {
+      if (video1Ref.current) {
+        video1Ref.current.removeEventListener('ended', () => {});
+      }
+      if (video2Ref.current) {
+        video2Ref.current.removeEventListener('ended', () => {});
+      }
+    };
   }, []);
 
   return (
@@ -30,21 +66,35 @@ export default function Home() {
             position: 'relative',
           }}
         >
-          {/* Vídeo de fundo */}
+          {/* Vídeos de fundo */}
           <div className="absolute inset-0 z-0 overflow-hidden">
+            {/* Primeiro vídeo */}
             <video 
-              ref={videoRef}
+              ref={video1Ref}
               autoPlay 
-              loop 
               muted 
               playsInline
-              className="absolute w-full h-full object-cover"
+              className="absolute w-full h-full object-cover transition-opacity duration-1000"
               style={{
                 filter: 'blur(2px)',
-                opacity: 0.7,
+                opacity: activeVideo === 1 ? 0.7 : 0,
               }}
             >
               <source src="/dots_video.mp4" type="video/mp4" />
+            </video>
+            
+            {/* Segundo vídeo */}
+            <video 
+              ref={video2Ref}
+              muted 
+              playsInline
+              className="absolute w-full h-full object-cover transition-opacity duration-1000"
+              style={{
+                filter: 'blur(2px)',
+                opacity: activeVideo === 2 ? 0.7 : 0,
+              }}
+            >
+              <source src="/dots_moving_2.mp4" type="video/mp4" />
             </video>
             
             {/* Gradiente para melhorar a legibilidade do texto */}
