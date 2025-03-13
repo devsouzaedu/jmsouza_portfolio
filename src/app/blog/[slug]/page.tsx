@@ -7,11 +7,14 @@ import { notFound } from 'next/navigation';
 import { getAllPosts, getPostBySlug } from '@/lib/api';
 import markdownToHtml from '@/lib/markdownToHtml';
 
-export async function generateMetadata({
-  params,
-}: {
+interface PageProps {
   params: { slug: string };
-}): Promise<Metadata> {
+  searchParams: Record<string, string | string[] | undefined>;
+}
+
+export async function generateMetadata(
+  { params }: PageProps
+): Promise<Metadata> {
   const post = getPostBySlug(params.slug, ['title', 'excerpt', 'coverImage']);
 
   if (!post.title) {
@@ -47,7 +50,7 @@ export async function generateStaticParams() {
   }));
 }
 
-export default async function PostPage({ params }: { params: { slug: string } }) {
+export default async function PostPage({ params }: PageProps) {
   const post = getPostBySlug(params.slug, [
     'title',
     'date',

@@ -24,32 +24,49 @@ export default function Home() {
 
     // Configura os eventos para alternar entre os vídeos
     const setupVideoEvents = () => {
+      // Definir as funções de manipulação de eventos
+      const handleVideo1End = () => {
+        if (video2Ref.current) {
+          video2Ref.current.currentTime = 0;
+          video2Ref.current.play();
+          setActiveVideo(2);
+        }
+      };
+      
+      const handleVideo2End = () => {
+        if (video1Ref.current) {
+          video1Ref.current.currentTime = 0;
+          video1Ref.current.play();
+          setActiveVideo(1);
+        }
+      };
+      
       if (video1Ref.current && video2Ref.current) {
         // Quando o primeiro vídeo terminar, inicia o segundo e o torna visível
-        video1Ref.current.addEventListener('ended', () => {
-          video2Ref.current!.currentTime = 0;
-          video2Ref.current!.play();
-          setActiveVideo(2);
-        });
+        video1Ref.current.addEventListener('ended', handleVideo1End);
 
         // Quando o segundo vídeo terminar, inicia o primeiro e o torna visível
-        video2Ref.current.addEventListener('ended', () => {
-          video1Ref.current!.currentTime = 0;
-          video1Ref.current!.play();
-          setActiveVideo(1);
-        });
+        video2Ref.current.addEventListener('ended', handleVideo2End);
       }
+      
+      // Retornar as funções para que possam ser usadas na limpeza
+      return { handleVideo1End, handleVideo2End };
     };
 
-    setupVideoEvents();
+    // Armazenar as funções retornadas
+    const { handleVideo1End, handleVideo2End } = setupVideoEvents();
 
     // Limpeza dos event listeners quando o componente for desmontado
     return () => {
-      if (video1Ref.current) {
-        video1Ref.current.removeEventListener('ended', () => {});
+      // Capturar as referências atuais para uso na função de limpeza
+      const video1 = video1Ref.current;
+      const video2 = video2Ref.current;
+      
+      if (video1) {
+        video1.removeEventListener('ended', handleVideo1End);
       }
-      if (video2Ref.current) {
-        video2Ref.current.removeEventListener('ended', () => {});
+      if (video2) {
+        video2.removeEventListener('ended', handleVideo2End);
       }
     };
   }, []);

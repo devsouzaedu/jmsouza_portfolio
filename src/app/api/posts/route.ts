@@ -14,7 +14,7 @@ export async function POST(request: NextRequest) {
       );
     }
     
-    const { title, content, slug, date } = data;
+    const { content, slug } = data;
     
     // Criar o diretório se não existir
     const postsDirectory = path.join(process.cwd(), 'src/content/blog');
