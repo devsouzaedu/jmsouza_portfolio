@@ -66,6 +66,6 @@ No entanto, desafios permanecem: a dependência de grandes volumes de dados, o c
 
 ## Próximos Passos
 
-No próximo post, vamos mergulhar em como você pode começar a implementar soluções de Machine Learning em seus próprios projetos, mesmo sem ser um especialista em matemática ou ciência da computação. Vou mostrar ferramentas acessíveis, como bibliotecas em Python (TensorFlow, Scikit-learn), e exemplos práticos para iniciantes. Fique ligado para aprender como criar seu primeiro modelo de IA!
+No próximo post, vamos mergulhar em como você pode começar a implementar soluções de Machine Learning em seus próprios projetos, mesmo sem ser um especialista em matemática ou ciência da computação. Vou mostrar ferramentas acessíveis, como bibliotecas em Python (TensorFlow, Scikit-learn), e exemplos práticos para iniciantes. Fique ligado para aprender como criar seu primeiro modelo de IA!!
 
 **Até lá!**
