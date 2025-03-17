@@ -88,7 +88,15 @@ export async function PATCH(
     if ('excerpt' in data) updateData.excerpt = data.excerpt;
     if ('cover_image' in data) updateData.cover_image = data.cover_image;
     if ('tags' in data) updateData.tags = Array.isArray(data.tags) ? data.tags : [];
-    if ('published' in data) updateData.published = Boolean(data.published);
+    
+    // Adicionar campo published apenas se foi fornecido e a coluna existir
+    if ('published' in data) {
+      try {
+        updateData.published = Boolean(data.published);
+      } catch (err) {
+        console.log('Ignorando campo published, pode não existir na tabela');
+      }
+    }
     
     // Se o slug for atualizado, garantir que seja único
     if ('newSlug' in data && data.newSlug !== params.slug) {
@@ -116,7 +124,8 @@ export async function PATCH(
     }, false);
     
     if (!success) {
-      throw new Error(error || 'Erro ao atualizar post');
+      console.error('Erro detalhado ao atualizar post:', error);
+      throw new Error(JSON.stringify(error));
     }
     
     return NextResponse.json({

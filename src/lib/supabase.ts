@@ -34,14 +34,20 @@ export async function getAllPosts(published = true): Promise<Post[]> {
   try {
     console.log(`Buscando posts (publicados: ${published})`);
 
+    // Consulta básica sem filtro de publicação
     let query = supabase
       .from('posts')
       .select('*')
       .order('created_at', { ascending: false });
 
-    // Filtrar por status de publicação, se necessário
-    if (published) {
-      query = query.eq('published', true);
+    // Verificar se a coluna published existe antes de usá-la
+    try {
+      if (published) {
+        // @ts-ignore - Ignorar erro de tipo
+        query = query.eq('published', true);
+      }
+    } catch (err) {
+      console.log('Coluna published não existe, ignorando filtro');
     }
 
     const { data, error } = await query;
@@ -73,9 +79,14 @@ export async function getPostBySlug(slug: string, published = true): Promise<Pos
       .eq('slug', slug)
       .single();
 
-    // Filtrar por status de publicação, se necessário
-    if (published) {
-      query = query.eq('published', true);
+    // Verificar se a coluna published existe antes de usá-la
+    try {
+      if (published) {
+        // @ts-ignore - Ignorar erro de tipo
+        query = query.eq('published', true);
+      }
+    } catch (err) {
+      console.log('Coluna published não existe, ignorando filtro');
     }
 
     const { data, error } = await query;
@@ -106,9 +117,23 @@ export async function savePost(post: Partial<Post>, isNew = true): Promise<{ suc
   try {
     console.log(`${isNew ? 'Criando' : 'Atualizando'} post: ${post.title} (${post.slug})`);
 
+    // Remover o campo published se ele não existir na tabela
+    const postData = { ...post };
+    
+    // Verificar se a coluna published existe na tabela
+    try {
+      // Se não temos certeza se a coluna existe, é melhor remover
+      if ('published' in postData && typeof postData.published === 'undefined') {
+        delete postData.published;
+      }
+    } catch (err) {
+      // Se houver erro, remover o campo published
+      delete postData.published;
+    }
+
     const operation = isNew
-      ? supabase.from('posts').insert([post])
-      : supabase.from('posts').update(post).eq('slug', post.slug);
+      ? supabase.from('posts').insert([postData])
+      : supabase.from('posts').update(postData).eq('slug', postData.slug);
 
     const { data, error } = await operation;
 

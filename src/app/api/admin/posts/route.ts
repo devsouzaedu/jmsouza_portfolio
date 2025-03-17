@@ -70,7 +70,7 @@ export async function POST(request: NextRequest) {
     }
     
     // Processar o markdown para criar frontmatter se necessário
-    const { title, content, slug, excerpt, cover_image, tags, published } = data;
+    const { title, content, slug, excerpt, cover_image, tags } = data;
     
     // Processar o markdown para extrair o HTML
     const { html } = await processMarkdown(content);
@@ -84,16 +84,22 @@ export async function POST(request: NextRequest) {
       cover_image: cover_image || '/dots_ai_bg.png',
       author: 'Eduardo',
       tags: Array.isArray(tags) ? tags : [],
-      published: published === true,
       created_at: new Date(),
       updated_at: new Date()
     };
+    
+    // Adicionar campo published apenas se foi fornecido
+    if (typeof data.published !== 'undefined') {
+      // @ts-ignore
+      post.published = data.published === true;
+    }
     
     // Salvar no banco de dados
     const { success, error } = await savePost(post, true);
     
     if (!success) {
-      throw new Error(error || 'Erro ao salvar post');
+      console.error('Erro detalhado ao salvar post:', error);
+      throw new Error(JSON.stringify(error));
     }
     
     return NextResponse.json({
