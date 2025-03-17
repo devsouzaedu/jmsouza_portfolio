@@ -2,7 +2,6 @@
 
 // src/app/page.tsx
 import Navbar from '@/components/Navbar';
-import Footer from '@/components/Footer';
 import { Button } from '@/components/Button';
 import { ContactButton } from '@/components/ContactButton'; // Novo import
 import Link from 'next/link';
@@ -219,7 +218,6 @@ export default function Home() {
           <ContactButton variant="default" size="lg" />
         </section>
       </main>
-      <Footer />
     </>
   );
 }
