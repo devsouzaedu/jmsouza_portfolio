@@ -55,21 +55,28 @@ export default function NewPostPage() {
       const date = new Date().toISOString().split('T')[0];
       const slug = formData.title
         .toLowerCase()
-        .replace(/[^\w\s]/gi, '')
+        .trim()
+        .replace(/[^\w\s-]/g, '')
         .replace(/\s+/g, '-');
 
-      const tags = formData.tags.split(',').map((tag) => tag.trim());
+      if (!slug) {
+        throw new Error('O título não gerou um slug válido. Tente um título diferente.');
+      }
+
+      const tags = formData.tags.split(',').map((tag) => tag.trim()).filter(tag => tag);
 
       const markdownContent = `---
-title: '${formData.title}'
+title: '${formData.title.replace(/'/g, "\\'")}'
 date: '${date}'
-excerpt: '${formData.excerpt}'
+excerpt: '${formData.excerpt.replace(/'/g, "\\'")}'
 coverImage: '${formData.coverImage}'
 author: 'Eduardo'
 tags: ${JSON.stringify(tags)}
 ---
 
 ${formData.content}`;
+
+      console.log(`Enviando post: ${formData.title} (${slug})`);
 
       // Enviar para a API
       const response = await fetch('/api/posts', {
@@ -89,7 +96,9 @@ ${formData.content}`;
       const data = await response.json();
 
       if (!response.ok) {
-        throw new Error(data.error || 'Erro ao criar o post');
+        // Mensagem de erro mais detalhada
+        const errorMessage = data.details || data.error || 'Erro desconhecido ao criar o post';
+        throw new Error(errorMessage);
       }
       
       alert(`Post "${formData.title}" criado com sucesso!`);
