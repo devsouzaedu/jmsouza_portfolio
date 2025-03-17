@@ -9,7 +9,7 @@ export async function GET(request: NextRequest) {
   
   if (password !== 'Sucesso2030A@') {
     return NextResponse.json(
-      { error: 'Não autorizado' },
+      { error: 'Não aautorizado' },
       { status: 401 }
     );
   }
