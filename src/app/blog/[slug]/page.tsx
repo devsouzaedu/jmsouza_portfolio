@@ -4,8 +4,9 @@ import Link from 'next/link';
 import { format } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
 import { notFound } from 'next/navigation';
-import { getAllPosts, getPostBySlug } from '@/lib/api';
-import markdownToHtml from '@/lib/markdownToHtml';
+import { getPostBySlug, getAllPosts, Post } from '@/lib/supabase';
+import MarkdownContent from '@/components/MarkdownContent';
+import { processMarkdown } from '@/lib/markdown';
 
 // Permitir renderização de rotas não geradas durante a build
 export const dynamicParams = true;
@@ -18,7 +19,7 @@ type Params = {
 
 export async function generateMetadata({ params }: Params): Promise<Metadata> {
   try {
-    const post = await getPostBySlug(params.slug, ['title', 'excerpt']);
+    const post = await getPostBySlug(params.slug);
     
     if (!post) {
       return {
@@ -27,8 +28,8 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
     }
     
     return {
-      title: post.title as string,
-      description: post.excerpt as string,
+      title: `${post.title} | Blog`,
+      description: post.excerpt || `Leia o post "${post.title}" no blog.`,
     };
   } catch (error) {
     console.error(`Erro ao gerar metadados para o post ${params.slug}:`, error);
@@ -41,7 +42,7 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
 
 export async function generateStaticParams() {
   try {
-    const posts = await getAllPosts(['slug'], false);
+    const posts = await getAllPosts(true);
     
     if (!posts || posts.length === 0) {
       console.log('Nenhum post encontrado para gerar páginas estáticas');
@@ -51,7 +52,7 @@ export async function generateStaticParams() {
     console.log(`Gerando páginas estáticas para ${posts.length} posts`);
     
     return posts.map((post) => ({
-      slug: post.slug as string,
+      slug: post.slug,
     }));
   } catch (error) {
     console.error('Erro ao gerar parâmetros estáticos:', error);
@@ -59,41 +60,29 @@ export async function generateStaticParams() {
   }
 }
 
-export default async function Post({ params }: Params) {
+export default async function PostPage({ params }: Params) {
   try {
     console.log(`Carregando post: ${params.slug}`);
     
-    const post = await getPostBySlug(params.slug, [
-      'title',
-      'date',
-      'slug',
-      'author',
-      'content',
-      'coverImage',
-      'tags',
-      'archived',
-    ]);
+    const post = await getPostBySlug(params.slug);
     
-    if (!post || post.archived) {
-      console.log(`Post não encontrado ou arquivado: ${params.slug}`);
+    if (!post || !post.published) {
+      console.log(`Post não encontrado ou não publicado: ${params.slug}`);
       return notFound();
     }
     
-    // Verificar se o conteúdo contém frontmatter para diagnóstico
-    const postContent = post.content as string || '';
-    const hasFrontmatter = postContent.startsWith('---');
+    console.log(`Post encontrado: ${post.title}`);
     
-    console.log(`Post encontrado: ${post.title} (tem frontmatter: ${hasFrontmatter})`);
-    console.log(`Trecho do conteúdo: ${postContent.substring(0, 100)}...`);
+    // Processar o conteúdo Markdown
+    const { html, content } = await processMarkdown(post.content);
+    console.log(`HTML gerado para o post ${params.slug}`);
     
-    const content = await markdownToHtml(postContent);
-    
-    const postDate = post.date instanceof Date 
-      ? post.date 
-      : new Date(post.date as string || Date.now());
+    const postDate = post.created_at instanceof Date 
+      ? post.created_at 
+      : new Date(post.created_at);
       
     const formattedDate = format(postDate, 'dd MMMM yyyy', { locale: ptBR });
-
+    
     const tags = Array.isArray(post.tags) ? post.tags : [];
     
     return (
@@ -108,11 +97,11 @@ export default async function Post({ params }: Params) {
 
           <div className="mb-8">
             <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
-              {post.title as string}
+              {post.title}
             </h1>
             
             <div className="flex flex-wrap gap-2 mb-4">
-              {tags.map((tag) => (
+              {tags.length > 0 && tags.map((tag) => (
                 <span
                   key={tag}
                   className="text-sm font-semibold bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-100 px-3 py-1 rounded-full"
@@ -123,38 +112,38 @@ export default async function Post({ params }: Params) {
             </div>
             
             <div className="flex items-center text-gray-600 dark:text-gray-300 mb-8">
-              <span>Por {post.author as string}</span>
+              <span>Por {post.author || 'Eduardo'}</span>
               <span className="mx-2">•</span>
               <time dateTime={postDate.toISOString()}>{formattedDate}</time>
             </div>
           </div>
 
-          <div className="relative h-96 w-full mb-8 rounded-lg overflow-hidden">
-            {typeof post.coverImage === 'string' && (post.coverImage as string).endsWith('.mp4') ? (
-              <video 
-                className="object-cover w-full h-full"
-                autoPlay 
-                muted 
-                loop
-                controls
-              >
-                <source src={post.coverImage as string} type="video/mp4" />
-              </video>
-            ) : (
-              <Image
-                src={post.coverImage as string || '/dots_ai_bg.png'}
-                alt={`Capa do post ${post.title as string}`}
-                fill
-                className="object-cover"
-                priority
-              />
-            )}
-          </div>
-
-          <div 
-            className="prose prose-lg dark:prose-invert prose-headings:font-bold prose-headings:text-gray-900 dark:prose-headings:text-white prose-h1:text-4xl prose-h2:text-3xl prose-h3:text-2xl prose-p:text-gray-700 dark:prose-p:text-gray-300 prose-a:text-blue-600 hover:prose-a:text-blue-800 dark:prose-a:text-blue-400 dark:hover:prose-a:text-blue-300 prose-strong:text-gray-900 dark:prose-strong:text-white prose-strong:font-semibold prose-li:text-gray-700 dark:prose-li:text-gray-300 prose-img:rounded-lg prose-img:my-8 prose-hr:my-8 max-w-none mb-12"
-            dangerouslySetInnerHTML={{ __html: content }}
-          />
+          {post.cover_image && (
+            <div className="relative h-96 w-full mb-8 rounded-lg overflow-hidden">
+              {post.cover_image.endsWith('.mp4') ? (
+                <video 
+                  className="object-cover w-full h-full"
+                  autoPlay 
+                  muted 
+                  loop
+                  controls
+                >
+                  <source src={post.cover_image} type="video/mp4" />
+                </video>
+              ) : (
+                <Image
+                  src={post.cover_image || '/dots_ai_bg.png'}
+                  alt={`Capa do post ${post.title}`}
+                  fill
+                  className="object-cover"
+                  priority
+                />
+              )}
+            </div>
+          )}
+          
+          {/* Renderizar o conteúdo Markdown */}
+          <MarkdownContent content={content} className="mb-12" />
         </article>
       </main>
     );
