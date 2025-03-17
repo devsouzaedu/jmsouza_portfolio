@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { supabase } from '@/lib/supabase';
+import { revalidatePath } from 'next/cache';
 
 export async function POST(request: NextRequest) {
   try {
@@ -58,6 +59,9 @@ export async function POST(request: NextRequest) {
       .select();
     
     if (error) throw error;
+    
+    // Revalidar a página do blog após criar um novo post
+    revalidatePath('/blog');
     
     return NextResponse.json({ success: true, slug });
   } catch (error) {

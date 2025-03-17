@@ -6,6 +6,9 @@ import Image from 'next/image';
 import { format } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
 
+// Force revalidation on each request to see the latest posts
+export const revalidate = 0;
+
 export const metadata: Metadata = {
   title: 'Blog sobre IA | Eduardo - Desenvolvedor Full-Stack & IA',
   description: 'Artigos diários sobre Inteligência Artificial, Machine Learning, e como essas tecnologias estão transformando o mundo.',
@@ -47,12 +50,20 @@ export default async function BlogPage() {
             Artigos diários sobre IA, Machine Learning e como essas tecnologias estão transformando o mundo.
           </p>
         </div>
-        <Link 
-          href="/blog/novo"
-          className="inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-lg transition-colors"
-        >
-          Novo Post
-        </Link>
+        <div className="flex gap-2">
+          <Link 
+            href="/blog/novo"
+            className="inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-lg transition-colors"
+          >
+            Novo Post
+          </Link>
+          <Link 
+            href="/blog?refresh=true"
+            className="inline-block bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-6 rounded-lg transition-colors"
+          >
+            Atualizar
+          </Link>
+        </div>
       </div>
 
       {allPosts.length > 0 ? (
