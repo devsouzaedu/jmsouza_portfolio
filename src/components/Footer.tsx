@@ -21,12 +21,6 @@ export default function Footer() {
               Home
             </Link>
             <Link 
-              href="/blog"
-              className="text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white"
-            >
-              Blog
-            </Link>
-            <Link 
               href="/#projetos"
               className="text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white"
             >
@@ -37,14 +31,6 @@ export default function Footer() {
               className="text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white"
             >
               Contato
-            </Link>
-            {/* Link escondido para o dashboard do blog - só visível ao passar o mouse */}
-            <Link 
-              href="/dashboard_blog"
-              className="text-gray-50 hover:text-gray-900 dark:text-gray-900 dark:hover:text-white transition-colors duration-300"
-              aria-label="Área administrativa"
-            >
-              •
             </Link>
           </div>
         </div>

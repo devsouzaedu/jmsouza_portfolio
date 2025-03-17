@@ -1,5 +1,4 @@
 User-agent: *
 Allow: /
-Disallow: /blog/novo
 
 Sitemap: https://seu-dominio.com/sitemap.xml 
