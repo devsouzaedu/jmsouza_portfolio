@@ -3,6 +3,7 @@ import './globals.css'
 import { Inter } from 'next/font/google'
 import type { Metadata } from 'next'
 import Script from 'next/script'
+import Footer from '@/components/Footer'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -69,7 +70,12 @@ export default function RootLayout({
         </Script>
       </head>
       <body className={inter.className}>
-        {children}
+        <div className="flex flex-col min-h-screen">
+          <main className="flex-grow">
+            {children}
+          </main>
+          <Footer />
+        </div>
       </body>
     </html>
   )

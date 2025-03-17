@@ -41,6 +41,18 @@ export async function POST(request: NextRequest) {
       coverImage = coverImageMatch[1];
     }
     
+    // Formatar o conteúdo com quebras de linha para o frontmatter
+    const formattedContent = `---
+title: '${title}'
+date: '${date}'
+excerpt: '${excerpt}'
+coverImage: '${coverImage}'
+author: 'Eduardo'
+tags: ${JSON.stringify(tags)}
+---
+
+${content.split('---')[2]?.trim() || content}`;
+    
     // Salvar no Supabase
     const { data: postData, error } = await supabase
       .from('posts')
@@ -48,7 +60,7 @@ export async function POST(request: NextRequest) {
         { 
           slug,
           title, 
-          content,
+          content: formattedContent,
           excerpt,
           cover_image: coverImage,
           author: 'Eduardo',
