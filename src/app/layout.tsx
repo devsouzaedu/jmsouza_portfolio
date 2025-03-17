@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: 'Eduardo - Desenvolvedor Full-Stack & IA',
-    description: 'Desenvolvedor Full-Stack especializado na criação de aplicações web e mobile com integração de Inteligência Artificial.',
+    description: 'Desenvolvedeor Full-Stack especializado na criação de aplicações web e mobile com integração de Inteligência Artificial.',
     url: 'https://seu-dominio.com',
     siteName: 'Portfólio de Eduardo',
     images: [
