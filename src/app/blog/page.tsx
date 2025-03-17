@@ -45,29 +45,13 @@ export default async function BlogPage() {
 
   return (
     <main className="container mx-auto px-4 py-12">
-      <div className="flex justify-between items-center mb-12">
-        <div>
-          <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
-            Blog - JMSOUZA 
-          </h1>
-          <p className="text-xl text-gray-600 dark:text-gray-300 max-w-2xl">
-          Artigos diários, Minhas opiniões pessoais sobre o mundo e o futuro..
-          </p>
-        </div>
-        <div className="flex gap-2">
-          <Link 
-            href="/blog/novo"
-            className="inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-lg transition-colors"
-          >
-            Novo Post
-          </Link>
-          <Link 
-            href="/blog?refresh=true"
-            className="inline-block bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-6 rounded-lg transition-colors"
-          >
-            Atualizar
-          </Link>
-        </div>
+      <div className="mb-12">
+        <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
+          Blog - JMSOUZA 
+        </h1>
+        <p className="text-xl text-gray-600 dark:text-gray-300 max-w-2xl">
+        Artigos diários, Minhas opiniões pessoais sobre o mundo e o futuro..
+        </p>
       </div>
 
       {allPosts.length > 0 ? (
@@ -90,12 +74,6 @@ export default async function BlogPage() {
           <p className="text-xl text-gray-600 dark:text-gray-300 mb-6">
             Ainda não há posts publicados. Seja o primeiro a criar um!
           </p>
-          <Link 
-            href="/blog/novo"
-            className="inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-lg transition-colors"
-          >
-            Criar Primeiro Post
-          </Link>
         </div>
       )}
 

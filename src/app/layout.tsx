@@ -36,7 +36,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Eduardo - Desenvolvedor Full-Stack & IA',
+    title: 'Eduardo - Desenveolvedor Full-Stack & IA',
     description: 'Desenvolvedor Full-Stack especializado na criação de aplicações web e mobile com integração de Inteligência Artificial.',
     images: ['/favicon.ico'],
   },
