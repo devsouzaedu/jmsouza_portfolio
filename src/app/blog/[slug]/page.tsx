@@ -61,6 +61,8 @@ export async function generateStaticParams() {
 
 export default async function Post({ params }: Params) {
   try {
+    console.log(`Carregando post: ${params.slug}`);
+    
     const post = await getPostBySlug(params.slug, [
       'title',
       'date',
@@ -73,10 +75,18 @@ export default async function Post({ params }: Params) {
     ]);
     
     if (!post || post.archived) {
+      console.log(`Post não encontrado ou arquivado: ${params.slug}`);
       return notFound();
     }
     
-    const content = await markdownToHtml(post.content as string || '');
+    // Verificar se o conteúdo contém frontmatter para diagnóstico
+    const postContent = post.content as string || '';
+    const hasFrontmatter = postContent.startsWith('---');
+    
+    console.log(`Post encontrado: ${post.title} (tem frontmatter: ${hasFrontmatter})`);
+    console.log(`Trecho do conteúdo: ${postContent.substring(0, 100)}...`);
+    
+    const content = await markdownToHtml(postContent);
     
     const postDate = post.date instanceof Date 
       ? post.date 

@@ -23,6 +23,7 @@ export default function DashboardBlog() {
   const [error, setError] = useState('');
   const [showArchived, setShowArchived] = useState(false);
   const [statusMessage, setStatusMessage] = useState('');
+  const [resultMessage, setResultMessage] = useState('');
 
   // Carregar posts após autenticação
   useEffect(() => {
@@ -127,6 +128,36 @@ export default function DashboardBlog() {
     }
   };
 
+  // Adicionar função para corrigir posts
+  const handleFixPosts = async () => {
+    setIsLoading(true);
+    setResultMessage('');
+    
+    try {
+      const response = await fetch(`/api/fix-posts?password=${encodeURIComponent(password)}`);
+      const data = await response.json();
+      
+      if (!response.ok) {
+        throw new Error(data.error || 'Erro ao corrigir posts');
+      }
+      
+      setResultMessage(`Posts corrigidos com sucesso! Total: ${data.total} posts processados.`);
+      fetchPosts(); // Atualizar a lista de posts
+    } catch (error) {
+      setResultMessage(
+        `Erro ao corrigir posts: ${error instanceof Error ? error.message : 'Erro desconhecido'}`
+      );
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  // Função para alternar entre posts ativos e arquivados
+  const handleFilterChange = () => {
+    setShowArchived(!showArchived);
+    setStatusMessage(showArchived ? 'Mostrando posts ativos' : 'Mostrando posts arquivados');
+  };
+
   if (!isAuthenticated) {
     return (
       <main className="container mx-auto px-4 py-12">
@@ -203,9 +234,16 @@ export default function DashboardBlog() {
           Dashboard do Blog
         </h1>
 
+        {/* Exibir mensagem de status e resultado */}
         {statusMessage && (
-          <div className="mb-6 p-4 bg-green-100 border border-green-400 text-green-700 rounded-md">
+          <div className="mb-4 p-4 bg-yellow-100 border border-yellow-400 text-yellow-700 rounded-md">
             {statusMessage}
+          </div>
+        )}
+
+        {resultMessage && (
+          <div className="mb-4 p-4 bg-green-100 border border-green-400 text-green-700 rounded-md">
+            {resultMessage}
           </div>
         )}
 
@@ -244,6 +282,24 @@ export default function DashboardBlog() {
           >
             + Novo Post
           </Link>
+        </div>
+
+        <div className="flex space-x-4 mb-8">
+          <button
+            onClick={handleFilterChange}
+            disabled={isLoading}
+            className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 disabled:opacity-50"
+          >
+            {showArchived ? 'Mostrar Ativos' : 'Mostrar Arquivados'}
+          </button>
+          
+          <button
+            onClick={handleFixPosts}
+            disabled={isLoading}
+            className="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 disabled:opacity-50"
+          >
+            Corrigir Formatação dos Posts
+          </button>
         </div>
 
         {isLoading ? (
