@@ -292,26 +292,19 @@ Parágrafo com **texto em negrito** e *texto em itálico*.
               <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
                 Pré-visualização
               </label>
-              <div className="w-full h-full p-4 border border-gray-300 dark:border-gray-700 rounded-md shadow-sm overflow-auto dark:bg-gray-800 dark:text-white prose prose-sm max-w-none">
+              <div className="w-full h-full p-4 border border-gray-300 dark:border-gray-700 rounded-md shadow-sm overflow-auto dark:bg-gray-800 dark:text-white prose prose-sm dark:prose-invert max-w-none">
                 {markdownPreview ? (
                   <div className="markdown-preview">
-                    {markdownPreview.split('\n').map((line, index) => (
-                      <div key={index}>
-                        {line.startsWith('# ') ? (
-                          <h1 className="text-2xl font-bold">{line.substring(2)}</h1>
-                        ) : line.startsWith('## ') ? (
-                          <h2 className="text-xl font-bold">{line.substring(3)}</h2>
-                        ) : line.startsWith('### ') ? (
-                          <h3 className="text-lg font-bold">{line.substring(4)}</h3>
-                        ) : line.startsWith('- ') ? (
-                          <ul className="list-disc list-inside">
-                            <li>{line.substring(2)}</li>
-                          </ul>
-                        ) : (
-                          <p className="mb-2">{line}</p>
-                        )}
-                      </div>
-                    ))}
+                    <div dangerouslySetInnerHTML={{ 
+                      __html: markdownPreview
+                        .replace(/^# (.*$)/gm, '<h1 class="text-2xl font-bold mb-4">$1</h1>')
+                        .replace(/^## (.*$)/gm, '<h2 class="text-xl font-bold mb-3">$1</h2>')
+                        .replace(/^### (.*$)/gm, '<h3 class="text-lg font-bold mb-2">$1</h3>')
+                        .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                        .replace(/\*(.*?)\*/g, '<em>$1</em>')
+                        .replace(/^\- (.*$)/gm, '<ul class="list-disc list-inside mb-3"><li>$1</li></ul>')
+                        .replace(/\n\n/g, '<br/><br/>')
+                    }} />
                   </div>
                 ) : (
                   <p className="text-gray-500 dark:text-gray-400">

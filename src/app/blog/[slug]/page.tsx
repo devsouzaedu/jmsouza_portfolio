@@ -142,7 +142,7 @@ export default async function Post({ params }: Params) {
           </div>
 
           <div 
-            className="prose prose-lg prose-headings:font-bold prose-headings:text-gray-900 dark:prose-headings:text-white prose-h1:text-4xl prose-h2:text-3xl prose-h3:text-2xl prose-p:text-gray-700 dark:prose-p:text-gray-300 prose-a:text-blue-600 hover:prose-a:text-blue-800 dark:prose-a:text-blue-400 dark:hover:prose-a:text-blue-300 prose-li:text-gray-700 dark:prose-li:text-gray-300 prose-strong:font-bold prose-img:rounded-lg prose-img:my-8 prose-hr:my-8 max-w-none"
+            className="prose prose-lg dark:prose-invert prose-headings:font-bold prose-headings:text-gray-900 dark:prose-headings:text-white prose-h1:text-4xl prose-h2:text-3xl prose-h3:text-2xl prose-p:text-gray-700 dark:prose-p:text-gray-300 prose-a:text-blue-600 hover:prose-a:text-blue-800 dark:prose-a:text-blue-400 dark:hover:prose-a:text-blue-300 prose-strong:text-gray-900 dark:prose-strong:text-white prose-strong:font-semibold prose-li:text-gray-700 dark:prose-li:text-gray-300 prose-img:rounded-lg prose-img:my-8 prose-hr:my-8 max-w-none mb-12"
             dangerouslySetInnerHTML={{ __html: content }}
           />
         </article>
