@@ -10,11 +10,11 @@ import { ptBR } from 'date-fns/locale';
 export const revalidate = 0;
 
 export const metadata: Metadata = {
-  title: 'Blog sobre IA | Eduardo - Desenvolvedor Full-Stack & IA',
-  description: 'Artigos diários sobre Inteligência Artificial, Machine Learning, e como essas tecnologias estão transformando o mundo.',
+  title: 'Blog | JMSOUZA ',
+  description: 'Artigos diários, Minhas opiniões pessoais sobre o mundo e o futuro.',
   openGraph: {
-    title: 'Blog sobre IA | Eduardo - Desenvolvedor Full-Stack & IA',
-    description: 'Artigos diários sobre Inteligência Artificial, Machine Learning, e como essas tecnologias estão transformando o mundo.',
+    title: 'Blog | JMSOUZA',
+    description: 'Artigos diários, Minhas opiniões pessoais sobre o mundo e o futuro.',
   },
 };
 
@@ -29,6 +29,7 @@ type Post = {
 };
 
 export default async function BlogPage() {
+  // Defina explicitamente includeArchived como false para mostrar apenas posts publicados
   const allPosts = await getAllPosts([
     'title',
     'date',
@@ -37,17 +38,20 @@ export default async function BlogPage() {
     'coverImage',
     'excerpt',
     'tags',
-  ]) as Post[];
+  ], false) as Post[];
+  
+  // Verifique se há posts retornados
+  console.log(`Blog: ${allPosts.length} posts encontrados`);
 
   return (
     <main className="container mx-auto px-4 py-12">
       <div className="flex justify-between items-center mb-12">
         <div>
           <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
-            Blog sobre Inteligência Artificial
+            Blog - JMSOUZA 
           </h1>
           <p className="text-xl text-gray-600 dark:text-gray-300 max-w-2xl">
-            Artigos diários sobre IA, Machine Learning e como essas tecnologias estão transformando o mundo.
+          Artigos diários, Minhas opiniões pessoais sobre o mundo e o futuro..
           </p>
         </div>
         <div className="flex gap-2">
