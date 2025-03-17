@@ -1,53 +1,87 @@
-import fs from 'fs';
-import { join } from 'path';
 import matter from 'gray-matter';
+import { supabase } from './supabase';
 
-const postsDirectory = join(process.cwd(), 'src/content/blog');
-
-export function getPostSlugs() {
-  return fs.readdirSync(postsDirectory).filter(file => file.endsWith('.md'));
+export async function getPostSlugs() {
+  const { data, error } = await supabase
+    .from('posts')
+    .select('slug');
+  
+  if (error) throw error;
+  return data?.map(post => post.slug) || [];
 }
 
-export function getPostBySlug(slug: string, fields: string[] = []) {
-  const realSlug = slug.replace(/\.md$/, '');
-  const fullPath = join(postsDirectory, `${realSlug}.md`);
-  const fileContents = fs.readFileSync(fullPath, 'utf8');
-  const { data, content } = matter(fileContents);
-
+export async function getPostBySlug(slug: string, fields: string[] = []) {
+  const { data, error } = await supabase
+    .from('posts')
+    .select('*')
+    .eq('slug', slug)
+    .single();
+  
+  if (error) throw error;
+  
+  if (!data) return null;
+  
+  const { data: frontmatter, content } = matter(data.content);
+  
   type Items = {
     [key: string]: string | string[] | Date;
   };
-
+  
   const items: Items = {};
-
+  
   // Ensure only the minimal needed data is exposed
   fields.forEach((field) => {
     if (field === 'slug') {
-      items[field] = realSlug;
+      items[field] = data.slug;
     }
     if (field === 'content') {
       items[field] = content;
     }
     if (field === 'date') {
-      items[field] = new Date(data[field]);
+      items[field] = new Date(data.created_at);
     }
-
-    if (data[field]) {
-      items[field] = data[field];
+    if (frontmatter[field]) {
+      items[field] = frontmatter[field];
     }
   });
-
+  
   return items;
 }
 
-export function getAllPosts(fields: string[] = []) {
-  const slugs = getPostSlugs();
-  const posts = slugs
-    .map((slug) => getPostBySlug(slug, fields))
-    .sort((post1, post2) => {
-      const date1 = post1.date as Date;
-      const date2 = post2.date as Date;
-      return date1 > date2 ? -1 : 1;
+export async function getAllPosts(fields: string[] = []) {
+  const { data, error } = await supabase
+    .from('posts')
+    .select('*')
+    .order('created_at', { ascending: false });
+  
+  if (error) throw error;
+  
+  if (!data) return [];
+  
+  return data.map(post => {
+    const { data: frontmatter, content } = matter(post.content);
+    
+    type Items = {
+      [key: string]: string | string[] | Date;
+    };
+    
+    const items: Items = {};
+    
+    fields.forEach((field) => {
+      if (field === 'slug') {
+        items[field] = post.slug;
+      }
+      if (field === 'content') {
+        items[field] = content;
+      }
+      if (field === 'date') {
+        items[field] = new Date(post.created_at);
+      }
+      if (frontmatter[field]) {
+        items[field] = frontmatter[field];
+      }
     });
-  return posts;
+    
+    return items;
+  });
 } 

@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import fs from 'fs';
-import path from 'path';
+import { supabase } from '@/lib/supabase';
 
 export async function POST(request: NextRequest) {
   try {
@@ -14,17 +13,51 @@ export async function POST(request: NextRequest) {
       );
     }
     
-    const { content, slug } = data;
+    const { title, content, slug, date } = data;
     
-    // Criar o diretório se não existir
-    const postsDirectory = path.join(process.cwd(), 'src/content/blog');
-    if (!fs.existsSync(postsDirectory)) {
-      fs.mkdirSync(postsDirectory, { recursive: true });
+    // Extrair tags do conteúdo markdown
+    let tags = [];
+    const frontmatterMatch = content.match(/tags:\s*(\[.*?\])/);
+    if (frontmatterMatch && frontmatterMatch[1]) {
+      try {
+        tags = JSON.parse(frontmatterMatch[1]);
+      } catch (e) {
+        console.error('Erro ao parsear tags:', e);
+      }
     }
     
-    // Salvar o arquivo
-    const filePath = path.join(postsDirectory, `${slug}.md`);
-    fs.writeFileSync(filePath, content);
+    // Extrair excerpt
+    let excerpt = '';
+    const excerptMatch = content.match(/excerpt:\s*'(.+?)'/);
+    if (excerptMatch && excerptMatch[1]) {
+      excerpt = excerptMatch[1];
+    }
+    
+    // Extrair coverImage
+    let coverImage = '';
+    const coverImageMatch = content.match(/coverImage:\s*'(.+?)'/);
+    if (coverImageMatch && coverImageMatch[1]) {
+      coverImage = coverImageMatch[1];
+    }
+    
+    // Salvar no Supabase
+    const { data: postData, error } = await supabase
+      .from('posts')
+      .insert([
+        { 
+          slug,
+          title, 
+          content,
+          excerpt,
+          cover_image: coverImage,
+          author: 'Eduardo',
+          tags,
+          created_at: date ? new Date(date) : new Date()
+        }
+      ])
+      .select();
+    
+    if (error) throw error;
     
     return NextResponse.json({ success: true, slug });
   } catch (error) {

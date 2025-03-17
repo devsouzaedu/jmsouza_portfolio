@@ -2,6 +2,9 @@ import { Metadata } from 'next';
 import Link from 'next/link';
 import { getAllPosts } from '@/lib/api';
 import PostCard from '@/components/PostCard';
+import Image from 'next/image';
+import { format } from 'date-fns';
+import { ptBR } from 'date-fns/locale';
 
 export const metadata: Metadata = {
   title: 'Blog sobre IA | Eduardo - Desenvolvedor Full-Stack & IA',
@@ -12,8 +15,18 @@ export const metadata: Metadata = {
   },
 };
 
-export default function BlogPage() {
-  const posts = getAllPosts([
+type Post = {
+  slug: string;
+  title: string;
+  date: Date;
+  coverImage: string;
+  excerpt: string;
+  tags: string[];
+  author: string;
+};
+
+export default async function BlogPage() {
+  const allPosts = await getAllPosts([
     'title',
     'date',
     'slug',
@@ -21,7 +34,7 @@ export default function BlogPage() {
     'coverImage',
     'excerpt',
     'tags',
-  ]);
+  ]) as Post[];
 
   return (
     <main className="container mx-auto px-4 py-12">
@@ -42,18 +55,18 @@ export default function BlogPage() {
         </Link>
       </div>
 
-      {posts.length > 0 ? (
+      {allPosts.length > 0 ? (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {posts.map((post) => (
+          {allPosts.map((post) => (
             <PostCard
-              key={post.slug as string}
-              title={post.title as string}
-              date={post.date as string}
-              slug={post.slug as string}
-              excerpt={post.excerpt as string}
-              coverImage={post.coverImage as string}
-              author={post.author as string}
-              tags={post.tags as string[]}
+              key={post.slug}
+              title={post.title}
+              date={format(post.date, 'dd MMMM yyyy', { locale: ptBR })}
+              slug={post.slug}
+              excerpt={post.excerpt}
+              coverImage={post.coverImage}
+              author={post.author}
+              tags={post.tags}
             />
           ))}
         </div>

@@ -7,51 +7,37 @@ import { notFound } from 'next/navigation';
 import { getAllPosts, getPostBySlug } from '@/lib/api';
 import markdownToHtml from '@/lib/markdownToHtml';
 
-interface PageProps {
-  params: { slug: string };
-  searchParams: Record<string, string | string[] | undefined>;
-}
+type Params = {
+  params: {
+    slug: string;
+  };
+};
 
-export async function generateMetadata(
-  { params }: PageProps
-): Promise<Metadata> {
-  const post = getPostBySlug(params.slug, ['title', 'excerpt', 'coverImage']);
-
-  if (!post.title) {
+export async function generateMetadata({ params }: Params): Promise<Metadata> {
+  const post = await getPostBySlug(params.slug, ['title', 'excerpt']);
+  
+  if (!post) {
     return {
       title: 'Post não encontrado',
-      description: 'O post que você está procurando não existe.',
     };
   }
-
+  
   return {
-    title: `${post.title} | Blog sobre IA`,
+    title: post.title as string,
     description: post.excerpt as string,
-    openGraph: {
-      title: post.title as string,
-      description: post.excerpt as string,
-      images: [
-        {
-          url: post.coverImage as string,
-          width: 1200,
-          height: 630,
-          alt: post.title as string,
-        },
-      ],
-    },
   };
 }
 
 export async function generateStaticParams() {
-  const posts = getAllPosts(['slug']);
-
+  const posts = await getAllPosts(['slug']);
+  
   return posts.map((post) => ({
     slug: post.slug as string,
   }));
 }
 
-export default async function PostPage({ params }: PageProps) {
-  const post = getPostBySlug(params.slug, [
+export default async function Post({ params }: Params) {
+  const post = await getPostBySlug(params.slug, [
     'title',
     'date',
     'slug',
@@ -60,11 +46,11 @@ export default async function PostPage({ params }: PageProps) {
     'coverImage',
     'tags',
   ]);
-
-  if (!post.title) {
-    return notFound();
+  
+  if (!post) {
+    notFound();
   }
-
+  
   const content = await markdownToHtml(post.content as string);
   const formattedDate = format(new Date(post.date as string), 'dd MMMM yyyy', { locale: ptBR });
 
