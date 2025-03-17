@@ -120,17 +120,10 @@ export async function savePost(post: Partial<Post>, isNew = true): Promise<{ suc
     // Remover o campo published se ele não existir na tabela
     const postData = { ...post };
     
-    // Verificar se a coluna published existe na tabela
-    try {
-      // Se não temos certeza se a coluna existe, é melhor remover
-      if ('published' in postData && typeof postData.published === 'undefined') {
-        delete postData.published;
-      }
-    } catch (err) {
-      // Se houver erro, remover o campo published
-      delete postData.published;
-    }
-
+    // Sempre remover o campo published para evitar erros
+    // Comentar esta linha após adicionar a coluna no Supabase
+    delete postData.published;
+    
     const operation = isNew
       ? supabase.from('posts').insert([postData])
       : supabase.from('posts').update(postData).eq('slug', postData.slug);
