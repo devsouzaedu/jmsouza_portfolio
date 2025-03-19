@@ -1,5 +1,31 @@
 import { createClient } from '@supabase/supabase-js';
 
+// Função para gerar UUIDs
+function generateUUID() {
+  // Implementação simplificada de UUID v4
+  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+    const r = Math.random() * 16 | 0, 
+          v = c === 'x' ? r : (r & 0x3 | 0x8);
+    return v.toString(16);
+  });
+}
+
+// Função para obter um user_id padrão (para uso quando autenticação não é necessária)
+export function getDefaultUserId() {
+  // Tentar obter o ID do localStorage para consistência entre sessões
+  if (typeof window !== 'undefined') {
+    let userId = localStorage.getItem('habit_tracker_user_id');
+    if (!userId) {
+      userId = generateUUID();
+      localStorage.setItem('habit_tracker_user_id', userId);
+    }
+    return userId;
+  }
+  
+  // Fallback para quando localStorage não está disponível
+  return generateUUID();
+}
+
 // Configurações do Supabase para o Habit Tracker
 // Usa variáveis de ambiente quando disponíveis ou as credenciais fixas como fallback
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL_HABIT || "https://amvpytrzaukoovokslyg.supabase.co";
@@ -84,17 +110,71 @@ export async function getHabitById(habitId: string): Promise<Habit | null> {
  */
 export async function saveHabit(habit: Partial<Habit>, isNew = true): Promise<{ success: boolean; error?: any; data?: any }> {
   try {
+    // Log para debugging
+    console.log('Tentando salvar hábito:', JSON.stringify(habit, null, 2));
+    console.log('URL do Supabase:', supabaseUrl);
+    
+    // Cria uma cópia do hábito para não modificar o original
+    const habitData = { ...habit };
+    
+    // Usar o user_id padrão se não for fornecido
+    if (!habitData.user_id) {
+      habitData.user_id = getDefaultUserId();
+      console.log('Usando user_id padrão:', habitData.user_id);
+    }
+    
+    // Validação de dados obrigatórios
+    if (!habitData.habit_name) {
+      console.error('Erro: habit_name é obrigatório');
+      return { success: false, error: 'habit_name é obrigatório' };
+    }
+    
+    if (!habitData.habit_type) {
+      console.error('Erro: habit_type é obrigatório');
+      return { success: false, error: 'habit_type é obrigatório' };
+    }
+    
+    if (habitData.goal_value === undefined || habitData.goal_value === null) {
+      console.error('Erro: goal_value é obrigatório');
+      return { success: false, error: 'goal_value é obrigatório' };
+    }
+    
+    if (!habitData.unit) {
+      console.error('Erro: unit é obrigatório');
+      return { success: false, error: 'unit é obrigatório' };
+    }
+    
+    // Garantir que goal_value seja numérico
+    if (typeof habitData.goal_value !== 'number') {
+      try {
+        habitData.goal_value = Number(habitData.goal_value);
+      } catch (e) {
+        console.error('Erro: goal_value deve ser numérico');
+        return { success: false, error: 'goal_value deve ser numérico' };
+      }
+    }
+    
+    // Adicionar data de criação/atualização se não existir
+    if (isNew && !habitData.created_at) {
+      habitData.created_at = new Date().toISOString();
+    }
+    
+    habitData.updated_at = new Date().toISOString();
+    
+    console.log('Dados finais do hábito:', JSON.stringify(habitData, null, 2));
+    
     const operation = isNew
-      ? supabaseHabit.from('habits').insert([habit])
-      : supabaseHabit.from('habits').update(habit).eq('id', habit.id);
+      ? supabaseHabit.from('habits').insert([habitData])
+      : supabaseHabit.from('habits').update(habitData).eq('id', habitData.id);
 
     const { data, error } = await operation;
 
     if (error) {
-      console.error(`Erro ao ${isNew ? 'criar' : 'atualizar'} hábito:`, error);
+      console.error(`Erro ao ${isNew ? 'criar' : 'atualizar'} hábito:`, JSON.stringify(error, null, 2));
       return { success: false, error };
     }
 
+    console.log('Hábito salvo com sucesso:', data);
     return { success: true, data };
   } catch (error) {
     console.error(`Erro ao ${isNew ? 'criar' : 'atualizar'} hábito:`, error);
