@@ -346,7 +346,7 @@ const HabitCalendar: React.FC = () => {
     
     if (status === 0) {
       // Não marcado - cinza
-      cellClass += " bg-gray-200 hover:bg-gray-300";
+      cellClass += " bg-gray-700 hover:bg-gray-600 text-gray-300";
     } else if (status === 1) {
       // Concluído - verde
       cellClass += " bg-green-500 hover:bg-green-600 text-white";
@@ -392,28 +392,28 @@ const HabitCalendar: React.FC = () => {
   };
 
   return (
-    <div className="bg-white rounded-lg shadow-md p-6">
+    <div className="bg-gray-900 rounded-lg shadow-md p-6 text-white">
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6">
         <div>
-          <h2 className="text-2xl font-bold">Calendário de Hábitos</h2>
-          <p className="text-gray-600">{format(new Date(), "dd 'de' MMMM 'de' yyyy", { locale: ptBR })}</p>
-          <p className="text-sm text-blue-600 mt-1">{getMotivationalQuote()}</p>
+          <h2 className="text-2xl font-bold text-white">Calendário de Hábitos</h2>
+          <p className="text-gray-300">{format(new Date(), "dd 'de' MMMM 'de' yyyy", { locale: ptBR })}</p>
+          <p className="text-sm text-blue-400 mt-1">{getMotivationalQuote()}</p>
         </div>
         
         <div className="mt-4 md:mt-0">
           <div className="flex items-center mb-2">
-            <div className="w-40 h-3 bg-gray-200 rounded-full mr-2">
+            <div className="w-40 h-3 bg-gray-700 rounded-full mr-2">
               <div 
-                className="h-3 bg-blue-600 rounded-full" 
+                className="h-3 bg-blue-500 rounded-full" 
                 style={{ width: `${progress}%` }}
               ></div>
             </div>
-            <span className="text-sm font-medium">{Math.round(progress)}% hoje</span>
+            <span className="text-sm font-medium text-gray-300">{Math.round(progress)}% hoje</span>
           </div>
           
           <button
             onClick={() => setIsAddingHabit(!isAddingHabit)}
-            className="flex items-center text-blue-600 hover:text-blue-800"
+            className="flex items-center text-blue-400 hover:text-blue-300"
           >
             <PlusCircle className="w-4 h-4 mr-1" />
             <span>Novo hábito</span>
@@ -428,7 +428,7 @@ const HabitCalendar: React.FC = () => {
             value={newHabitName}
             onChange={(e) => setNewHabitName(e.target.value)}
             placeholder="Nome do novo hábito"
-            className="flex-1 px-4 py-2 border border-gray-300 rounded-l-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="flex-1 px-4 py-2 bg-gray-800 text-white border border-gray-700 rounded-l-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             required
           />
           <button
@@ -442,13 +442,13 @@ const HabitCalendar: React.FC = () => {
       
       {loading ? (
         <div className="text-center py-10">
-          <div className="inline-block animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-blue-600"></div>
-          <p className="mt-2 text-gray-600">Carregando...</p>
+          <div className="inline-block animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-blue-400"></div>
+          <p className="mt-2 text-gray-300">Carregando...</p>
         </div>
       ) : habits.length === 0 ? (
-        <div className="text-center py-10 bg-gray-50 rounded-lg">
+        <div className="text-center py-10 bg-gray-800 rounded-lg">
           <AlertTriangle className="w-10 h-10 text-yellow-500 mx-auto mb-2" />
-          <p className="text-gray-600">Nenhum hábito encontrado. Adicione seu primeiro hábito!</p>
+          <p className="text-gray-300">Nenhum hábito encontrado. Adicione seu primeiro hábito!</p>
         </div>
       ) : (
         <div className="overflow-x-auto">
@@ -457,25 +457,25 @@ const HabitCalendar: React.FC = () => {
             <div className="flex items-center justify-end mb-4 space-x-4">
               <div className="flex items-center">
                 <div className="w-4 h-4 bg-green-500 rounded mr-1"></div>
-                <span className="text-xs">Concluído</span>
+                <span className="text-xs text-gray-300">Concluído</span>
               </div>
               <div className="flex items-center">
                 <div className="w-4 h-4 bg-red-500 rounded mr-1"></div>
-                <span className="text-xs">Não concluído</span>
+                <span className="text-xs text-gray-300">Não concluído</span>
               </div>
               <div className="flex items-center">
-                <div className="w-4 h-4 bg-gray-200 rounded mr-1"></div>
-                <span className="text-xs">Não marcado</span>
+                <div className="w-4 h-4 bg-gray-500 rounded mr-1"></div>
+                <span className="text-xs text-gray-300">Não marcado</span>
               </div>
             </div>
             
             {/* Cabeçalho do calendário - Dias */}
             <div className="flex mb-2">
-              <div className="w-60 font-medium text-gray-700">Hábito</div>
+              <div className="w-60 font-medium text-gray-300">Hábito</div>
               {days.map((day, index) => (
                 <div 
                   key={index} 
-                  className={`w-10 text-center text-xs font-medium ${day.isToday ? 'text-blue-600' : 'text-gray-500'}`}
+                  className={`w-10 text-center text-xs font-medium ${day.isToday ? 'text-blue-400' : 'text-gray-400'}`}
                 >
                   <div className="mb-1">{day.dayName}</div>
                   <div>{day.date.getDate()}</div>
@@ -485,9 +485,9 @@ const HabitCalendar: React.FC = () => {
             
             {/* Linhas de hábitos */}
             {habits.map(habit => (
-              <div key={habit.id} className="flex items-center mb-3 py-2 border-t border-gray-100">
+              <div key={habit.id} className="flex items-center mb-3 py-2 border-t border-gray-700">
                 <div className="w-60 pr-4 flex items-center justify-between">
-                  <span className="font-medium truncate" title={habit.habit_name}>
+                  <span className="font-medium truncate text-white" title={habit.habit_name}>
                     {habit.habit_name}
                   </span>
                   <button
@@ -495,7 +495,7 @@ const HabitCalendar: React.FC = () => {
                       e.stopPropagation();
                       deleteHabit(habit.id);
                     }}
-                    className="text-gray-400 hover:text-red-500"
+                    className="text-gray-400 hover:text-red-400"
                   >
                     <Trash2 className="w-4 h-4" />
                   </button>

@@ -192,7 +192,7 @@ export default function HabitTracker() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 p-4">
+    <div className="min-h-screen bg-black text-white p-4">
       <h1 className="text-3xl font-bold text-center mb-6">Rastreador de Hábitos</h1>
       
       {authenticated ? (
@@ -206,7 +206,7 @@ export default function HabitTracker() {
             </Link>
             <button 
               onClick={handleLogout}
-              className="px-4 py-2 bg-gray-600 text-white rounded hover:bg-gray-700 transition"
+              className="px-4 py-2 bg-gray-700 text-white rounded hover:bg-gray-800 transition"
             >
               Sair
             </button>
@@ -216,10 +216,10 @@ export default function HabitTracker() {
           <HabitCalendar />
         </div>
       ) : (
-        <div className="max-w-md mx-auto bg-white p-8 rounded-lg shadow-md">
+        <div className="max-w-md mx-auto bg-gray-900 p-8 rounded-lg shadow-lg border border-gray-700">
           <form onSubmit={handleLogin} className="space-y-4">
             <div>
-              <label htmlFor="password" className="block text-sm font-medium text-gray-700">
+              <label htmlFor="password" className="block text-sm font-medium text-gray-300">
                 Senha
               </label>
               <input
@@ -227,12 +227,12 @@ export default function HabitTracker() {
                 id="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                className="mt-1 block w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 text-white"
                 required
               />
             </div>
             {error && (
-              <div className="text-red-600 text-sm">{error}</div>
+              <div className="text-red-400 text-sm">{error}</div>
             )}
             <button
               type="submit"
@@ -247,19 +247,19 @@ export default function HabitTracker() {
       <footer className="mt-8">
         <div className="container mx-auto">
           <div className="flex justify-center">
-            <Link href="/" className="text-blue-600 hover:text-blue-800">
+            <Link href="/" className="text-blue-400 hover:text-blue-300">
               Eduardo
             </Link>
-            <div className="mx-2">|</div>
-            <Link href="/projetos" className="text-blue-600 hover:text-blue-800">
+            <div className="mx-2 text-gray-500">|</div>
+            <Link href="/projetos" className="text-blue-400 hover:text-blue-300">
               Projetos
             </Link>
-            <div className="mx-2">|</div>
-            <Link href="/contato" className="text-blue-600 hover:text-blue-800">
+            <div className="mx-2 text-gray-500">|</div>
+            <Link href="/contato" className="text-blue-400 hover:text-blue-300">
               Contato
             </Link>
           </div>
-          <div className="text-center mt-4 text-sm text-gray-600">
+          <div className="text-center mt-4 text-sm text-gray-500">
             © 2025 Eduardo. Todos os direitos reservados.
           </div>
         </div>
