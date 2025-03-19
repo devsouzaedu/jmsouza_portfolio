@@ -47,7 +47,7 @@ export default function BlogPostPage() {
 
         setPost(data);
       } catch (error: any) {
-        console.error('Erro ao buscar post:', error);
+        console.error('Erroo ao buscar post:', error);
         setError(error.message || 'Erro ao carregar o post');
       } finally {
         setLoading(false);
