@@ -45,7 +45,8 @@ const HabitCalendar: React.FC = () => {
   useEffect(() => {
     const generateDays = () => {
       const daysArray: CalendarDay[] = [];
-      const startDate = subDays(currentDate, 15);
+      // Começar do dia atual e mostrar dias futuros à direita
+      const startDate = new Date(); // Dia atual
       
       for (let i = 0; i < totalDays; i++) {
         const date = addDays(startDate, i);
