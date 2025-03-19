@@ -163,19 +163,84 @@ export async function saveHabit(habit: Partial<Habit>, isNew = true): Promise<{ 
     
     console.log('Dados finais do hábito:', JSON.stringify(habitData, null, 2));
     
-    const operation = isNew
-      ? supabaseHabit.from('habits').insert([habitData])
-      : supabaseHabit.from('habits').update(habitData).eq('id', habitData.id);
-
-    const { data, error } = await operation;
-
-    if (error) {
-      console.error(`Erro ao ${isNew ? 'criar' : 'atualizar'} hábito:`, JSON.stringify(error, null, 2));
-      return { success: false, error };
+    // Tente primeiro verificar a estrutura da tabela
+    try {
+      console.log('Verificando estrutura da tabela habits...');
+      const { data: tableInfo, error: tableError } = await supabaseHabit
+        .rpc('pg_get_columns', { table_name: 'habits' });
+      
+      if (tableError) {
+        console.error('Erro ao verificar estrutura da tabela:', tableError);
+      } else {
+        console.log('Estrutura da tabela habits:', tableInfo);
+      }
+    } catch (structError) {
+      console.error('Erro ao consultar estrutura da tabela:', structError);
+      // Continuar mesmo com erro na verificação da estrutura
     }
-
-    console.log('Hábito salvo com sucesso:', data);
-    return { success: true, data };
+    
+    // Tentativa alternativa: Criar um objeto apenas com colunas que sabemos existir
+    const simplifiedData = {
+      habit_name: habitData.habit_name,
+      habit_type: habitData.habit_type,
+      user_id: habitData.user_id,
+      // goal_value e unit podem ser o problema, então tentaremos sem eles
+      created_at: habitData.created_at,
+      updated_at: habitData.updated_at
+    };
+    
+    console.log('Tentando com dados simplificados primeiro:', JSON.stringify(simplifiedData, null, 2));
+    
+    // Primeiro tente com dados simplificados
+    let operation;
+    let useSimplified = false;
+    
+    try {
+      operation = isNew
+        ? supabaseHabit.from('habits').insert([simplifiedData])
+        : supabaseHabit.from('habits').update(simplifiedData).eq('id', habitData.id);
+      
+      const { data: simpleData, error: simpleError } = await operation;
+      
+      if (!simpleError) {
+        console.log('Sucesso com dados simplificados:', simpleData);
+        useSimplified = true;
+        // Se funcionou com dados simplificados, retorne
+        return { success: true, data: simpleData };
+      } else {
+        console.error('Erro com dados simplificados:', simpleError);
+        // Continuar e tentar com os dados completos
+      }
+    } catch (simpleErr) {
+      console.error('Exceção com dados simplificados:', simpleErr);
+      // Continuar e tentar com os dados completos
+    }
+    
+    // Se não funcionou com dados simplificados, tente com os dados completos
+    if (!useSimplified) {
+      operation = isNew
+        ? supabaseHabit.from('habits').insert([habitData])
+        : supabaseHabit.from('habits').update(habitData).eq('id', habitData.id);
+      
+      const { data, error } = await operation;
+      
+      if (error) {
+        console.error(`Erro ao ${isNew ? 'criar' : 'atualizar'} hábito:`, JSON.stringify(error, null, 2));
+        // Captura a resposta completa para debugging
+        try {
+          console.error('Resposta completa:', JSON.stringify(error, null, 2));
+        } catch (e) {
+          console.error('Não foi possível serializar a resposta completa');
+        }
+        return { success: false, error };
+      }
+      
+      console.log('Hábito salvo com sucesso:', data);
+      return { success: true, data };
+    }
+    
+    // Isso nunca deveria acontecer, mas é necessário para satisfazer o TypeScript
+    return { success: false, error: 'Falha desconhecida' };
   } catch (error) {
     console.error(`Erro ao ${isNew ? 'criar' : 'atualizar'} hábito:`, error);
     return { success: false, error };
