@@ -196,6 +196,46 @@ export default function Home() {
                   </div>
                 </div>
               </Link>
+
+              {/* Projeto 4 - Dra. Cristiane */}
+              <Link href="https://dra-cristiane-site.vercel.app/" target="_blank">
+                <div
+                  className="border border-gray-700 p-6 rounded-md shadow-sm bg-black hover:bg-gray-900 transition-colors relative overflow-hidden cursor-pointer flex flex-col h-full"
+                  style={{
+                    backgroundImage: `url(/dra_cris_bg.png)`,
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
+                  }}
+                >
+                  <div className="absolute inset-0 bg-black/70 backdrop-blur-sm"></div>
+                  <div className="relative z-10 flex flex-col h-full">
+                    <h3 className="text-xl font-semibold text-white">Site - Dra. Cristiane</h3>
+                    <p className="mt-4 text-gray-300 flex-grow">
+                      Um site profissional para psicóloga clínica, com design elegante e focado na experiência do paciente, facilitando agendamentos e apresentando seus serviços.
+                    </p>
+                  </div>
+                </div>
+              </Link>
+
+              {/* Projeto 5 - Eduardo Libra */}
+              <Link href="https://eduardo-libra-portfolio-2025.vercel.app/" target="_blank">
+                <div
+                  className="border border-gray-700 p-6 rounded-md shadow-sm bg-black hover:bg-gray-900 transition-colors relative overflow-hidden cursor-pointer flex flex-col h-full"
+                  style={{
+                    backgroundImage: `url(/eduardo_libra_bg.png)`,
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
+                  }}
+                >
+                  <div className="absolute inset-0 bg-black/70 backdrop-blur-sm"></div>
+                  <div className="relative z-10 flex flex-col h-full">
+                    <h3 className="text-xl font-semibold text-white">Site - Eduardo Libra</h3>
+                    <p className="mt-4 text-gray-300 flex-grow">
+                      Portfolio artístico para especialista em obras de arte infláveis gigantes, exibindo criações impressionantes e oferecendo serviços para eventos e exposições.
+                    </p>
+                  </div>
+                </div>
+              </Link>
             </div>
           </div>
         </section>
