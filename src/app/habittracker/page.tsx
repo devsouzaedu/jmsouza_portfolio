@@ -36,8 +36,9 @@ export default function HabitTracker() {
     const isAuth = localStorage.getItem('habitTrackerAuth') === 'true';
     setAuthenticated(isAuth);
     
-    // Garantir que um ID de usuário padrão está definido
-    getDefaultUserId();
+    // Garantir que um ID de usuário padrão está definido e definir o estado
+    const defaultId = getDefaultUserId();
+    setUserId(defaultId);
   }, []);
 
   const handleLogin = (e: React.FormEvent) => {

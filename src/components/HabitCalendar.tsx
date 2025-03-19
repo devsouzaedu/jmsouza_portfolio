@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from 'react';
-import { supabase } from '@/lib/supabase';
+import { supabaseHabit, getDefaultUserId } from '@/lib/habitTracker';
 import { format, addDays, subDays, isToday, parseISO, isEqual, isBefore } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
 import { PlusCircle, Trash2, Check, X, AlertTriangle } from 'lucide-react';
@@ -69,11 +69,11 @@ const HabitCalendar: React.FC = () => {
       try {
         setLoading(true);
         
-        // Buscar o ID do usuário do localStorage
-        const userId = localStorage.getItem('habitTrackerUserId') || 'default_user';
+        // Buscar o ID do usuário usando a função do habitTracker
+        const userId = getDefaultUserId();
         
         // Buscar hábitos
-        const { data: habitsData, error: habitsError } = await supabase
+        const { data: habitsData, error: habitsError } = await supabaseHabit
           .from('habits')
           .select('*')
           .eq('user_id', userId);
@@ -94,7 +94,7 @@ const HabitCalendar: React.FC = () => {
         const endDate = days[days.length - 1]?.formattedDate;
         
         if (startDate && endDate) {
-          const { data: logsData, error: logsError } = await supabase
+          const { data: logsData, error: logsError } = await supabaseHabit
             .from('habit_logs')
             .select('*')
             .in('habit_id', habitsData.map((h: Habit) => h.id))
@@ -190,7 +190,7 @@ const HabitCalendar: React.FC = () => {
       calculateProgress(updatedLogs, habits);
       
       // Atualizar no banco de dados
-      const { data, error } = await supabase
+      const { data, error } = await supabaseHabit
         .rpc('toggle_habit_status', {
           p_habit_id: habitId,
           p_log_date: date,
@@ -211,11 +211,11 @@ const HabitCalendar: React.FC = () => {
     try {
       setLoading(true);
       
-      // Buscar o ID do usuário do localStorage
-      const userId = localStorage.getItem('habitTrackerUserId') || 'default_user';
+      // Buscar o ID do usuário usando a função do habitTracker
+      const userId = getDefaultUserId();
       
       // Buscar hábitos
-      const { data: habitsData, error: habitsError } = await supabase
+      const { data: habitsData, error: habitsError } = await supabaseHabit
         .from('habits')
         .select('*')
         .eq('user_id', userId);
@@ -230,7 +230,7 @@ const HabitCalendar: React.FC = () => {
         const endDate = days[days.length - 1]?.formattedDate;
         
         if (startDate && endDate) {
-          const { data: logsData, error: logsError } = await supabase
+          const { data: logsData, error: logsError } = await supabaseHabit
             .from('habit_logs')
             .select('*')
             .in('habit_id', habitsData.map((h: Habit) => h.id))
@@ -277,9 +277,9 @@ const HabitCalendar: React.FC = () => {
     if (!newHabitName.trim()) return;
     
     try {
-      const userId = localStorage.getItem('habitTrackerUserId') || 'default_user';
+      const userId = getDefaultUserId();
       
-      const { data, error } = await supabase
+      const { data, error } = await supabaseHabit
         .from('habits')
         .insert({
           user_id: userId,
@@ -309,7 +309,7 @@ const HabitCalendar: React.FC = () => {
     
     try {
       // Primeiro excluir os logs relacionados
-      const { error: logsError } = await supabase
+      const { error: logsError } = await supabaseHabit
         .from('habit_logs')
         .delete()
         .eq('habit_id', habitId);
@@ -317,7 +317,7 @@ const HabitCalendar: React.FC = () => {
       if (logsError) throw logsError;
       
       // Depois excluir o hábito
-      const { error: habitError } = await supabase
+      const { error: habitError } = await supabaseHabit
         .from('habits')
         .delete()
         .eq('id', habitId);
