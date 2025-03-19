@@ -14,6 +14,12 @@ const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY_BLOG || "eyJhb
 // Criar o cliente do Supabase para o Blog
 export const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
+// Configuração do cliente Supabase para o Blog
+export const blogSupabase = createClient(
+  process.env.NEXT_PUBLIC_BLOG_SUPABASE_URL || '',
+  process.env.NEXT_PUBLIC_BLOG_SUPABASE_ANON_KEY || ''
+);
+
 export default supabase;
 
 // Interface para o esquema da tabela posts

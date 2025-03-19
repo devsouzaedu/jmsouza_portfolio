@@ -4,6 +4,10 @@ import { useEffect, useState } from 'react';
 import { createClient } from '@supabase/supabase-js';
 import { useParams } from 'next/navigation';
 import Link from 'next/link';
+import Image from 'next/image';
+import { notFound } from 'next/navigation';
+import { getPostBySlug } from '@/lib/blogApi';
+import { markdownToHtml, formatDate } from '@/lib/blogUtils';
 import MarkdownContent from '@/components/MarkdownContent';
 
 // Tipos para os posts
@@ -22,151 +26,79 @@ const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || '';
 const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || '';
 const supabase = createClient(supabaseUrl, supabaseKey);
 
-export default function BlogPostPage() {
-  const { slug } = useParams();
-  const [post, setPost] = useState<Post | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+export const revalidate = 60; // Revalidar a cada 60 segundos
 
-  useEffect(() => {
-    async function fetchPost() {
-      try {
-        if (!slug) {
-          throw new Error('Slug não fornecido');
-        }
+interface BlogPostPageProps {
+  params: {
+    slug: string;
+  };
+}
 
-        const { data, error } = await supabase
-          .from('posts')
-          .select('*')
-          .eq('slug', slug)
-          .single();
-
-        if (error) {
-          throw error;
-        }
-
-        setPost(data);
-      } catch (error: any) {
-        console.error('Erroo ao buscar post:', error);
-        setError(error.message || 'Erro ao carregar o post');
-      } finally {
-        setLoading(false);
-      }
-    }
-
-    fetchPost();
-  }, [slug]);
-
-  function formatDate(dateString: string) {
-    const date = new Date(dateString);
-    return new Intl.DateTimeFormat('pt-BR', {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric'
-    }).format(date);
-  }
-
-  if (loading) {
-    return (
-      <div className="bg-gray-50 dark:bg-gray-900 min-h-screen py-12">
-        <div className="container mx-auto px-4">
-          <div className="text-center py-10">
-            <div className="w-10 h-10 border-t-2 border-b-2 border-blue-500 rounded-full animate-spin mx-auto"></div>
-            <p className="mt-4 text-gray-600 dark:text-gray-300">Carregando post...</p>
-          </div>
-        </div>
-      </div>
-    );
-  }
-
-  if (error) {
-    return (
-      <div className="bg-gray-50 dark:bg-gray-900 min-h-screen py-12">
-        <div className="container mx-auto px-4">
-          <div className="max-w-3xl mx-auto bg-white dark:bg-gray-800 rounded-lg p-8 shadow-md">
-            <h1 className="text-2xl font-bold text-red-600 dark:text-red-400 mb-4">Erro</h1>
-            <p className="text-gray-700 dark:text-gray-300 mb-6">{error}</p>
-            <Link 
-              href="/blog" 
-              className="inline-block bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-md transition-colors"
-            >
-              Voltar para o Blog
-            </Link>
-          </div>
-        </div>
-      </div>
-    );
-  }
+export default async function BlogPostPage({ params }: BlogPostPageProps) {
+  const post = await getPostBySlug(params.slug);
 
   if (!post) {
-    return (
-      <div className="bg-gray-50 dark:bg-gray-900 min-h-screen py-12">
-        <div className="container mx-auto px-4">
-          <div className="max-w-3xl mx-auto bg-white dark:bg-gray-800 rounded-lg p-8 shadow-md">
-            <h1 className="text-2xl font-bold text-gray-800 dark:text-gray-200 mb-4">Post não encontrado</h1>
-            <p className="text-gray-700 dark:text-gray-300 mb-6">O post que você está tentando acessar não existe ou foi removido.</p>
-            <Link 
-              href="/blog" 
-              className="inline-block bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-md transition-colors"
-            >
-              Voltar para o Blog
-            </Link>
-          </div>
-        </div>
-      </div>
-    );
+    notFound();
   }
 
+  const contentHtml = markdownToHtml(post.content);
+
   return (
-    <div className="bg-gray-50 dark:bg-gray-900 min-h-screen py-12">
-      <div className="container mx-auto px-4">
-        <article className="max-w-4xl mx-auto">
-          <Link 
-            href="/blog" 
-            className="inline-block text-blue-500 hover:text-blue-700 mb-6 transition-colors"
-          >
-            ← Voltar para o Blog
-          </Link>
+    <main className="min-h-screen bg-black text-white py-8">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl">
+        <Link href="/blog" className="inline-flex items-center text-blue-400 mb-8 hover:text-blue-300 transition-colors">
+          <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+            <path fillRule="evenodd" d="M7.707 14.707a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l2.293 2.293a1 1 0 010 1.414z" clipRule="evenodd" />
+          </svg>
+          Voltar para o blog
+        </Link>
 
-          {post.cover_image && (
-            <div className="w-full h-64 md:h-96 overflow-hidden rounded-lg mb-8">
-              <img 
-                src={post.cover_image} 
-                alt={post.title} 
-                className="w-full h-full object-cover"
-              />
+        <article>
+          <header className="mb-10">
+            <h1 className="text-4xl lg:text-5xl font-bold mb-6 leading-tight">{post.title}</h1>
+            
+            <div className="flex items-center text-gray-400 mb-8">
+              <time dateTime={post.created_at}>{formatDate(post.created_at)}</time>
+              <span className="mx-2">•</span>
+              <span>{post.author || 'Admin'}</span>
             </div>
-          )}
 
-          <h1 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900 dark:text-white">{post.title}</h1>
-          
-          <div className="flex flex-wrap items-center text-sm text-gray-600 dark:text-gray-400 mb-6">
-            {post.author && (
-              <div className="mr-4">Por: {post.author}</div>
+            {post.cover_image && (
+              <div className="relative aspect-video overflow-hidden rounded-xl mb-10">
+                <Image
+                  src={post.cover_image}
+                  alt={post.title}
+                  fill
+                  className="object-cover"
+                  priority
+                />
+              </div>
             )}
-            <div className="mr-4">{formatDate(post.created_at)}</div>
-          </div>
+          </header>
+
+          <div 
+            className="prose prose-invert prose-lg max-w-none"
+            dangerouslySetInnerHTML={{ __html: contentHtml }}
+          />
 
           {post.tags && post.tags.length > 0 && (
-            <div className="flex flex-wrap gap-2 mb-8">
-              {post.tags.map((tag, index) => (
-                <span 
-                  key={index} 
-                  className="text-xs bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-100 px-2 py-1 rounded-full"
-                >
-                  {tag}
-                </span>
-              ))}
+            <div className="mt-16 pt-8 border-t border-gray-800">
+              <h2 className="text-xl font-bold mb-4">Tags</h2>
+              <div className="flex flex-wrap gap-2">
+                {post.tags.map((tag) => (
+                  <Link 
+                    href={`/blog/tag/${tag}`} 
+                    key={tag}
+                    className="px-3 py-1 bg-gray-800 text-gray-300 rounded-full hover:bg-gray-700 transition-colors"
+                  >
+                    {tag}
+                  </Link>
+                ))}
+              </div>
             </div>
           )}
-
-          <div className="bg-white dark:bg-gray-800 rounded-lg p-6 md:p-8 shadow-md">
-            <div className="prose prose-blue dark:prose-invert max-w-none">
-              <MarkdownContent content={post.content} />
-            </div>
-          </div>
         </article>
       </div>
-    </div>
+    </main>
   );
 } 

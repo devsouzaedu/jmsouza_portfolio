@@ -1,13 +1,15 @@
-"use client";
+'use client'
 
 import { useState, useEffect, FormEvent } from 'react';
-import { useRouter } from 'next/navigation';
+import { useRouter, useParams } from 'next/navigation';
 import Link from 'next/link';
-import { savePost } from '@/lib/blogApi';
+import { getPostBySlug, savePost } from '@/lib/blogApi';
 import { BlogPost } from '@/lib/blogUtils';
 
-export default function NewPostPage() {
+export default function EditPostPage() {
   const router = useRouter();
+  const params = useParams();
+  const slug = params.slug as string;
   
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [post, setPost] = useState<Partial<BlogPost>>({
@@ -18,7 +20,9 @@ export default function NewPostPage() {
     tags: [],
     published: false
   });
+  const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
+  const [error, setError] = useState<string | null>(null);
   const [tagInput, setTagInput] = useState('');
   
   useEffect(() => {
@@ -30,7 +34,27 @@ export default function NewPostPage() {
     }
     
     setIsAuthenticated(true);
-  }, [router]);
+    fetchPost();
+  }, [slug, router]);
+  
+  const fetchPost = async () => {
+    try {
+      setLoading(true);
+      const postData = await getPostBySlug(slug, false);
+      
+      if (!postData) {
+        setError('Post não encontrado');
+        return;
+      }
+      
+      setPost(postData);
+    } catch (error) {
+      console.error('Erro ao buscar post:', error);
+      setError('Não foi possível carregar o post. Tente novamente.');
+    } finally {
+      setLoading(false);
+    }
+  };
   
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
@@ -42,17 +66,17 @@ export default function NewPostPage() {
     
     try {
       setSaving(true);
-      const result = await savePost(post, true);
+      const result = await savePost(post, false);
       
       if (result.success) {
         // Redirecionar para a dashboard
         router.push('/adminblog');
       } else {
-        alert(`Erro ao criar post: ${result.error}`);
+        alert(`Erro ao salvar post: ${result.error}`);
       }
     } catch (error) {
-      console.error('Erro ao criar post:', error);
-      alert('Ocorreu um erro ao criar o post. Tente novamente.');
+      console.error('Erro ao salvar post:', error);
+      alert('Ocorreu um erro ao salvar o post. Tente novamente.');
     } finally {
       setSaving(false);
     }
@@ -89,11 +113,42 @@ export default function NewPostPage() {
     return null; // Redirect é feito no useEffect
   }
   
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-black text-white p-6 flex items-center justify-center">
+        <div className="w-10 h-10 border-t-2 border-b-2 border-blue-500 rounded-full animate-spin"></div>
+        <p className="ml-4">Carregando post...</p>
+      </div>
+    );
+  }
+  
+  if (error) {
+    return (
+      <div className="min-h-screen bg-black text-white p-6">
+        <div className="max-w-4xl mx-auto">
+          <div className="bg-red-900/20 border border-red-500 rounded-lg p-4 mb-6">
+            <p className="text-red-400">{error}</p>
+          </div>
+          
+          <Link 
+            href="/adminblog" 
+            className="inline-flex items-center text-blue-400 hover:text-blue-300"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+              <path fillRule="evenodd" d="M7.707 14.707a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l2.293 2.293a1 1 0 010 1.414z" clipRule="evenodd" />
+            </svg>
+            Voltar para o dashboard
+          </Link>
+        </div>
+      </div>
+    );
+  }
+  
   return (
     <div className="min-h-screen bg-black text-white p-6">
       <div className="max-w-4xl mx-auto">
         <div className="flex justify-between items-center mb-8">
-          <h1 className="text-3xl font-bold">Novo Post</h1>
+          <h1 className="text-3xl font-bold">Editar Post</h1>
           
           <Link 
             href="/adminblog" 
@@ -206,7 +261,7 @@ export default function NewPostPage() {
               className="w-4 h-4 text-blue-600 bg-gray-700 border-gray-600 rounded focus:ring-blue-600"
             />
             <label htmlFor="published" className="ml-2 text-sm font-medium">
-              Publicar post imediatamente (visível para todos)
+              Publicar post (visível para todos)
             </label>
           </div>
           
@@ -216,7 +271,7 @@ export default function NewPostPage() {
               disabled={saving}
               className="px-6 py-3 bg-blue-600 text-white font-medium rounded-md hover:bg-blue-700 transition-colors disabled:opacity-70"
             >
-              {saving ? 'Criando...' : 'Criar Post'}
+              {saving ? 'Salvando...' : 'Salvar Alterações'}
             </button>
             
             <Link 
