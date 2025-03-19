@@ -1,4 +1,12 @@
-import { supabase } from './supabase';
+import { createClient } from '@supabase/supabase-js';
+
+// Configurações do Supabase para o Habit Tracker
+// Usa variáveis de ambiente quando disponíveis ou as credenciais fixas como fallback
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL_HABIT || "https://amvpytrzaukoovokslyg.supabase.co";
+const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY_HABIT || "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFtdnB5dHJ6YXVrb292b2tzbHlnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDI0MDc2NTIsImV4cCI6MjA1Nzk4MzY1Mn0.EkM9PHTLSK--3mvtngmnOAAgJRc7lIv5sKfUmZfMBQY";
+
+// Criar o cliente do Supabase para o Habit Tracker
+export const supabaseHabit = createClient(supabaseUrl, supabaseAnonKey);
 
 // Interfaces
 export interface Habit {
@@ -27,7 +35,7 @@ export interface HabitLog {
  */
 export async function getHabits(userId: string): Promise<Habit[]> {
   try {
-    const { data, error } = await supabase
+    const { data, error } = await supabaseHabit
       .from('habits')
       .select('*')
       .eq('user_id', userId)
@@ -51,7 +59,7 @@ export async function getHabits(userId: string): Promise<Habit[]> {
  */
 export async function getHabitById(habitId: string): Promise<Habit | null> {
   try {
-    const { data, error } = await supabase
+    const { data, error } = await supabaseHabit
       .from('habits')
       .select('*')
       .eq('id', habitId)
@@ -77,8 +85,8 @@ export async function getHabitById(habitId: string): Promise<Habit | null> {
 export async function saveHabit(habit: Partial<Habit>, isNew = true): Promise<{ success: boolean; error?: any; data?: any }> {
   try {
     const operation = isNew
-      ? supabase.from('habits').insert([habit])
-      : supabase.from('habits').update(habit).eq('id', habit.id);
+      ? supabaseHabit.from('habits').insert([habit])
+      : supabaseHabit.from('habits').update(habit).eq('id', habit.id);
 
     const { data, error } = await operation;
 
@@ -100,7 +108,7 @@ export async function saveHabit(habit: Partial<Habit>, isNew = true): Promise<{ 
  */
 export async function deleteHabit(habitId: string): Promise<{ success: boolean; error?: any }> {
   try {
-    const { error } = await supabase
+    const { error } = await supabaseHabit
       .from('habits')
       .delete()
       .eq('id', habitId);
@@ -125,7 +133,7 @@ export async function deleteHabit(habitId: string): Promise<{ success: boolean; 
  */
 export async function getHabitLogs(habitId: string, startDate?: string, endDate?: string): Promise<HabitLog[]> {
   try {
-    let query = supabase
+    let query = supabaseHabit
       .from('habit_logs')
       .select('*')
       .eq('habit_id', habitId)
@@ -160,7 +168,7 @@ export async function getHabitLogs(habitId: string, startDate?: string, endDate?
 export async function addHabitLog(log: Partial<HabitLog>): Promise<{ success: boolean; error?: any; data?: any }> {
   try {
     // Verifica se já existe um log para este hábito nesta data
-    const { data: existingLog } = await supabase
+    const { data: existingLog } = await supabaseHabit
       .from('habit_logs')
       .select('id')
       .eq('habit_id', log.habit_id)
@@ -171,13 +179,13 @@ export async function addHabitLog(log: Partial<HabitLog>): Promise<{ success: bo
     
     if (existingLog) {
       // Atualiza o log existente
-      operation = supabase
+      operation = supabaseHabit
         .from('habit_logs')
         .update({ value: log.value, notes: log.notes })
         .eq('id', existingLog.id);
     } else {
       // Cria um novo log
-      operation = supabase
+      operation = supabaseHabit
         .from('habit_logs')
         .insert([log]);
     }
@@ -202,7 +210,7 @@ export async function addHabitLog(log: Partial<HabitLog>): Promise<{ success: bo
  */
 export async function deleteHabitLog(logId: string): Promise<{ success: boolean; error?: any }> {
   try {
-    const { error } = await supabase
+    const { error } = await supabaseHabit
       .from('habit_logs')
       .delete()
       .eq('id', logId);
@@ -254,7 +262,7 @@ export async function getHabitsSummary(userId: string, startDate: string, endDat
     
     return summary;
   } catch (error) {
-    console.error('Erro ao buscar resumo de hábitos:', error);
+    console.error('Erro ao obter resumo de hábitos:', error);
     return [];
   }
 } 

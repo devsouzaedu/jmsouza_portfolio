@@ -1,14 +1,11 @@
 import { createClient } from '@supabase/supabase-js';
 
-// Verificar se as variáveis de ambiente estão definidas
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
-const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || process.env.SUPABASE_SERVICE_ROLE_KEY;
+// Configurações do Supabase para o Blog
+// Usa variáveis de ambiente quando disponíveis ou as credenciais fixas como fallback
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL_BLOG || "https://amlzdumaghfoqeswskaw.supabase.co";
+const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY_BLOG || "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFtbHpkdW1hZ2hmb3Flc3dza2F3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDI0MDc0NDQsImV4cCI6MjA1Nzk4MzQ0NH0.qz2-w2MFpp2WpLWJHC8tww1Th8O9gdQog3ONgHWUgEo";
 
-if (!supabaseUrl || !supabaseAnonKey) {
-  throw new Error('NEXT_PUBLIC_SUPABASE_URL e uma das chaves (NEXT_PUBLIC_SUPABASE_ANON_KEY ou SUPABASE_SERVICE_ROLE_KEY) devem ser definidos em .env.local');
-}
-
-// Criar o cliente do Supabase
+// Criar o cliente do Supabase para o Blog
 export const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
 // Interface para o esquema da tabela posts
@@ -119,10 +116,6 @@ export async function savePost(post: Partial<Post>, isNew = true): Promise<{ suc
 
     // Remover o campo published se ele não existir na tabela
     const postData = { ...post };
-    
-    // Sempre remover o campo published para evitar erros
-    // Comentar esta linha após adicionar a coluna no Supabase
-    delete postData.published;
     
     const operation = isNew
       ? supabase.from('posts').insert([postData])
