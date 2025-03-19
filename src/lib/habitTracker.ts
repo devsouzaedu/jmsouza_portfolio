@@ -28,8 +28,8 @@ export function getDefaultUserId() {
 
 // Configurações do Supabase para o Habit Tracker
 // Usa variáveis de ambiente quando disponíveis ou as credenciais fixas como fallback
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || "https://ksouuljpqjlxofqdvzxk.supabase.co";
-const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imtzb3V1bGpwcWpseG9mcWR2enhrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MDY4MzY0NzEsImV4cCI6MjAyMjQxMjQ3MX0.1f_N7vvQQsEJf_yKEMNjlXAzbN8YiAo5CxLCWa3dUUw";
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL_HABIT || "https://amvpytrzaukoovokslyg.supabase.co";
+const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY_HABIT || "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFtdnB5dHJ6YXVrb292b2tzbHlnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDI0MDc2NTIsImV4cCI6MjA1Nzk4MzY1Mn0.EkM9PHTLSK--3mvtngmnOAAgJRc7lIv5sKfUmZfMBQY";
 
 // Criar o cliente do Supabase para o Habit Tracker
 export const supabaseHabit = createClient(supabaseUrl, supabaseAnonKey);

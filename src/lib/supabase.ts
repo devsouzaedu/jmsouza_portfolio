@@ -1,17 +1,20 @@
 import { createClient } from '@supabase/supabase-js';
 
 // Criar cliente do Supabase para o habit tracker
-export const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://ksouuljpqjlxofqdvzxk.supabase.co',
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imtzb3V1bGpwcWpseG9mcWR2enhrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MDY4MzY0NzEsImV4cCI6MjAyMjQxMjQ3MX0.1f_N7vvQQsEJf_yKEMNjlXAzbN8YiAo5CxLCWa3dUUw'
-);
+const habitTrackerUrl = process.env.NEXT_PUBLIC_SUPABASE_URL_HABIT || 'https://amvpytrzaukoovokslyg.supabase.co';
+const habitTrackerKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY_HABIT || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFtdnB5dHJ6YXVrb292b2tzbHlnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDI0MDc2NTIsImV4cCI6MjA1Nzk4MzY1Mn0.EkM9PHTLSK--3mvtngmnOAAgJRc7lIv5sKfUmZfMBQY';
 
-export default supabase;
+export const supabaseHabit = createClient(habitTrackerUrl, habitTrackerKey);
 
 // Configurações do Supabase para o Blog
 // Usa variáveis de ambiente quando disponíveis ou as credenciais fixas como fallback
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL_BLOG || "https://amlzdumaghfoqeswskaw.supabase.co";
 const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY_BLOG || "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFtbHpkdW1hZ2hmb3Flc3dza2F3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDI0MDc0NDQsImV4cCI6MjA1Nzk4MzQ0NH0.qz2-w2MFpp2WpLWJHC8tww1Th8O9gdQog3ONgHWUgEo";
+
+// Criar o cliente do Supabase para o Blog
+export const supabase = createClient(supabaseUrl, supabaseAnonKey);
+
+export default supabase;
 
 // Interface para o esquema da tabela posts
 export interface Post {

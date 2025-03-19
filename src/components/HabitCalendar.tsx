@@ -193,7 +193,7 @@ const HabitCalendar: React.FC = () => {
       const { data, error } = await supabaseHabit
         .rpc('toggle_habit_status', {
           p_habit_id: habitId,
-          p_log_date: date,
+          p_date: date,
           p_status: newStatus
         });
         

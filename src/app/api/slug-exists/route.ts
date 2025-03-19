@@ -1,9 +1,9 @@
 import { createClient } from '@supabase/supabase-js';
 import { NextRequest, NextResponse } from 'next/server';
 
-// Cliente Supabase
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://ksouuljpqjlxofqdvzxk.supabase.co';
-const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imtzb3V1bGpwcWpseG9mcWR2enhrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MDY4MzY0NzEsImV4cCI6MjAyMjQxMjQ3MX0.1f_N7vvQQsEJf_yKEMNjlXAzbN8YiAo5CxLCWa3dUUw';
+// Cliente Supabase para o Blog
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL_BLOG || "https://amlzdumaghfoqeswskaw.supabase.co";
+const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY_BLOG || "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFtbHpkdW1hZ2hmb3Flc3dza2F3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDI0MDc0NDQsImV4cCI6MjA1Nzk4MzQ0NH0.qz2-w2MFpp2WpLWJHC8tww1Th8O9gdQog3ONgHWUgEo";
 const supabase = createClient(supabaseUrl, supabaseKey);
 
 /**
