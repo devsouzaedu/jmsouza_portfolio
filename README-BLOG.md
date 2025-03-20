@@ -18,6 +18,7 @@ Este é um sistema de blog completo integrado ao Supabase, com área administrat
 - **Detalhes do Post**: `/blog/[slug]` - Página de um post específico
 - **Filtro por Tag**: `/blog/tag/[tag]` - Filtra posts por tag
 - **Administração**: `/adminblog` - Lista todos os posts (publicados e rascunhos)
+- **Login Administrativo**: `/adminblog/login` - Página de login para a área administrativa
 - **Novo Post**: `/adminblog/novo` - Cria um novo post
 - **Edição de Post**: `/adminblog/editar/[id]` - Edita um post existente
 
@@ -63,16 +64,23 @@ Para configurar o blog em produção, adicione as seguintes variáveis de ambien
 
 ## Autenticação Administrativa
 
-A área administrativa em `/adminblog` está protegida por autenticação básica HTTP:
-- A senha é definida pela variável de ambiente `BLOG_ADMIN_PASSWORD`
-- O valor padrão é `Sucesso2030A@` (caso a variável não esteja definida)
-- Para máxima segurança, sempre defina essa variável no ambiente de produção
+A área administrativa em `/adminblog` está protegida por autenticação baseada em senha:
+
+1. Acesse `/adminblog` e você será redirecionado para a tela de login (`/adminblog/login`)
+2. Digite a senha definida na variável de ambiente `BLOG_ADMIN_PASSWORD`
+3. Após o login bem-sucedido, um cookie seguro será criado para manter sua sessão
+4. A sessão dura 24 horas, após esse período será necessário fazer login novamente
+
+Observações:
+- A senha padrão é `Sucesso2030A@` (caso a variável de ambiente não esteja definida)
+- Por segurança, defina sempre uma senha forte na variável de ambiente `BLOG_ADMIN_PASSWORD`
+- A autenticação é implementada via cookies HTTP-only para máxima segurança
 
 ## Uso
 
 ### Criação de Posts
 
-1. Acesse `/adminblog` (insira a senha quando solicitado)
+1. Acesse `/adminblog` (faça login quando solicitado)
 2. Clique em "Novo Post"
 3. Preencha os campos:
    - **Título**: Título do post
