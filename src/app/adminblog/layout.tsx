@@ -14,13 +14,25 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
   useEffect(() => {
     async function checkAuth() {
       try {
-        const response = await fetch('/api/auth');
-        const isAuthenticated = response.ok;
+        const response = await fetch('/api/auth', {
+          // Adicionar cache: 'no-store' para evitar o cache da requisição
+          cache: 'no-store',
+          // Adicionar um timestamp para garantir que a requisição não seja cacheada
+          headers: {
+            'pragma': 'no-cache',
+            'cache-control': 'no-cache',
+            'x-timestamp': Date.now().toString()
+          }
+        });
+        
+        const data = await response.json();
+        const isAuthenticated = response.ok && data.authenticated === true;
         
         setAuthenticated(isAuthenticated);
         
         // Se não estiver autenticado e não estiver na página de login, redirecionar
         if (!isAuthenticated && !isLoginPage) {
+          console.log('Não autenticado, redirecionando para login');
           router.replace('/adminblog/login');
         }
       } catch (error) {

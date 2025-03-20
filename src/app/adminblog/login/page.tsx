@@ -15,14 +15,29 @@ export default function LoginPage() {
   useEffect(() => {
     async function checkAuth() {
       try {
-        const response = await fetch('/api/auth');
+        const response = await fetch('/api/auth', {
+          // Adicionar cache: 'no-store' para evitar o cache da requisição
+          cache: 'no-store',
+          headers: {
+            'pragma': 'no-cache',
+            'cache-control': 'no-cache',
+            'x-timestamp': Date.now().toString()
+          }
+        });
         
+        // Apenas redirecionar se a resposta for bem-sucedida e autenticada
         if (response.ok) {
-          // Usuário já está autenticado, redirecionar para a página de administração
-          router.replace('/adminblog');
+          const data = await response.json();
+          if (data.authenticated === true) {
+            // Usuário já está autenticado, redirecionar para a página de administração
+            router.replace('/adminblog');
+            return;
+          }
         }
       } catch (error) {
         console.error('Erro ao verificar autenticação:', error);
+        // Exibir o erro, mas permitir que o usuário tente fazer login
+        setError('Erro ao verificar autenticação. Você pode tentar fazer login mesmo assim.');
       } finally {
         setCheckingAuth(false);
       }
@@ -41,13 +56,15 @@ export default function LoginPage() {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'cache-control': 'no-cache',
+          'pragma': 'no-cache'
         },
         body: JSON.stringify({ password }),
       });
       
       const data = await response.json();
       
-      if (data.success) {
+      if (response.ok && data.success) {
         // Autenticação bem-sucedida, redirecionar para a página de administração
         router.replace('/adminblog');
       } else {
