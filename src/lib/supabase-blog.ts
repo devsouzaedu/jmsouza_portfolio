@@ -1,8 +1,9 @@
 import { createClient } from '@supabase/supabase-js';
 
-const supabaseUrl = 'https://rzaottritwvlhcxxnylw.supabase.co';
-const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJ6YW90dHJpdHd2bGhjeHhueWx3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDI0OTAzMTIsImV4cCI6MjA1ODA2NjMxMn0.iQd2s9aJ7Nr-QfnElDzzyh-mlJaIoZE_zHGxp01WtqU';
-const supabaseServiceKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJ6YW90dHJpdHd2bGhjeHhueWx3Iiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc0MjQ5MDMxMiwiZXhwIjoyMDU4MDY2MzEyfQ.NRC6ngONao7liCXvcaR2efNE1XdweGgFHB-CfEa6zcM';
+// Usando variáveis de ambiente para as credenciais
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_BLOG_URL || '';
+const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_BLOG_ANON_KEY || '';
+const supabaseServiceKey = process.env.SUPABASE_BLOG_SERVICE_ROLE_KEY || '';
 
 // Cliente para uso no cliente (usuários anônimos)
 export const supabaseBlog = createClient(supabaseUrl, supabaseAnonKey);
