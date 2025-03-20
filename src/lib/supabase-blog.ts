@@ -10,10 +10,30 @@ if (!supabaseUrl || !supabaseAnonKey || !supabaseServiceKey) {
 }
 
 // Cliente para uso no cliente (usuários anônimos)
-export const supabaseBlog = createClient(supabaseUrl, supabaseAnonKey);
+export const supabaseBlog = createClient(supabaseUrl, supabaseAnonKey, {
+  auth: {
+    persistSession: false
+  },
+  global: {
+    headers: {
+      'Cache-Control': 'no-store',
+      'Pragma': 'no-cache'
+    }
+  }
+});
 
 // Cliente para uso no servidor (acesso completo)
-export const supabaseBlogAdmin = createClient(supabaseUrl, supabaseServiceKey);
+export const supabaseBlogAdmin = createClient(supabaseUrl, supabaseServiceKey, {
+  auth: {
+    persistSession: false
+  },
+  global: {
+    headers: {
+      'Cache-Control': 'no-store',
+      'Pragma': 'no-cache'
+    }
+  }
+});
 
 // Tipo para os posts do blog
 export type BlogPost = {

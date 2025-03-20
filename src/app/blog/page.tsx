@@ -1,11 +1,16 @@
 import { getPublishedPosts } from '@/lib/blog-service';
 import BlogCard from '@/components/blog-card';
 import Link from 'next/link';
+import RefreshButton from '@/components/refresh-button';
 
 export const metadata = {
   title: 'Blog',
   description: 'Leia nossos artigos e tutoriais mais recentes'
 };
+
+// Desativar cache da página para sempre mostrar o conteúdo mais recente
+export const revalidate = 0;
+export const dynamic = 'force-dynamic';
 
 export default async function BlogPage() {
   const posts = await getPublishedPosts();
@@ -13,7 +18,10 @@ export default async function BlogPage() {
   return (
     <main className="container mx-auto px-4 py-12">
       <div className="mb-12 text-center">
-        <h1 className="text-4xl font-bold mb-4 text-gray-900 dark:text-white">Blog</h1>
+        <div className="flex justify-between items-center mb-4">
+          <h1 className="text-4xl font-bold text-gray-900 dark:text-white">Blog</h1>
+          <RefreshButton />
+        </div>
         <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
           Confira os artigos mais recentes, tutoriais e insights sobre tecnologia e desenvolvimento
         </p>

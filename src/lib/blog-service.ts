@@ -2,17 +2,22 @@ import { supabaseBlog, supabaseBlogAdmin, type BlogPost } from './supabase-blog'
 
 // Função para buscar todos os posts publicados (para a página pública)
 export async function getPublishedPosts() {
+  // Adicionar timestamp para evitar cache
+  const timestamp = new Date().getTime();
+  
   const { data, error } = await supabaseBlog
     .from('blog_posts')
     .select('*')
     .eq('published', true)
-    .order('created_at', { ascending: false });
+    .order('created_at', { ascending: false })
+    .throwOnError();
 
   if (error) {
     console.error('Erro ao buscar posts publicados:', error);
     return [];
   }
 
+  console.log(`[${timestamp}] Posts recuperados: ${data?.length || 0}`);
   return data as BlogPost[];
 }
 
