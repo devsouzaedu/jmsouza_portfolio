@@ -7,6 +7,36 @@ interface BlogCardProps {
   post: BlogPost;
 }
 
+// Função para converter Markdown em texto plano para a prévia
+function getPlainTextExcerpt(markdown: string, maxLength: number = 150): string {
+  // Remove headers (#)
+  let text = markdown.replace(/#{1,6}\s+/g, '');
+  
+  // Remove marcações de negrito e itálico
+  text = text.replace(/[*_]{1,2}([^*_]+)[*_]{1,2}/g, '$1');
+  
+  // Remove links [texto](url)
+  text = text.replace(/\[([^\]]+)\]\([^)]+\)/g, '$1');
+  
+  // Remove blocos de código
+  text = text.replace(/```[\s\S]*?```/g, '');
+  text = text.replace(/`([^`]+)`/g, '$1');
+  
+  // Remove HTML tags se houver
+  text = text.replace(/<[^>]*>/g, '');
+  
+  // Remove linhas horizontais e outros caracteres especiais
+  text = text.replace(/---/g, '');
+  
+  // Remove quebras de linha extras e espaços
+  text = text.replace(/\n+/g, ' ').trim();
+  
+  // Limita o tamanho e adiciona reticências
+  return text.length > maxLength 
+    ? text.substring(0, maxLength) + '...' 
+    : text;
+}
+
 export default function BlogCard({ post }: BlogCardProps) {
   return (
     <div className="bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-lg transition-all duration-300 hover:shadow-xl">
@@ -37,7 +67,7 @@ export default function BlogCard({ post }: BlogCardProps) {
           </h2>
         </Link>
         <p className="text-gray-600 dark:text-gray-300 mb-4 line-clamp-3">
-          {post.content.substring(0, 150).replace(/[#*`]/g, '')}...
+          {getPlainTextExcerpt(post.content, 180)}
         </p>
         <div className="flex justify-between items-center">
           <span className="text-sm text-gray-500 dark:text-gray-400">
