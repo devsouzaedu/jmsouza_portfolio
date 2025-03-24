@@ -1,15 +1,16 @@
-"use client";
-
+import { getPublishedPosts } from '@/lib/blog-service';
+import Link from 'next/link';
+import { format } from 'date-fns';
+import { ptBR } from 'date-fns/locale';
 import Navbar from '@/components/Navbar';
 import { Button } from '@/components/Button';
-import Link from 'next/link';
-import { useEffect } from 'react';
 
-export default function Blog() {
-  useEffect(() => {
-    // Scroll para o topo quando a página carrega
-    window.scrollTo(0, 0);
-  }, []);
+// Desativar cache da página para sempre mostrar o conteúdo mais recente
+export const revalidate = 0;
+export const dynamic = 'force-dynamic';
+
+export default async function Blog() {
+  const posts = await getPublishedPosts();
 
   return (
     <>
@@ -18,40 +19,59 @@ export default function Blog() {
         <div className="max-w-4xl mx-auto px-4">
           <h1 className="text-4xl font-bold mb-8 animate-fadeIn">Blog</h1>
           
-          <div className="space-y-8">
-            {/* Artigo 1 */}
-            <article className="border border-gray-700 rounded-lg p-6 animate-fadeIn hover:border-gray-500 transition-all duration-300" style={{animationDelay: '0.1s'}}>
-              <h2 className="text-2xl font-semibold mb-2">Como escolhi as tecnologias para meus projetos</h2>
-              <p className="text-gray-400 mb-3">Publicado em 15 de abril de 2025</p>
-              <p className="text-gray-300 mb-4">
-                Neste artigo, compartilho minha jornada na escolha de tecnologias como React, Next.js e Three.js 
-                para meus projetos recentes, e como essas decisões impactaram o desenvolvimento...
+          {posts.length === 0 ? (
+            <div className="text-center py-12 animate-fadeIn">
+              <h2 className="text-2xl font-medium text-gray-300">
+                Nenhum post publicado ainda.
+              </h2>
+              <p className="mt-4 text-gray-400">
+                Volte em breve para novos conteúdos!
               </p>
-              <Button variant="outline" size="sm">Ler mais</Button>
-            </article>
-            
-            {/* Artigo 2 */}
-            <article className="border border-gray-700 rounded-lg p-6 animate-fadeIn hover:border-gray-500 transition-all duration-300" style={{animationDelay: '0.2s'}}>
-              <h2 className="text-2xl font-semibold mb-2">A importância da experiência do usuário em sites modernos</h2>
-              <p className="text-gray-400 mb-3">Publicado em 2 de abril de 2025</p>
-              <p className="text-gray-300 mb-4">
-                Analisando como pequenas decisões de design e interação podem transformar completamente a 
-                percepção dos usuários sobre um site ou aplicativo...
-              </p>
-              <Button variant="outline" size="sm">Ler mais</Button>
-            </article>
-            
-            {/* Artigo 3 */}
-            <article className="border border-gray-700 rounded-lg p-6 animate-fadeIn hover:border-gray-500 transition-all duration-300" style={{animationDelay: '0.3s'}}>
-              <h2 className="text-2xl font-semibold mb-2">Construindo o HotAir: Desafios de um jogo multiplayer</h2>
-              <p className="text-gray-400 mb-3">Publicado em 18 de março de 2025</p>
-              <p className="text-gray-300 mb-4">
-                Um relato detalhado sobre os desafios técnicos enfrentados durante o desenvolvimento 
-                do jogo de balão de ar quente multiplayer, especialmente relacionados à física e sincronização...
-              </p>
-              <Button variant="outline" size="sm">Ler mais</Button>
-            </article>
-          </div>
+            </div>
+          ) : (
+            <div className="space-y-8">
+              {posts.map((post, index) => (
+                <article 
+                  key={post.id} 
+                  className="border border-gray-700 rounded-lg p-6 animate-fadeIn hover:border-gray-500 transition-all duration-300"
+                  style={{animationDelay: `${index * 0.1}s`}}
+                >
+                  <h2 className="text-2xl font-semibold mb-2">
+                    <Link 
+                      href={`/blog/${post.slug}`}
+                      className="hover:text-blue-400 transition-colors"
+                    >
+                      {post.title}
+                    </Link>
+                  </h2>
+                  
+                  <p className="text-gray-400 mb-3">
+                    Publicado em {format(new Date(post.created_at), 'PPP', { locale: ptBR })}
+                  </p>
+
+                  {post.tags && post.tags.length > 0 && (
+                    <div className="flex flex-wrap gap-2 mb-4">
+                      {post.tags.map((tag) => (
+                        <Link 
+                          key={tag} 
+                          href={`/blog/tag/${tag}`}
+                          className="text-xs font-medium px-2 py-1 rounded-full bg-blue-900/30 text-blue-300 hover:bg-blue-900/50 transition-colors"
+                        >
+                          #{tag}
+                        </Link>
+                      ))}
+                    </div>
+                  )}
+                  
+                  <div className="mt-4">
+                    <Link href={`/blog/${post.slug}`}>
+                      <Button variant="outline" size="sm">Ler mais</Button>
+                    </Link>
+                  </div>
+                </article>
+              ))}
+            </div>
+          )}
           
           <div className="mt-12 text-center animate-fadeIn" style={{animationDelay: '0.4s'}}>
             <Link href="/">
