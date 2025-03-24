@@ -76,9 +76,9 @@ export default function Home() {
       <main className="min-h-screen bg-black text-white">
         {/* Seção de Introdução */}
         <section 
-          className="py-16 flex flex-col items-center justify-center px-4 text-center relative overflow-hidden"
+          className="pt-32 pb-16 flex flex-col items-center justify-center px-4 text-center relative overflow-hidden"
           style={{
-            minHeight: '80vh',
+            minHeight: '60vh',
             position: 'relative',
           }}
         >
@@ -119,11 +119,11 @@ export default function Home() {
           
           {/* Conteúdo diretamente sobre o vídeo, sem o card */}
           <div className="relative z-10 max-w-3xl mx-auto">
-            <h1 className="text-5xl font-bold mb-4 animate-slideUp text-white">J.M Souza</h1>
-            <p className="text-xl mb-8 max-w-3xl animate-slideUp text-white" style={{animationDelay: '0.2s'}}>
+            <h1 className="text-5xl font-bold mb-4 animate-fadeIn text-white">J.M Souza</h1>
+            <p className="text-xl mb-8 max-w-3xl animate-fadeIn text-white" style={{animationDelay: '0.2s'}}>
              Eu gosto de criar, de agir, eu odeio perder tempo, se você precisa criar uma solução envolvendo código, eu sou o cara certo.
             </p>
-            <Button variant="default" size="lg" className="animate-slideUp" style={{animationDelay: '0.4s'}}>
+            <Button variant="default" size="lg" className="animate-fadeIn hover:scale-105 transition-transform duration-300" style={{animationDelay: '0.4s'}}>
               O que eu ja fiz
             </Button>
           </div>
@@ -132,12 +132,12 @@ export default function Home() {
         {/* Seção de Projetos */}
         <section id="projetos" className="py-16 bg-black">
           <div className="max-w-5xl mx-auto px-4">
-            <h2 className="text-3xl font-bold text-white mb-8">Meus Projetos</h2>
+            <h2 className="text-3xl font-bold text-white mb-8 transform transition-all duration-500 hover:scale-105 animate-fadeIn">Meus Projetos</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {/* Projeto 1 - Unia.App */}
-              <Link href="https://unia-app-nail-designer.vercel.app" target="_blank">
+              <Link href="https://unia-app-nail-designer.vercel.app" target="_blank" className="transform transition-all duration-500 hover:-translate-y-2 animate-fadeIn" style={{animationDelay: '0.1s'}}>
                 <div
-                  className="border border-gray-700 p-6 rounded-md shadow-sm bg-black hover:bg-gray-900 transition-colors relative overflow-hidden cursor-pointer flex flex-col h-full"
+                  className="border border-gray-700 p-6 rounded-md shadow-sm bg-black hover:bg-gray-900 transition-all duration-300 relative overflow-hidden cursor-pointer flex flex-col h-full"
                   style={{
                     backgroundImage: `url(/opera_TGia9OiBNt.png)`,
                     backgroundSize: 'cover',
@@ -155,9 +155,9 @@ export default function Home() {
               </Link>
 
               {/* Projeto 2 - HotAir */}
-              <Link href="https://devsouzaedu.github.io/Hotair_Hot_air_balloon_game/" target="_blank">
+              <Link href="https://devsouzaedu.github.io/Hotair_Hot_air_balloon_game/" target="_blank" className="transform transition-all duration-500 hover:-translate-y-2 animate-fadeIn" style={{animationDelay: '0.2s'}}>
                 <div
-                  className="border border-gray-700 p-6 rounded-md shadow-sm bg-black hover:bg-gray-900 transition-colors relative overflow-hidden cursor-pointer flex flex-col h-full"
+                  className="border border-gray-700 p-6 rounded-md shadow-sm bg-black hover:bg-gray-900 transition-all duration-300 relative overflow-hidden cursor-pointer flex flex-col h-full"
                   style={{
                     backgroundImage: `url(/opera_dd3DQtwf08.png)`,
                     backgroundSize: 'cover',
@@ -175,9 +175,9 @@ export default function Home() {
               </Link>
 
               {/* Projeto 3 - Libracom */}
-              <Link href="https://libracomwindbanner.com.br" target="_blank">
+              <Link href="https://libracomwindbanner.com.br" target="_blank" className="transform transition-all duration-500 hover:-translate-y-2 animate-fadeIn" style={{animationDelay: '0.3s'}}>
                 <div
-                  className="border border-gray-700 p-6 rounded-md shadow-sm bg-black hover:bg-gray-900 transition-colors relative overflow-hidden cursor-pointer flex flex-col h-full"
+                  className="border border-gray-700 p-6 rounded-md shadow-sm bg-black hover:bg-gray-900 transition-all duration-300 relative overflow-hidden cursor-pointer flex flex-col h-full"
                   style={{
                     backgroundImage: `url(/opera_s8bkasJJpo.png)`,
                     backgroundSize: 'cover',
@@ -195,9 +195,9 @@ export default function Home() {
               </Link>
 
               {/* Projeto 4 - Dra. Cristiane */}
-              <Link href="https://dra-cristiane-site.vercel.app/" target="_blank">
+              <Link href="https://dra-cristiane-site.vercel.app/" target="_blank" className="transform transition-all duration-500 hover:-translate-y-2 animate-fadeIn" style={{animationDelay: '0.4s'}}>
                 <div
-                  className="border border-gray-700 p-6 rounded-md shadow-sm bg-black hover:bg-gray-900 transition-colors relative overflow-hidden cursor-pointer flex flex-col h-full"
+                  className="border border-gray-700 p-6 rounded-md shadow-sm bg-black hover:bg-gray-900 transition-all duration-300 relative overflow-hidden cursor-pointer flex flex-col h-full"
                   style={{
                     backgroundImage: `url(/dra_cris_bg.png)`,
                     backgroundSize: 'cover',
@@ -215,9 +215,9 @@ export default function Home() {
               </Link>
 
               {/* Projeto 5 - Eduardo Libra */}
-              <Link href="https://eduardo-libra-portfolio-2025.vercel.app/" target="_blank">
+              <Link href="https://eduardo-libra-portfolio-2025.vercel.app/" target="_blank" className="transform transition-all duration-500 hover:-translate-y-2 animate-fadeIn" style={{animationDelay: '0.5s'}}>
                 <div
-                  className="border border-gray-700 p-6 rounded-md shadow-sm bg-black hover:bg-gray-900 transition-colors relative overflow-hidden cursor-pointer flex flex-col h-full"
+                  className="border border-gray-700 p-6 rounded-md shadow-sm bg-black hover:bg-gray-900 transition-all duration-300 relative overflow-hidden cursor-pointer flex flex-col h-full"
                   style={{
                     backgroundImage: `url(/eduardo_libra_bg.png)`,
                     backgroundSize: 'cover',
@@ -235,9 +235,9 @@ export default function Home() {
               </Link>
 
               {/* Projeto 6 - Mariana Nails */}
-              <Link href="https://www.mariananails.com.br/" target="_blank">
+              <Link href="https://www.mariananails.com.br/" target="_blank" className="transform transition-all duration-500 hover:-translate-y-2 animate-fadeIn" style={{animationDelay: '0.6s'}}>
                 <div
-                  className="border border-gray-700 p-6 rounded-md shadow-sm bg-black hover:bg-gray-900 transition-colors relative overflow-hidden cursor-pointer flex flex-col h-full"
+                  className="border border-gray-700 p-6 rounded-md shadow-sm bg-black hover:bg-gray-900 transition-all duration-300 relative overflow-hidden cursor-pointer flex flex-col h-full"
                   style={{
                     backgroundImage: `url(/mariana_fundo_site.png)`,
                     backgroundSize: 'cover',
@@ -260,8 +260,8 @@ export default function Home() {
         {/* Seção opcional de "Sobre mim" ou outros conteúdos */}
         <section id="sobre" className="py-16 bg-black">
           <div className="max-w-3xl mx-auto px-4">
-            <h2 className="text-3xl font-bold text-white mb-4">Sobre Mim</h2>
-            <p className="text-lg text-gray-300">
+            <h2 className="text-3xl font-bold text-white mb-4 transform transition-all duration-500 hover:scale-105 animate-fadeIn">Sobre Mim</h2>
+            <p className="text-lg text-gray-300 animate-fadeIn" style={{animationDelay: '0.2s'}}>
               Desde cedo, sempre fui fascinado pela magia da tecnologia e o poder transformador da programação.
               Ao longo dos anos, desenvolvi habilidades tanto no front-end quanto no back-end, o que me permite
               criar soluções completas e integradas. Acredito que o futuro é construído hoje e estou comprometido
@@ -272,7 +272,7 @@ export default function Home() {
 
         {/* Seção de Contato */}
         <section className="py-8 bg-black flex justify-center">
-          <ContactButton variant="default" size="lg" />
+          <ContactButton variant="default" size="lg" className="animate-fadeIn hover:scale-105 transition-transform duration-300" />
         </section>
       </main>
     </>

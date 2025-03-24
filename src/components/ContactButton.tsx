@@ -5,9 +5,10 @@ import { useEffect } from 'react';
 interface ContactButtonProps {
   variant?: 'default' | 'outline'; // Opcional: para diferentes estilos
   size?: 'sm' | 'md' | 'lg';       // Opcional: para diferentes tamanhos
+  className?: string;              // Classe CSS adicional
 }
 
-export function ContactButton({ variant = 'default', size = 'md' }: ContactButtonProps) {
+export function ContactButton({ variant = 'default', size = 'md', className = '' }: ContactButtonProps) {
   const whatsappNumber = '+5511954997799';
   const message = encodeURIComponent('Eu preciso de um projeto de TI');
   const whatsappLink = `https://wa.me/${whatsappNumber}?text=${message}`;
@@ -47,7 +48,7 @@ export function ContactButton({ variant = 'default', size = 'md' }: ContactButto
           : 'border border-white text-white hover:bg-white/10'
       } ${
         size === 'sm' ? 'px-3 py-1 text-sm' : size === 'md' ? 'px-4 py-2' : 'px-6 py-3 text-lg'
-      }`}
+      } ${className}`}
     >
       Entre em contato agora
     </button>
