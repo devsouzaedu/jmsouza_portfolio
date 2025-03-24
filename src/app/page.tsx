@@ -119,15 +119,12 @@ export default function Home() {
           
           {/* Conteúdo diretamente sobre o vídeo, sem o card */}
           <div className="relative z-10 max-w-3xl mx-auto">
-            <h1 className="text-5xl font-bold mb-4 animate-slideUp text-white">Olá, eu sou J.M Souza</h1>
+            <h1 className="text-5xl font-bold mb-4 animate-slideUp text-white">J.M Souza</h1>
             <p className="text-xl mb-8 max-w-3xl animate-slideUp text-white" style={{animationDelay: '0.2s'}}>
-              Sou um desenvolvedor full-stack obcecado por criar soluções para os mais variados problemas.
-              Minha paixão por tecnologia me impulsiona a buscar sempre o próximo desafio e transformar ideias
-              em aplicações reais e funcionais. Com experiência em diversas linguagens e frameworks, estou sempre
-              em busca de inovações e melhorias para tornar o mundo digital um lugar melhor.
+             Eu gosto de criar, de agir, eu odeio perder tempo, se você precisa criar uma solução envolvendo código, eu sou o cara certo.
             </p>
             <Button variant="default" size="lg" className="animate-slideUp" style={{animationDelay: '0.4s'}}>
-              Confira meus projetos
+              O que eu ja fiz
             </Button>
           </div>
         </section>
@@ -151,7 +148,7 @@ export default function Home() {
                   <div className="relative z-10 flex flex-col h-full">
                     <h3 className="text-xl font-semibold text-white">Unia.App</h3>
                     <p className="mt-4 text-gray-300 flex-grow">
-                      Uma plataforma inovadora que integra diversas soluções para entregar um canivete suiço para Nail designers.
+                      Meu projeto atual, eu quero transformar a vida das manicures facilitando a profissão com ferramentas como Gerador de inspiração, Cronometro de serviço, Detectar e gerar tutorial de unha, Organização Financeira e Agendamento.
                     </p>
                   </div>
                 </div>
@@ -171,7 +168,7 @@ export default function Home() {
                   <div className="relative z-10 flex flex-col h-full">
                     <h3 className="text-xl font-semibold text-white">HotAir - Jogo de Balão Multiplayer</h3>
                     <p className="mt-4 text-gray-300 flex-grow">
-                      Um projeto que une tecnologia e criatividade (e muito Three.js) para criar um jogo de voo de balão de ar quente competitivo.
+                      Um projeto que une tecnologia e criatividade (e muito Three.js) para criar um jogo multiplayer de voo de balão de ar quente competitivo.
                     </p>
                   </div>
                 </div>
@@ -191,7 +188,7 @@ export default function Home() {
                   <div className="relative z-10 flex flex-col h-full">
                     <h3 className="text-xl font-semibold text-white">Libracom Wind Banners Site</h3>
                     <p className="mt-4 text-gray-300 flex-grow">
-                      Um site moderno e responsivo para a Libracom, com foco em design, SEO e Vendas, para a minha empresa de comunicação visual.
+                      O primeiro site da LibraCom, minha empresa de bandeiras e comunicação visual (O que paga as contas).
                     </p>
                   </div>
                 </div>
@@ -211,7 +208,7 @@ export default function Home() {
                   <div className="relative z-10 flex flex-col h-full">
                     <h3 className="text-xl font-semibold text-white">Site - Dra. Cristiane</h3>
                     <p className="mt-4 text-gray-300 flex-grow">
-                      Um site profissional para psicóloga clínica, com design elegante e focado na experiência do paciente, facilitando agendamentos e apresentando seus serviços.
+                      Um site profissional para psicóloga clínica Cristiane Duarte, com design elegante e focado na experiência do paciente, facilitando agendamentos e apresentando seus serviços.
                     </p>
                   </div>
                 </div>
@@ -231,7 +228,27 @@ export default function Home() {
                   <div className="relative z-10 flex flex-col h-full">
                     <h3 className="text-xl font-semibold text-white">Site - Eduardo Libra</h3>
                     <p className="mt-4 text-gray-300 flex-grow">
-                      Portfolio artístico para especialista em obras de arte infláveis gigantes, exibindo criações impressionantes e oferecendo serviços para eventos e exposições.
+                      Portfolio artístico para o especialista em obras de arte infláveis gigantes, exibindo criações impressionantes e oferecendo serviços para eventos e exposições.
+                    </p>
+                  </div>
+                </div>
+              </Link>
+
+              {/* Projeto 6 - Mariana Nails */}
+              <Link href="https://www.mariananails.com.br/" target="_blank">
+                <div
+                  className="border border-gray-700 p-6 rounded-md shadow-sm bg-black hover:bg-gray-900 transition-colors relative overflow-hidden cursor-pointer flex flex-col h-full"
+                  style={{
+                    backgroundImage: `url(/mariana_fundo_site.png)`,
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
+                  }}
+                >
+                  <div className="absolute inset-0 bg-black/70 backdrop-blur-sm"></div>
+                  <div className="relative z-10 flex flex-col h-full">
+                    <h3 className="text-xl font-semibold text-white">Site - Mariana Nails</h3>
+                    <p className="mt-4 text-gray-300 flex-grow">
+                      Site profissional para a nail designer Mariana Nails, apresentando seu trabalho artístico em unhas, galeria de designs exclusivos e sistema de agendamento para clientes.
                     </p>
                   </div>
                 </div>
