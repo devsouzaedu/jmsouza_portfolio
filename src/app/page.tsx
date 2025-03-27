@@ -179,7 +179,7 @@ export default function Home() {
                 <div
                   className="border border-gray-700 p-6 rounded-md shadow-sm bg-black hover:bg-gray-900 transition-all duration-300 relative overflow-hidden cursor-pointer flex flex-col h-full"
                   style={{
-                    backgroundImage: `url(/opera_s8bkasJJpo.png)`,
+                    backgroundImage: `url(/libracom_fundo_card_2.png)`,
                     backgroundSize: 'cover',
                     backgroundPosition: 'center',
                   }}
@@ -249,6 +249,26 @@ export default function Home() {
                     <h3 className="text-xl font-semibold text-white">Site - Mariana Nails</h3>
                     <p className="mt-4 text-gray-300 flex-grow">
                       Site profissional para a nail designer Mariana Nails, apresentando seu trabalho artístico em unhas, galeria de designs exclusivos e sistema de agendamento para clientes.
+                    </p>
+                  </div>
+                </div>
+              </Link>
+
+              {/* Projeto 7 - Blitz Lavanderia */}
+              <Link href="#" target="_blank" className="transform transition-all duration-500 hover:-translate-y-2 animate-fadeIn" style={{animationDelay: '0.7s'}}>
+                <div
+                  className="border border-gray-700 p-6 rounded-md shadow-sm bg-black hover:bg-gray-900 transition-all duration-300 relative overflow-hidden cursor-pointer flex flex-col h-full"
+                  style={{
+                    backgroundImage: `url(/blitz_lavanderia_fundo_card.png)`,
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
+                  }}
+                >
+                  <div className="absolute inset-0 bg-black/70 backdrop-blur-sm"></div>
+                  <div className="relative z-10 flex flex-col h-full">
+                    <h3 className="text-xl font-semibold text-white">Site - Blitz Lavanderia</h3>
+                    <p className="mt-4 text-gray-300 flex-grow">
+                      Site para a Blitz Lavanderia, oferecendo serviços de lavagem profissional com sistema de agendamento online, rastreamento de pedidos e informações completas sobre os serviços disponíveis.
                     </p>
                   </div>
                 </div>
