@@ -46,4 +46,14 @@ export type BlogPost = {
   created_at: string;
   updated_at: string;
   published: boolean;
+  cover_image_alt?: string;
+  seo_metadata?: {
+    meta_description: string;
+    focus_keyword: string;
+    secondary_keywords: string[];
+    seo_title: string;
+    canonical_url: string;
+    structured_data: boolean;
+    category: string;
+  }
 } 

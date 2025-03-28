@@ -255,7 +255,7 @@ export default function Home() {
               </Link>
 
               {/* Projeto 7 - Blitz Lavanderia */}
-              <Link href="#" target="_blank" className="transform transition-all duration-500 hover:-translate-y-2 animate-fadeIn" style={{animationDelay: '0.7s'}}>
+              <Link href="https://v2-blitz-site.vercel.app/" target="_blank" className="transform transition-all duration-500 hover:-translate-y-2 animate-fadeIn" style={{animationDelay: '0.7s'}}>
                 <div
                   className="border border-gray-700 p-6 rounded-md shadow-sm bg-black hover:bg-gray-900 transition-all duration-300 relative overflow-hidden cursor-pointer flex flex-col h-full"
                   style={{
