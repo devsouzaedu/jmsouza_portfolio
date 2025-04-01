@@ -273,6 +273,46 @@ export default function Home() {
                   </div>
                 </div>
               </Link>
+
+              {/* Projeto 8 - Árbitros SP */}
+              <Link href="https://meu-arb-fav.vercel.app/" target="_blank" className="transform transition-all duration-500 hover:-translate-y-2 animate-fadeIn" style={{animationDelay: '0.8s'}}>
+                <div
+                  className="border border-gray-700 p-6 rounded-md shadow-sm bg-black hover:bg-gray-900 transition-all duration-300 relative overflow-hidden cursor-pointer flex flex-col h-full"
+                  style={{
+                    backgroundImage: `url(/arbitro_fundo_site.png)`,
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
+                  }}
+                >
+                  <div className="absolute inset-0 bg-black/70 backdrop-blur-sm"></div>
+                  <div className="relative z-10 flex flex-col h-full">
+                    <h3 className="text-xl font-semibold text-white">Site - Árbitros SP</h3>
+                    <p className="mt-4 text-gray-300 flex-grow">
+                      Plataforma para conectar árbitros e times amadores de futebol em São Paulo, oferecendo um sistema de agendamento para jogos de várzea e garantindo mais profissionalismo e imparcialidade nas partidas.
+                    </p>
+                  </div>
+                </div>
+              </Link>
+
+              {/* Projeto 9 - Espaço Oliver */}
+              <Link href="https://oliver-espaco-site.vercel.app/" target="_blank" className="transform transition-all duration-500 hover:-translate-y-2 animate-fadeIn" style={{animationDelay: '0.9s'}}>
+                <div
+                  className="border border-gray-700 p-6 rounded-md shadow-sm bg-black hover:bg-gray-900 transition-all duration-300 relative overflow-hidden cursor-pointer flex flex-col h-full"
+                  style={{
+                    backgroundImage: `url(/oliver_fundo_site.png)`,
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
+                  }}
+                >
+                  <div className="absolute inset-0 bg-black/70 backdrop-blur-sm"></div>
+                  <div className="relative z-10 flex flex-col h-full">
+                    <h3 className="text-xl font-semibold text-white">Site - Espaço Oliver</h3>
+                    <p className="mt-4 text-gray-300 flex-grow">
+                      Site elegante para o salão de beleza Espaço Oliver, especializado em nail design, manicure e pedicure, com sistema de agendamento online, galeria de trabalhos e apresentação da equipe de profissionais.
+                    </p>
+                  </div>
+                </div>
+              </Link>
             </div>
           </div>
         </section>
