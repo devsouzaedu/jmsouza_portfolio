@@ -76,9 +76,9 @@ export default function Home() {
       <main className="min-h-screen bg-black text-white">
         {/* Seção de Introdução */}
         <section 
-          className="pt-32 pb-16 flex flex-col items-center justify-center px-4 text-center relative overflow-hidden"
+          className="pt-20 md:pt-32 pb-8 md:pb-16 flex flex-col items-center justify-center px-4 text-center relative overflow-hidden"
           style={{
-            minHeight: '60vh',
+            minHeight: 'calc(50vh)',
             position: 'relative',
           }}
         >
@@ -299,7 +299,7 @@ export default function Home() {
                 <div
                   className="border border-gray-700 p-6 rounded-md shadow-sm bg-black hover:bg-gray-900 transition-all duration-300 relative overflow-hidden cursor-pointer flex flex-col h-full"
                   style={{
-                    backgroundImage: `url(/oliver_fundo_site.png)`,
+                    backgroundImage: `url(/oliver_fundo_site.jpg)`,
                     backgroundSize: 'cover',
                     backgroundPosition: 'center',
                   }}
