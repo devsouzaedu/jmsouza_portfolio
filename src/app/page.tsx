@@ -5,69 +5,16 @@ import Navbar from '@/components/Navbar';
 import { Button } from '@/components/Button';
 import { ContactButton } from '@/components/ContactButton'; // Novo import
 import Link from 'next/link';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 
 export default function Home() {
-  const video1Ref = useRef<HTMLVideoElement>(null);
-  const video2Ref = useRef<HTMLVideoElement>(null);
-  const [activeVideo, setActiveVideo] = useState<1 | 2>(1);
+  const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
-    // Ajusta a velocidade de reprodução dos vídeos para câmera lenta
-    if (video1Ref.current) {
-      video1Ref.current.playbackRate = 0.5;
+    // Ajusta a velocidade de reprodução do vídeo para câmera lenta
+    if (videoRef.current) {
+      videoRef.current.playbackRate = 0.5;
     }
-    if (video2Ref.current) {
-      video2Ref.current.playbackRate = 0.5;
-    }
-
-    // Configura os eventos para alternar entre os vídeos
-    const setupVideoEvents = () => {
-      // Definir as funções de manipulação de eventos
-      const handleVideo1End = () => {
-        if (video2Ref.current) {
-          video2Ref.current.currentTime = 0;
-          video2Ref.current.play();
-          setActiveVideo(2);
-        }
-      };
-      
-      const handleVideo2End = () => {
-        if (video1Ref.current) {
-          video1Ref.current.currentTime = 0;
-          video1Ref.current.play();
-          setActiveVideo(1);
-        }
-      };
-      
-      if (video1Ref.current && video2Ref.current) {
-        // Quando o primeiro vídeo terminar, inicia o segundo e o torna visível
-        video1Ref.current.addEventListener('ended', handleVideo1End);
-
-        // Quando o segundo vídeo terminar, inicia o primeiro e o torna visível
-        video2Ref.current.addEventListener('ended', handleVideo2End);
-      }
-      
-      // Retornar as funções para que possam ser usadas na limpeza
-      return { handleVideo1End, handleVideo2End };
-    };
-
-    // Armazenar as funções retornadas
-    const { handleVideo1End, handleVideo2End } = setupVideoEvents();
-
-    // Limpeza dos event listeners quando o componente for desmontado
-    return () => {
-      // Capturar as referências atuais para uso na função de limpeza
-      const video1 = video1Ref.current;
-      const video2 = video2Ref.current;
-      
-      if (video1) {
-        video1.removeEventListener('ended', handleVideo1End);
-      }
-      if (video2) {
-        video2.removeEventListener('ended', handleVideo2End);
-      }
-    };
   }, []);
 
   return (
@@ -82,35 +29,22 @@ export default function Home() {
             position: 'relative',
           }}
         >
-          {/* Vídeos de fundo */}
+          {/* Vídeo de fundo */}
           <div className="absolute inset-0 z-0 overflow-hidden">
-            {/* Primeiro vídeo */}
+            {/* Vídeo em loop */}
             <video 
-              ref={video1Ref}
+              ref={videoRef}
               autoPlay 
               muted 
+              loop
               playsInline
-              className="absolute w-full h-full object-cover transition-opacity duration-1000"
+              className="absolute w-full h-full object-cover"
               style={{
                 filter: 'blur(2px)',
-                opacity: activeVideo === 1 ? 0.7 : 0,
+                opacity: 0.7,
               }}
             >
               <source src="/dots_video.mp4" type="video/mp4" />
-            </video>
-            
-            {/* Segundo vídeo */}
-            <video 
-              ref={video2Ref}
-              muted 
-              playsInline
-              className="absolute w-full h-full object-cover transition-opacity duration-1000"
-              style={{
-                filter: 'blur(2px)',
-                opacity: activeVideo === 2 ? 0.7 : 0,
-              }}
-            >
-              <source src="/dots_moving_2.mp4" type="video/mp4" />
             </video>
             
             {/* Gradiente para melhorar a legibilidade do texto */}
@@ -334,6 +268,13 @@ export default function Home() {
         <section className="py-8 bg-black flex justify-center">
           <ContactButton variant="default" size="lg" className="animate-fadeIn hover:scale-105 transition-transform duration-300" />
         </section>
+
+        {/* Footer */}
+        <footer className="py-6 bg-black border-t border-gray-800">
+          <div className="max-w-5xl mx-auto px-4 text-center">
+            <p className="text-gray-400 text-sm">© {new Date().getFullYear()} J.M Souza. Todos os direitos reservados.</p>
+          </div>
+        </footer>
       </main>
     </>
   );
