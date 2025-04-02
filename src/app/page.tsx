@@ -268,13 +268,6 @@ export default function Home() {
         <section className="py-8 bg-black flex justify-center">
           <ContactButton variant="default" size="lg" className="animate-fadeIn hover:scale-105 transition-transform duration-300" />
         </section>
-
-        {/* Footer */}
-        <footer className="py-6 bg-black border-t border-gray-800">
-          <div className="max-w-5xl mx-auto px-4 text-center">
-            <p className="text-gray-400 text-sm">© {new Date().getFullYear()} J.M Souza. Todos os direitos reservados.</p>
-          </div>
-        </footer>
       </main>
     </>
   );
