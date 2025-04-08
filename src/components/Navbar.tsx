@@ -2,6 +2,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useState, useEffect } from "react";
 import { FaHome, FaCode, FaEnvelope, FaBlog, FaBars, FaTimes } from "react-icons/fa";
 
@@ -23,111 +24,120 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
   return (
-    <>
-      <nav 
-        className={`fixed w-full z-50 flex justify-between items-center p-4 transition-all duration-300 ease-in-out ${
-          isScrolled ? "bg-black/90 backdrop-blur-sm" : "bg-transparent"
-        }`}
-      >
-        <h1 className="text-xl font-bold text-white">J.M. Souza</h1>
-        
-        {/* Menu para Desktop - Ícones */}
-        <div className="hidden md:flex space-x-6">
-          <Link href="/" className="text-white hover:text-gray-300 transition-colors duration-300">
-            <div className="flex flex-col items-center">
-              <FaHome className="text-xl mb-1" />
-              <span className="text-xs">Home</span>
+    <nav className={`backdrop-blur-md fixed w-full z-50 shadow-sm ${
+      isScrolled ? "bg-white" : "bg-white/80"
+    }`}>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex justify-between h-16 items-center">
+          {/* Logo à esquerda */}
+          <div className="flex-shrink-0 flex items-center">
+            <Link href="/" className="flex items-center">
+              <Image 
+                src="/logo_novo_jmsouza.png" 
+                alt="J.M Souza Logo" 
+                width={120} 
+                height={40} 
+                className="h-auto" 
+              />
+            </Link>
+          </div>
+
+          {/* Menu para desktop */}
+          <div className="hidden md:block">
+            <div className="ml-10 flex items-baseline space-x-4">
+              <Link href="#projetos" className="px-3 py-2 rounded-md text-sm font-medium text-black hover:text-[#ffa300] transition-colors">
+                Projetos
+              </Link>
+              <Link href="#sobre" className="px-3 py-2 rounded-md text-sm font-medium text-black hover:text-[#ffa300] transition-colors">
+                Sobre
+              </Link>
+              <Link href="#contato" className="px-3 py-2 rounded-md text-base font-medium text-black hover:text-[#ffa300] transition-colors">
+                Contato
+              </Link>
             </div>
-          </Link>
-          <Link href="#projetos" className="text-white hover:text-gray-300 transition-colors duration-300">
-            <div className="flex flex-col items-center">
-              <FaCode className="text-xl mb-1" />
-              <span className="text-xs">Projetos</span>
-            </div>
-          </Link>
-          <Link href="/blog" className="text-white hover:text-gray-300 transition-colors duration-300">
-            <div className="flex flex-col items-center">
-              <FaBlog className="text-xl mb-1" />
-              <span className="text-xs">Blog</span>
-            </div>
-          </Link>
-          <Link href="#contato" className="text-white hover:text-gray-300 transition-colors duration-300">
-            <div className="flex flex-col items-center">
-              <FaEnvelope className="text-xl mb-1" />
-              <span className="text-xs">Contato</span>
-            </div>
-          </Link>
+          </div>
+
+          {/* Botão menu hambúrguer */}
+          <div className="md:hidden flex items-center">
+            <button
+              onClick={toggleMenu}
+              type="button"
+              className="bg-white inline-flex items-center justify-center p-2 rounded-md text-black hover:text-[#ffa300] hover:bg-gray-100 focus:outline-none"
+              aria-controls="mobile-menu"
+              aria-expanded="false"
+            >
+              <span className="sr-only">Abrir menu principal</span>
+              {/* Ícone hambúrguer */}
+              <svg
+                className={`${isMenuOpen ? 'hidden' : 'block'} h-6 w-6`}
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                aria-hidden="true"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M4 6h16M4 12h16M4 18h16"
+                />
+              </svg>
+              {/* Ícone X para fechar */}
+              <svg
+                className={`${isMenuOpen ? 'block' : 'hidden'} h-6 w-6`}
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                aria-hidden="true"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              </svg>
+            </button>
+          </div>
         </div>
+      </div>
 
-        {/* Botão sanduíche para mobile */}
-        <button 
-          onClick={() => setIsMenuOpen(!isMenuOpen)} 
-          className="md:hidden text-white text-2xl focus:outline-none"
-        >
-          <FaBars />
-        </button>
-      </nav>
-
-      {/* Menu fullscreen mobile */}
-      <div 
-        className={`fixed inset-0 bg-black z-50 flex flex-col justify-center items-center transition-all duration-500 ease-in-out ${
-          isMenuOpen ? "opacity-100 visible" : "opacity-0 invisible"
-        }`}
+      {/* Menu móvel */}
+      <div
+        className={`${isMenuOpen ? 'block' : 'hidden'} md:hidden`}
+        id="mobile-menu"
       >
-        <button 
-          onClick={() => setIsMenuOpen(false)} 
-          className="absolute top-4 right-4 text-white text-2xl focus:outline-none"
-        >
-          <FaTimes />
-        </button>
-        
-        <div className="flex flex-col space-y-8 items-center">
-          <Link 
-            href="/" 
-            className="text-white text-2xl hover:text-gray-300 transition-all duration-300 transform hover:scale-110"
-            onClick={() => setIsMenuOpen(false)}
+        <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white">
+          <Link
+            href="#projetos"
+            className="block px-3 py-2 rounded-md text-base font-medium text-black hover:text-[#ffa300] hover:bg-gray-100"
+            onClick={toggleMenu}
           >
-            <div className="flex items-center space-x-4">
-              <FaHome className="text-xl" />
-              <span>Home</span>
-            </div>
+            Projetos
           </Link>
-          
-          <Link 
-            href="#projetos" 
-            className="text-white text-2xl hover:text-gray-300 transition-all duration-300 transform hover:scale-110"
-            onClick={() => setIsMenuOpen(false)}
+          <Link
+            href="#sobre"
+            className="block px-3 py-2 rounded-md text-base font-medium text-black hover:text-[#ffa300] hover:bg-gray-100"
+            onClick={toggleMenu}
           >
-            <div className="flex items-center space-x-4">
-              <FaCode className="text-xl" />
-              <span>Projetos</span>
-            </div>
+            Sobre
           </Link>
-          
-          <Link 
-            href="/blog" 
-            className="text-white text-2xl hover:text-gray-300 transition-all duration-300 transform hover:scale-110"
-            onClick={() => setIsMenuOpen(false)}
+          <Link
+            href="#contato"
+            className="block px-3 py-2 rounded-md text-base font-medium text-black hover:text-[#ffa300] hover:bg-gray-100"
+            onClick={toggleMenu}
           >
-            <div className="flex items-center space-x-4">
-              <FaBlog className="text-xl" />
-              <span>Blog</span>
-            </div>
-          </Link>
-          
-          <Link 
-            href="#contato" 
-            className="text-white text-2xl hover:text-gray-300 transition-all duration-300 transform hover:scale-110"
-            onClick={() => setIsMenuOpen(false)}
-          >
-            <div className="flex items-center space-x-4">
-              <FaEnvelope className="text-xl" />
-              <span>Contato</span>
-            </div>
+            Contato
           </Link>
         </div>
       </div>
-    </>
+    </nav>
   );
 }
