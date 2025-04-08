@@ -69,6 +69,9 @@ export default function Navbar() {
                 <Link href="#sobre" className="px-3 py-2 rounded-md text-sm font-medium text-black hover:text-[#ffa300] transition-colors">
                   Sobre
                 </Link>
+                <Link href="/blog" className="px-3 py-2 rounded-md text-sm font-medium text-black hover:text-[#ffa300] transition-colors">
+                  Blog
+                </Link>
                 <Link href="#contato" className="px-3 py-2 rounded-md text-base font-medium text-black hover:text-[#ffa300] transition-colors">
                   Contato
                 </Link>
@@ -157,6 +160,13 @@ export default function Navbar() {
                 onClick={toggleMenu}
               >
                 Sobre
+              </Link>
+              <Link
+                href="/blog"
+                className="block text-2xl font-medium text-black hover:text-[#ffa300]"
+                onClick={toggleMenu}
+              >
+                Blog
               </Link>
               <Link
                 href="#contato"

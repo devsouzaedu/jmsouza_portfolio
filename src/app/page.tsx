@@ -24,10 +24,10 @@ export default function Home() {
         {/* Seção de Projetos */}
         <section id="projetos" className="pt-24 pb-16">
           <div className="max-w-5xl mx-auto px-4">
-            <h2 className="text-3xl font-bold text-black mb-8 transform transition-all duration-500 hover:scale-105 animate-fadeIn">Meus Projetos</h2>
+            <h2 className="text-3xl font-bold text-black mb-8 transform transition-all duration-500 hover:scale-105 animate-slideDown">Meus Projetos</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {/* Projeto 1 - Unia.App */}
-              <Link href="https://unia-app-nail-designer.vercel.app" target="_blank" className="transform transition-all duration-500 hover:-translate-y-2 animate-fadeIn" style={{animationDelay: '0.1s'}}>
+              <Link href="https://unia-app-nail-designer.vercel.app" target="_blank" className="transform transition-all duration-500 hover:-translate-y-2 animate-slideInLeft" style={{animationDelay: '0.1s'}}>
                 <div
                   className="border border-[#ffa300] p-6 rounded-xl shadow-md bg-white hover:bg-gray-100 transition-all duration-300 relative overflow-hidden cursor-pointer flex flex-col h-full"
                   style={{
@@ -47,7 +47,7 @@ export default function Home() {
               </Link>
 
               {/* Projeto 2 - HotAir */}
-              <Link href="https://devsouzaedu.github.io/Hotair_Hot_air_balloon_game/" target="_blank" className="transform transition-all duration-500 hover:-translate-y-2 animate-fadeIn" style={{animationDelay: '0.2s'}}>
+              <Link href="https://devsouzaedu.github.io/Hotair_Hot_air_balloon_game/" target="_blank" className="transform transition-all duration-500 hover:-translate-y-2 animate-slideInBottom" style={{animationDelay: '0.2s'}}>
                 <div
                   className="border border-[#ffa300] p-6 rounded-xl shadow-md bg-white hover:bg-gray-100 transition-all duration-300 relative overflow-hidden cursor-pointer flex flex-col h-full"
                   style={{
@@ -67,7 +67,7 @@ export default function Home() {
               </Link>
 
               {/* Projeto 3 - Libracom */}
-              <Link href="https://libracomwindbanner.com.br" target="_blank" className="transform transition-all duration-500 hover:-translate-y-2 animate-fadeIn" style={{animationDelay: '0.3s'}}>
+              <Link href="https://libracomwindbanner.com.br" target="_blank" className="transform transition-all duration-500 hover:-translate-y-2 animate-slideInRight" style={{animationDelay: '0.3s'}}>
                 <div
                   className="border border-[#ffa300] p-6 rounded-xl shadow-md bg-white hover:bg-gray-100 transition-all duration-300 relative overflow-hidden cursor-pointer flex flex-col h-full"
                   style={{
@@ -87,7 +87,7 @@ export default function Home() {
               </Link>
 
               {/* Projeto 4 - Dra. Cristiane */}
-              <Link href="https://dra-cristiane-site.vercel.app/" target="_blank" className="transform transition-all duration-500 hover:-translate-y-2 animate-fadeIn" style={{animationDelay: '0.4s'}}>
+              <Link href="https://dra-cristiane-site.vercel.app/" target="_blank" className="transform transition-all duration-500 hover:-translate-y-2 animate-slideInRight" style={{animationDelay: '0.4s'}}>
                 <div
                   className="border border-[#ffa300] p-6 rounded-xl shadow-md bg-white hover:bg-gray-100 transition-all duration-300 relative overflow-hidden cursor-pointer flex flex-col h-full"
                   style={{
@@ -107,7 +107,7 @@ export default function Home() {
               </Link>
 
               {/* Projeto 5 - Eduardo Libra */}
-              <Link href="https://eduardo-libra-portfolio-2025.vercel.app/" target="_blank" className="transform transition-all duration-500 hover:-translate-y-2 animate-fadeIn" style={{animationDelay: '0.5s'}}>
+              <Link href="https://eduardo-libra-portfolio-2025.vercel.app/" target="_blank" className="transform transition-all duration-500 hover:-translate-y-2 animate-slideInBottom" style={{animationDelay: '0.5s'}}>
                 <div
                   className="border border-[#ffa300] p-6 rounded-xl shadow-md bg-white hover:bg-gray-100 transition-all duration-300 relative overflow-hidden cursor-pointer flex flex-col h-full"
                   style={{
@@ -127,7 +127,7 @@ export default function Home() {
               </Link>
 
               {/* Projeto 6 - Mariana Nails */}
-              <Link href="https://www.mariananails.com.br/" target="_blank" className="transform transition-all duration-500 hover:-translate-y-2 animate-fadeIn" style={{animationDelay: '0.6s'}}>
+              <Link href="https://www.mariananails.com.br/" target="_blank" className="transform transition-all duration-500 hover:-translate-y-2 animate-slideInLeft" style={{animationDelay: '0.6s'}}>
                 <div
                   className="border border-[#ffa300] p-6 rounded-xl shadow-md bg-white hover:bg-gray-100 transition-all duration-300 relative overflow-hidden cursor-pointer flex flex-col h-full"
                   style={{
@@ -147,7 +147,7 @@ export default function Home() {
               </Link>
 
               {/* Projeto 7 - Blitz Lavanderia */}
-              <Link href="https://v2-blitz-site.vercel.app/" target="_blank" className="transform transition-all duration-500 hover:-translate-y-2 animate-fadeIn" style={{animationDelay: '0.7s'}}>
+              <Link href="https://v2-blitz-site.vercel.app/" target="_blank" className="transform transition-all duration-500 hover:-translate-y-2 animate-slideInRight" style={{animationDelay: '0.7s'}}>
                 <div
                   className="border border-[#ffa300] p-6 rounded-xl shadow-md bg-white hover:bg-gray-100 transition-all duration-300 relative overflow-hidden cursor-pointer flex flex-col h-full"
                   style={{
@@ -167,7 +167,7 @@ export default function Home() {
               </Link>
 
               {/* Projeto 8 - Árbitros SP */}
-              <Link href="https://meu-arb-fav.vercel.app/" target="_blank" className="transform transition-all duration-500 hover:-translate-y-2 animate-fadeIn" style={{animationDelay: '0.8s'}}>
+              <Link href="https://meu-arb-fav.vercel.app/" target="_blank" className="transform transition-all duration-500 hover:-translate-y-2 animate-slideInBottom" style={{animationDelay: '0.8s'}}>
                 <div
                   className="border border-[#ffa300] p-6 rounded-xl shadow-md bg-white hover:bg-gray-100 transition-all duration-300 relative overflow-hidden cursor-pointer flex flex-col h-full"
                   style={{
@@ -187,7 +187,7 @@ export default function Home() {
               </Link>
 
               {/* Projeto 9 - Espaço Oliver */}
-              <Link href="https://oliver-espaco-site.vercel.app/" target="_blank" className="transform transition-all duration-500 hover:-translate-y-2 animate-fadeIn" style={{animationDelay: '0.9s'}}>
+              <Link href="https://oliver-espaco-site.vercel.app/" target="_blank" className="transform transition-all duration-500 hover:-translate-y-2 animate-slideInLeft" style={{animationDelay: '0.9s'}}>
                 <div
                   className="border border-[#ffa300] p-6 rounded-xl shadow-md bg-white hover:bg-gray-100 transition-all duration-300 relative overflow-hidden cursor-pointer flex flex-col h-full"
                   style={{
@@ -212,7 +212,7 @@ export default function Home() {
         {/* Seção de "Sobre mim" */}
         <section id="sobre" className="py-16 bg-white/50 backdrop-blur-sm">
           <div className="max-w-3xl mx-auto px-4">
-            <h2 className="text-3xl font-bold text-black mb-4 transform transition-all duration-500 hover:scale-105 animate-fadeIn">Sobre Mim</h2>
+            <h2 className="text-3xl font-bold text-black mb-4 transform transition-all duration-500 hover:scale-105 animate-slideDown">Sobre Mim</h2>
             <p className="text-lg text-gray-700 animate-fadeIn" style={{animationDelay: '0.2s'}}>
               Desde cedo, sempre fui fascinado pela magia da tecnologia e o poder transformador da programação.
               Ao longo dos anos, desenvolvi habilidades tanto no front-end quanto no back-end, o que me permite
