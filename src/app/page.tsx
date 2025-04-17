@@ -7,11 +7,11 @@ import { ContactButton } from '@/components/ContactButton'; // Novo import
 import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react'; // Adicionado useState
 
+// Atualizado com os novos vídeos, priorizando webm
 const videos = [
-  '/videohero_ (1).mp4',
-  '/videohero_ (2).mp4',
-  '/videohero_ (3).mp4',
-  '/videohero_ (4).mp4',
+  { webm: '/videohero_ (2).webm', mp4: '/videohero_ (2) (1).mp4' },
+  { webm: '/videohero_ (3).webm', mp4: '/videohero_ (3) (1).mp4' },
+  { webm: '/videohero_ (4).webm', mp4: '/videohero_ (4) (1).mp4' },
 ];
 
 export default function Home() {
@@ -46,8 +46,8 @@ export default function Home() {
   return (
     <>
       <Navbar />
-      {/* Seção Hero */}
-      <section className="relative h-screen flex items-center justify-center text-center overflow-hidden">
+      {/* Seção Hero - Layout Ajustado */}
+      <section className="relative h-[85vh] md:h-[90vh] flex items-center justify-center text-center overflow-hidden">
         {/* Vídeo Background */}
         <video
           ref={videoRef}
@@ -55,18 +55,21 @@ export default function Home() {
           key={currentVideoIndex} // Chave para forçar recriação/recarregamento
           muted // Autoplay geralmente requer muted
           autoPlay
+          loop // Adicionado loop para caso haja poucos vídeos ou erro
           playsInline // Para compatibilidade mobile
           preload="auto"
         >
-          <source src={videos[currentVideoIndex]} type="video/mp4" />
+          {/* Fontes WebM e MP4 */}
+          <source src={videos[currentVideoIndex].webm} type="video/webm" />
+          <source src={videos[currentVideoIndex].mp4} type="video/mp4" />
           Seu navegador não suporta o elemento de vídeo.
         </video>
 
         {/* Overlay Escuro */}
-        <div className="absolute top-0 left-0 w-full h-full bg-black/50 z-10"></div>
+        <div className="absolute top-0 left-0 w-full h-full bg-black/60 z-10"></div> {/* Overlay um pouco mais escuro */}
 
-        {/* Conteúdo */}
-        <div className="relative z-20 px-4 text-white">
+        {/* Conteúdo - Layout Ajustado conforme print */}
+        <div className="relative z-20 px-4 text-white max-w-3xl mx-auto"> {/* Largura máxima e margem automática */}
           <h1 className="text-4xl md:text-6xl font-bold mb-4 animate-fadeIn animation-delay-200">
             Aumente suas vendas com sites inteligentes
           </h1>
@@ -74,13 +77,15 @@ export default function Home() {
             Parece mágica, mas é apenas a internet funcionando para sua empresa aumentar o faturamento
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-4 animate-fadeIn animation-delay-600">
-            <Button asChild size="lg" className="bg-[#ffa300] text-black hover:bg-[#ffc107] transition-colors duration-300 transform hover:scale-105">
+            {/* Botão WhatsApp Verde */}
+            <Button asChild size="lg" className="bg-green-500 text-white hover:bg-green-600 transition-colors duration-300 transform hover:scale-105">
               <a href="https://wa.me/5511954997799?text=Oi!,%20gostaria%20de%20melhorar%20minha%20presença%20digital..." target="_blank" rel="noopener noreferrer">
                 Chamar no whatsapp
               </a>
             </Button>
-            <Button asChild variant="outline" size="lg" className="border-white text-white hover:bg-white/10 transition-colors duration-300 transform hover:scale-105">
-              <Link href="#contato">
+            {/* Botão Análise Grátis */}
+            <Button asChild variant="outline" size="lg" className="border-white text-white hover:bg-white/20 hover:text-white transition-colors duration-300 transform hover:scale-105">
+              <Link href="#contato"> {/* Mudado para #contato para rolar para a seção correta */} 
                 Receber Análise Grátis
               </Link>
             </Button>
@@ -88,16 +93,8 @@ export default function Home() {
         </div>
       </section>
 
-      <main className="min-h-screen bg-white text-black" 
-        style={{
-          backgroundImage: `url(/vercel.svg)`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundAttachment: 'fixed',
-          backgroundBlendMode: 'overlay',
-          backgroundColor: 'rgba(255, 255, 255, 0.9)',
-        }}
-      >
+      {/* Ajuste na main para compensar altura menor do hero se necessário */}
+      <main className="bg-white text-black">
         {/* Seção de Projetos */}
         <section id="projetos" className="pt-16 pb-16">
           <div className="max-w-5xl mx-auto px-4">
