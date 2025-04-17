@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@radix-ui/react-slot": "^1.2.0",
     "@supabase/supabase-js": "^2.49.1",
     "@types/marked": "^5.0.2",
     "@types/react-syntax-highlighter": "^15.5.13",

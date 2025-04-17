@@ -5,12 +5,89 @@ import Navbar from '@/components/Navbar';
 import { Button } from '@/components/Button';
 import { ContactButton } from '@/components/ContactButton'; // Novo import
 import Link from 'next/link';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react'; // Adicionado useState
+
+const videos = [
+  '/videohero_ (1).mp4',
+  '/videohero_ (2).mp4',
+  '/videohero_ (3).mp4',
+  '/videohero_ (4).mp4',
+];
 
 export default function Home() {
+  const [currentVideoIndex, setCurrentVideoIndex] = useState(0);
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    const videoElement = videoRef.current;
+    if (!videoElement) return;
+
+    const handleVideoEnd = () => {
+      setCurrentVideoIndex((prevIndex) => (prevIndex + 1) % videos.length);
+    };
+
+    videoElement.addEventListener('ended', handleVideoEnd);
+
+    // Limpeza ao desmontar o componente
+    return () => {
+      videoElement.removeEventListener('ended', handleVideoEnd);
+    };
+  }, []); // Dependência vazia para rodar apenas uma vez
+
+  useEffect(() => {
+    // Garante que o vídeo recarregue e toque quando o índice mudar
+    videoRef.current?.load();
+    videoRef.current?.play().catch(error => {
+      console.error("Erro ao tentar tocar o vídeo:", error);
+      // Navegadores podem bloquear autoplay sem interação do usuário
+    });
+  }, [currentVideoIndex]);
+
   return (
     <>
       <Navbar />
+      {/* Seção Hero */}
+      <section className="relative h-screen flex items-center justify-center text-center overflow-hidden">
+        {/* Vídeo Background */}
+        <video
+          ref={videoRef}
+          className="absolute top-0 left-0 w-full h-full object-cover z-0"
+          key={currentVideoIndex} // Chave para forçar recriação/recarregamento
+          muted // Autoplay geralmente requer muted
+          autoPlay
+          playsInline // Para compatibilidade mobile
+          preload="auto"
+        >
+          <source src={videos[currentVideoIndex]} type="video/mp4" />
+          Seu navegador não suporta o elemento de vídeo.
+        </video>
+
+        {/* Overlay Escuro */}
+        <div className="absolute top-0 left-0 w-full h-full bg-black/50 z-10"></div>
+
+        {/* Conteúdo */}
+        <div className="relative z-20 px-4 text-white">
+          <h1 className="text-4xl md:text-6xl font-bold mb-4 animate-fadeIn animation-delay-200">
+            Aumente suas vendas com sites inteligentes
+          </h1>
+          <p className="text-lg md:text-xl mb-8 animate-fadeIn animation-delay-400">
+            Parece mágica, mas é apenas a internet funcionando para sua empresa aumentar o faturamento
+          </p>
+          <div className="flex flex-col sm:flex-row justify-center gap-4 animate-fadeIn animation-delay-600">
+            <Button asChild size="lg" className="bg-[#ffa300] text-black hover:bg-[#ffc107] transition-colors duration-300 transform hover:scale-105">
+              <a href="https://wa.me/5511954997799?text=Oi!,%20gostaria%20de%20melhorar%20minha%20presença%20digital..." target="_blank" rel="noopener noreferrer">
+                Chamar no whatsapp
+              </a>
+            </Button>
+            <Button asChild variant="outline" size="lg" className="border-white text-white hover:bg-white/10 transition-colors duration-300 transform hover:scale-105">
+              <Link href="#contato">
+                Receber Análise Grátis
+              </Link>
+            </Button>
+          </div>
+        </div>
+      </section>
+
       <main className="min-h-screen bg-white text-black" 
         style={{
           backgroundImage: `url(/vercel.svg)`,
@@ -22,7 +99,7 @@ export default function Home() {
         }}
       >
         {/* Seção de Projetos */}
-        <section id="projetos" className="pt-24 pb-16">
+        <section id="projetos" className="pt-16 pb-16">
           <div className="max-w-5xl mx-auto px-4">
             <h2 className="text-3xl font-bold text-black mb-8 transform transition-all duration-500 hover:scale-105 animate-slideDown">Meus Projetos</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">

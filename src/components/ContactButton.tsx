@@ -10,7 +10,7 @@ interface ContactButtonProps {
 
 export function ContactButton({ variant = 'default', size = 'md', className = '' }: ContactButtonProps) {
   const whatsappNumber = '+5511954997799';
-  const message = encodeURIComponent('Eu preciso de um projeto de TI');
+  const message = encodeURIComponent('Oi José! eu preciso de um site/landing page/blog/banco de dados/sistema/automação');
   const whatsappLink = `https://wa.me/${whatsappNumber}?text=${message}`;
 
   // Definindo a função gtag_report_conversion no escopo global
