@@ -55,7 +55,6 @@ export default function Home() {
           key={currentVideoIndex} // Chave para forçar recriação/recarregamento
           muted // Autoplay geralmente requer muted
           autoPlay
-          loop // Adicionado loop para caso haja poucos vídeos ou erro
           playsInline // Para compatibilidade mobile
           preload="auto"
         >
@@ -77,8 +76,8 @@ export default function Home() {
             Parece mágica, mas é apenas a internet funcionando para sua empresa aumentar o faturamento
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-4 animate-fadeIn animation-delay-600">
-            {/* Botão WhatsApp Verde */}
-            <Button asChild size="lg" className="bg-green-500 text-white hover:bg-green-600 transition-colors duration-300 transform hover:scale-105">
+            {/* Botão WhatsApp - Estilo ajustado: Branco -> Verde */}
+            <Button asChild size="lg" className="bg-white text-black hover:bg-green-500 hover:text-white transition-colors duration-300 transform hover:scale-105">
               <a href="https://wa.me/5511954997799?text=Oi!,%20gostaria%20de%20melhorar%20minha%20presença%20digital..." target="_blank" rel="noopener noreferrer">
                 Chamar no whatsapp
               </a>

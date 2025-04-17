@@ -42,8 +42,8 @@ export default function Navbar() {
 
   return (
     <>
-      <nav className={`backdrop-blur-md fixed w-full z-50 shadow-sm ${
-        isScrolled ? "bg-white" : "bg-white/80"
+      <nav className={`fixed w-full z-50 transition-colors duration-300 ${
+        isScrolled ? "bg-white shadow-md" : "bg-transparent"
       }`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between h-16 items-center">
@@ -63,16 +63,16 @@ export default function Navbar() {
             {/* Menu para desktop */}
             <div className="hidden md:block">
               <div className="ml-10 flex items-baseline space-x-4">
-                <Link href="#projetos" className="px-3 py-2 rounded-md text-sm font-medium text-black hover:text-[#ffa300] transition-colors">
+                <Link href="#projetos" className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${isScrolled ? 'text-black hover:text-[#ffa300]' : 'text-white hover:text-gray-200'}`}>
                   Projetos
                 </Link>
-                <Link href="#sobre" className="px-3 py-2 rounded-md text-sm font-medium text-black hover:text-[#ffa300] transition-colors">
+                <Link href="#sobre" className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${isScrolled ? 'text-black hover:text-[#ffa300]' : 'text-white hover:text-gray-200'}`}>
                   Sobre
                 </Link>
-                <Link href="/blog" className="px-3 py-2 rounded-md text-sm font-medium text-black hover:text-[#ffa300] transition-colors">
+                <Link href="/blog" className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${isScrolled ? 'text-black hover:text-[#ffa300]' : 'text-white hover:text-gray-200'}`}>
                   Blog
                 </Link>
-                <Link href="#contato" className="px-3 py-2 rounded-md text-base font-medium text-black hover:text-[#ffa300] transition-colors">
+                <Link href="#contato" className={`px-3 py-2 rounded-md text-base font-medium transition-colors ${isScrolled ? 'text-black hover:text-[#ffa300]' : 'text-white hover:text-gray-200'}`}>
                   Contato
                 </Link>
               </div>
@@ -83,7 +83,7 @@ export default function Navbar() {
               <button
                 onClick={toggleMenu}
                 type="button"
-                className="inline-flex items-center justify-center p-2 rounded-md text-black hover:text-[#ffa300] focus:outline-none"
+                className={`inline-flex items-center justify-center p-2 rounded-md focus:outline-none transition-colors ${isScrolled ? 'text-black hover:text-[#ffa300]' : 'text-white hover:text-gray-200'}`}
                 aria-controls="mobile-menu"
                 aria-expanded="false"
               >
