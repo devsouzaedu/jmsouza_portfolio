@@ -91,7 +91,8 @@ export default function Home() {
 
         {/* Conteúdo - Layout Ajustado conforme print */}
         <div className="relative z-20 px-4 text-white max-w-3xl mx-auto"> {/* Largura máxima e margem automática */}
-          <h1 className="text-4xl md:text-6xl font-bold mb-4 animate-fadeIn animation-delay-200">
+          {/* Título Hero Maior */}
+          <h1 className="text-5xl md:text-7xl font-bold mb-4 animate-fadeIn animation-delay-200">
             Aumente suas vendas com sites inteligentes
           </h1>
           <p className="text-lg md:text-xl mb-8 animate-fadeIn animation-delay-400">
@@ -115,10 +116,10 @@ export default function Home() {
       </section>
 
       <main className="bg-white text-black">
-        {/* Seção de Benefícios */}
-        <section id="beneficios" className="py-16 lg:py-24 bg-gray-50">
+        {/* Seção de Benefícios - Animação Staggered */}
+        <section id="beneficios" className="py-16 lg:py-24 bg-gray-50 overflow-hidden"> {/* overflow-hidden para conter animações */}
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
               {[
                 { icon: FaMobileAlt, title: 'Sites Responsivos', desc: 'Sites que se adaptam perfeitamente ao tamanho da tela do computador, celular ou tablet.' },
                 { icon: FaUsers, title: 'User Experience', desc: 'Estratégias de UX/UI Design focadas em otimizar a experiência do usuário, melhorar a usabilidade, navegação e conversão.' },
@@ -129,7 +130,7 @@ export default function Home() {
                 { icon: FaCogs, title: 'Personalização Total', desc: 'Desenvolvemos todos os sites de forma personalizada, layouts 100% exclusivos para a sua marca. Uma aparência moderna e profissional.' },
                 { icon: FaLink, title: 'Integração', desc: "Integramos com os principais CRM's, ERP's, sistemas e plataformas de pagamentos digitais, para automatizar seus processos." },
               ].map((item, index) => (
-                <div key={index} className="text-center p-6 bg-white rounded-lg shadow-sm hover:shadow-lg transition-shadow duration-300">
+                <div key={index} className="text-center p-6 bg-white rounded-lg shadow-sm hover:shadow-lg transition-shadow duration-300 animate-in fade-in slide-in-from-bottom-10 duration-500" style={{ animationDelay: `${index * 100}ms` }}>
                   <item.icon className="text-4xl text-[#ffa300] mx-auto mb-4" />
                   <h3 className="text-xl font-semibold text-black mb-2">{item.title}</h3>
                   <p className="text-gray-600 text-sm">{item.desc}</p>
@@ -139,9 +140,9 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Seção Parceiros Google */}
-        <section id="parceiros-google" className="py-16 lg:py-24 bg-white text-center">
-          <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Seção Parceiros Google - Animação Fade-in */}
+        <section id="parceiros-google" className="py-16 lg:py-24 bg-white text-center overflow-hidden">
+          <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 animate-in fade-in duration-700">
             {/* Adicionar a imagem do logo do Google Partner aqui se tiver */}
             {/* <Image src="/google-partner-logo.png" alt="Google Partner Logo" width={150} height={50} className="mx-auto mb-6"/> */}
             <h2 className="text-3xl font-bold text-black mb-4">Orgulhosamente Parceiros Oficiais do Google</h2>
@@ -151,12 +152,13 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Seção Por que escolher */}
-        <section id="porque-escolher" className="py-16 lg:py-24 bg-gray-50">
+        {/* Seção Por que escolher - Animação Staggered */}
+        <section id="porque-escolher" className="py-16 lg:py-24 bg-gray-50 overflow-hidden">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 className="text-3xl font-bold text-black mb-12">Por que escolher a JMSOUZA para o seu projeto?</h2>
+            <h2 className="text-3xl font-bold text-black mb-12 animate-in fade-in slide-in-from-bottom-10 duration-500">Por que escolher a JMSOUZA para o seu projeto?</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
-              <div className="p-6 bg-white rounded-lg shadow-sm hover:shadow-lg transition-shadow duration-300 flex flex-col items-center">
+              {/* Card 1 */} 
+              <div className="p-6 bg-white rounded-lg shadow-sm hover:shadow-lg transition-shadow duration-300 flex flex-col items-center animate-in fade-in slide-in-from-bottom-10 duration-500" style={{ animationDelay: `100ms` }}>
                 <FaRocket className="text-4xl text-[#ffa300] mb-4" />
                 <h3 className="text-xl font-semibold text-black mb-2">Tecnologia Atual</h3>
                 <p className="text-gray-600 text-sm mb-4 flex-grow">Criamos seu site com o que há de mais inovador em tecnologia, análise de dados avançada e o poder transformador da inteligência artificial.</p>
@@ -164,7 +166,8 @@ export default function Home() {
                   <Link href="#orcamento">Solicitar Orçamento</Link>
                 </Button>
               </div>
-              <div className="p-6 bg-white rounded-lg shadow-sm hover:shadow-lg transition-shadow duration-300 flex flex-col items-center">
+              {/* Card 2 */} 
+              <div className="p-6 bg-white rounded-lg shadow-sm hover:shadow-lg transition-shadow duration-300 flex flex-col items-center animate-in fade-in slide-in-from-bottom-10 duration-500" style={{ animationDelay: `200ms` }}>
                 <FaFileAlt className="text-4xl text-[#ffa300] mb-4" />
                 <h3 className="text-xl font-semibold text-black mb-2">Conteúdo Gerenciável</h3>
                 <p className="text-gray-600 text-sm mb-4 flex-grow">O conteúdo do site poderá ser gerenciado por você, como alteração de fotos e textos, inclusão de produtos ou postagens de notícias.</p>
@@ -172,7 +175,8 @@ export default function Home() {
                   <Link href="#analise-gratuita">Receber uma Análise</Link>
                 </Button>
               </div>
-              <div className="p-6 bg-white rounded-lg shadow-sm hover:shadow-lg transition-shadow duration-300 flex flex-col items-center">
+              {/* Card 3 */} 
+               <div className="p-6 bg-white rounded-lg shadow-sm hover:shadow-lg transition-shadow duration-300 flex flex-col items-center animate-in fade-in slide-in-from-bottom-10 duration-500" style={{ animationDelay: `300ms` }}>
                 <FaComments className="text-4xl text-[#ffa300] mb-4" />
                 <h3 className="text-xl font-semibold text-black mb-2">Treinamento na Plataforma</h3>
                 <p className="text-gray-600 text-sm mb-4 flex-grow">Após a finalização do seu site, você receberá um treinamento de como gerenciar o seu site da melhor forma possível.</p>
@@ -186,15 +190,15 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Seção Nossos Cases (Antiga Meus Projetos) */}
-        <section id="cases" className="py-16 lg:py-24 bg-white">
+        {/* Seção Nossos Cases (Antiga Meus Projetos) - Animação Staggered */}
+        <section id="cases" className="py-16 lg:py-24 bg-white overflow-hidden">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-12">
+            <div className="text-center mb-12 animate-in fade-in slide-in-from-bottom-10 duration-500">
               <h2 className="text-3xl font-bold text-black mb-2">Nossos Cases</h2>
               <p className="text-lg text-gray-600">Alguns projetos realizados ao decorrer da nossa trajetória</p>
             </div>
-            {/* Mantendo a estrutura de grid anterior, ajustando o conteúdo */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {/* Grid Responsivo: 1 col (default), 2 cols (sm), 3 cols (md) */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
               {[
                 { href: "https://unia-app-nail-designer.vercel.app", img: "/opera_TGia9OiBNt.png", title: "Unia.App", desc: "Transformando a vida das manicures com ferramentas digitais: inspiração, cronômetro, tutoriais, finanças e agendamento.", delay: "0.1s", anim: "animate-slideInLeft" },
                 { href: "https://devsouzaedu.github.io/Hotair_Hot_air_balloon_game/", img: "/opera_dd3DQtwf08.png", title: "HotAir - Jogo Multiplayer", desc: "Jogo multiplayer competitivo de balão de ar quente, unindo tecnologia (Three.js) e criatividade.", delay: "0.2s", anim: "animate-slideInBottom" },
@@ -206,7 +210,7 @@ export default function Home() {
                 { href: "https://meu-arb-fav.vercel.app/", img: "/arbitro_fundo_site.png", title: "Site - Árbitros SP", desc: "Plataforma para conectar árbitros e times amadores de futebol em São Paulo.", delay: "0.8s", anim: "animate-slideInBottom" },
                 { href: "https://oliver-espaco-site.vercel.app/", img: "/oliver_fundo_site.jpg", title: "Site - Espaço Oliver", desc: "Site elegante para salão de beleza especializado em nail design, com agendamento online.", delay: "0.9s", anim: "animate-slideInRight" },
               ].map((project, index) => (
-                <Link key={index} href={project.href} target="_blank" className={`block transform transition-all duration-500 hover:-translate-y-2 ${project.anim}`} style={{ animationDelay: project.delay }}>
+                <Link key={index} href={project.href} target="_blank" className={`block transform transition-all duration-500 hover:-translate-y-2 animate-in fade-in slide-in-from-bottom-10 duration-500`} style={{ animationDelay: `${index * 100}ms` }}>
                   <div
                     className="border border-[#ffa300] rounded-xl shadow-md bg-white hover:bg-gray-100 transition-all duration-300 relative overflow-hidden cursor-pointer flex flex-col h-full"
                   >
@@ -231,19 +235,18 @@ export default function Home() {
           </div>
         </section>
 
-
-        {/* Seção Processos */}
-        <section id="processos" className="py-16 lg:py-24 bg-gray-50">
+        {/* Seção Processos - Animação Staggered */}
+        <section id="processos" className="py-16 lg:py-24 bg-gray-50 overflow-hidden">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-12">
+            <div className="text-center mb-12 animate-in fade-in slide-in-from-bottom-10 duration-500">
               <h2 className="text-3xl font-bold text-black mb-2">Como funcionam nossos processos?</h2>
               <p className="text-lg text-gray-600">Nossos processos são pautados pela objetividade e foco em resultados incríveis, combinando análises precisas, estratégias eficazes e treinamento contínuo.</p>
             </div>
             <div className="relative max-w-4xl mx-auto">
-              {/* Linha vertical (opcional, para visualização de timeline) */}
-              <div className="absolute left-1/2 top-0 bottom-0 w-0.5 bg-[#ffa300]/30 hidden md:block" style={{ transform: 'translateX(-50%)' }}></div>
+              {/* Linha vertical */}
+              <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-0.5 bg-[#ffa300]/30 " style={{ transform: 'translateX(-50%)' }}></div>
 
-              <div className="space-y-12">
+              <div className="space-y-8 md:space-y-12 relative">
                 {[
                   { icon: FaFileAlt, title: 'Briefing e contratação', desc: 'Entendimento inicial das suas necessidades e objetivos.' },
                   { icon: FaUsers, title: 'Reunião com equipe de design', desc: 'Alinhamento criativo e definição da identidade visual.' },
@@ -252,16 +255,16 @@ export default function Home() {
                   { icon: FaCogs, title: 'Programação Web & Mobile', desc: 'Desenvolvimento técnico com foco em performance e responsividade.' },
                   { icon: FaRocket, title: 'Treinamento e Publicação', desc: 'Capacitação para gerenciamento e lançamento oficial do site.' },
                 ].map((step, index) => (
-                  <div key={index} className="relative md:flex md:items-center group">
-                    {/* Ponto na timeline */}
-                    <div className="hidden md:flex items-center justify-center w-12 h-12 rounded-full bg-[#ffa300] text-white absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 shadow-lg z-10">
-                      <step.icon className="text-2xl" />
+                  <div key={index} className="relative flex items-start md:items-center group animate-in fade-in slide-in-from-bottom-10 duration-500" style={{ animationDelay: `${index * 150}ms` }}>
+                    {/* Ponto na timeline (ajustado para mobile) */}
+                    <div className="flex-shrink-0 flex items-center justify-center w-8 h-8 md:w-12 md:h-12 rounded-full bg-[#ffa300] text-white absolute left-0 md:left-1/2 top-0 md:top-1/2 transform md:-translate-x-1/2 md:-translate-y-1/2 shadow-lg z-10">
+                      <step.icon className="text-lg md:text-2xl" />
                     </div>
-                    {/* Conteúdo do Passo */}
-                    <div className={`md:w-1/2 p-6 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 ${index % 2 === 0 ? 'md:pr-12 md:text-right' : 'md:pl-12 md:ml-auto md:text-left'} relative`}>
-                       {/* Seta indicadora (opcional) */}
+                    {/* Conteúdo do Passo (ajustado para mobile) */}
+                    <div className={`ml-12 md:ml-0 md:w-1/2 p-4 md:p-6 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 ${index % 2 === 0 ? 'md:pr-12 md:text-right' : 'md:pl-12 md:ml-auto md:text-left'} relative`}>
+                       {/* Seta indicadora (apenas desktop) */}
                        <div className={`hidden md:block absolute top-1/2 transform -translate-y-1/2 w-3 h-3 bg-white rotate-45 ${index % 2 === 0 ? '-right-1.5' : '-left-1.5'}`}></div>
-                      <h3 className="text-xl font-semibold text-black mb-2">{step.title}</h3>
+                      <h3 className="text-lg md:text-xl font-semibold text-black mb-1 md:mb-2">{step.title}</h3>
                       <p className="text-gray-600 text-sm">{step.desc}</p>
                     </div>
                   </div>
@@ -271,25 +274,26 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Seção Feedback Clientes */}
-        <section id="feedback" className="py-16 lg:py-24 bg-white text-center">
-          <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Seção Feedback Clientes - Animação Fade-in */}
+        <section id="feedback" className="py-16 lg:py-24 bg-white text-center overflow-hidden">
+          <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 animate-in fade-in duration-700">
             <h2 className="text-3xl font-bold text-black mb-2">Feedback dos nossos clientes</h2>
             <p className="text-lg text-gray-600 mb-8">Descubra o impacto real do nosso trabalho através das vozes de quem mais importa: nossos clientes!</p>
-            {/* Placeholder para o carrossel/grid de depoimentos */}
+            {/* Placeholder */} 
             <div className="border border-dashed border-gray-300 rounded-lg p-8 text-gray-400">
               Em breve: Depoimentos de clientes satisfeitos.
             </div>
           </div>
         </section>
 
-        {/* Seção Análise Gratuita CTA */}
-        <section id="analise-gratuita" className="py-16 lg:py-24 bg-[#ffa300] text-center">
-          <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Seção Análise Gratuita CTA - Animação Fade-in */}
+        <section id="analise-gratuita" className="py-16 lg:py-24 bg-[#ffa300] text-center overflow-hidden">
+          <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 animate-in fade-in duration-700">
             <h2 className="text-3xl font-bold text-black mb-4">Receba uma análise gratuita!</h2>
             <p className="text-lg text-gray-800 mb-8">
               Receba uma análise gratuita em sua conta de Google Ads, Facebook Ads, Site e Redes Sociais. Recomendaremos o melhor caminho para o sucesso do seu negócio na internet.
             </p>
+            {/* Botões já animados no hover */}
             <div className="flex flex-col sm:flex-row justify-center gap-4">
               <Button asChild size="lg" className="bg-green-500 text-white hover:bg-green-600 transition-colors duration-300 transform hover:scale-105">
                 <a href="https://wa.me/5511954997799?text=Oi!,%20gostaria%20de%20receber%20uma%20análise%20gratuita..." target="_blank" rel="noopener noreferrer">
@@ -304,15 +308,16 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Seção Orçamento CTA e Formulário */}
-        <section id="orcamento" className="py-16 lg:py-24 bg-gray-100">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Seção Orçamento CTA e Formulário - Animação Fade-in */}
+        <section id="orcamento" className="py-16 lg:py-24 bg-gray-100 overflow-hidden">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 animate-in fade-in duration-700">
             <div className="text-center mb-12">
               <h2 className="text-3xl font-bold text-black mb-2">Solicite um orçamento</h2>
               <p className="text-lg text-gray-600">Preencha o formulário abaixo com os dados necessários. Nosso setor comercial irá entrar em contato com você.</p>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-              {/* Coluna do Formulário */}
+            {/* Grid responsivo: 1 col (default), 2 cols (md) */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
+              {/* Coluna do Formulário (inputs já são full width por padrão) */}
               <form className="space-y-4">
                 <div>
                   <label htmlFor="nome" className="block text-sm font-medium text-gray-700">Nome</label>
@@ -337,11 +342,12 @@ export default function Home() {
                   </Button>
                 </div>
               </form>
-              {/* Coluna do Texto/Botão WhatsApp */}
+              {/* Coluna do Texto/Botão WhatsApp (ajustado alinhamento mobile) */}
               <div className="text-center md:text-left">
                  <h3 className="text-2xl font-semibold text-black mb-4">Prefere falar agora?</h3>
                  <p className="text-gray-600 mb-6">Clique no botão abaixo para iniciar uma conversa diretamente pelo WhatsApp e tirar suas dúvidas rapidamente.</p>
-                 <Button asChild size="lg" className="bg-green-500 text-white hover:bg-green-600 transition-colors duration-300 transform hover:scale-105 w-full md:w-auto">
+                 {/* Botão já animado no hover */} 
+                 <Button asChild size="lg" className="bg-green-500 text-white hover:bg-green-600 transition-colors duration-300 transform hover:scale-105 w-full sm:w-auto">
                     <a href="https://wa.me/5511954997799?text=Oi!,%20gostaria%20de%20solicitar%20um%20orçamento..." target="_blank" rel="noopener noreferrer">
                         Chamar no Whatsapp
                     </a>
@@ -351,11 +357,11 @@ export default function Home() {
           </div>
         </section>
 
-         {/* Seção de "Sobre mim" - Movida para perto do final */}
-         <section id="sobre" className="py-16 lg:py-24 bg-white">
-          <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 className="text-3xl font-bold text-black mb-4 transform transition-all duration-500 hover:scale-105 animate-slideDown">Sobre Mim</h2>
-            <p className="text-lg text-gray-700 animate-fadeIn" style={{animationDelay: '0.2s'}}>
+         {/* Seção de "Sobre mim" - Animação Fade-in */}
+         <section id="sobre" className="py-16 lg:py-24 bg-white overflow-hidden">
+          <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center animate-in fade-in duration-700">
+            <h2 className="text-3xl font-bold text-black mb-4 transform transition-all duration-500 hover:scale-105">Sobre Mim</h2>
+            <p className="text-lg text-gray-700">
               Desde cedo, sempre fui fascinado pela magia da tecnologia e o poder transformador da programação.
               Ao longo dos anos, desenvolvi habilidades tanto no front-end quanto no back-end, o que me permite
               criar soluções completas e integradas. Acredito que o futuro é construído hoje e estou comprometido
@@ -364,7 +370,7 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Footer */}
+        {/* Footer (sem animação específica necessária) */}
         <footer className="bg-black text-gray-400 py-8">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-sm">
             <p>&copy; {new Date().getFullYear()} JMSOUZA Soluções Digitais. Todos os direitos reservados.</p>
