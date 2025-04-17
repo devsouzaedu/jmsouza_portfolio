@@ -13,26 +13,6 @@ export function ContactButton({ variant = 'default', size = 'md', className = ''
   const message = encodeURIComponent('Oi José! eu preciso de um site/landing page/blog/banco de dados/sistema/automação');
   const whatsappLink = `https://wa.me/${whatsappNumber}?text=${message}`;
 
-  // Definindo a função gtag_report_conversion no escopo global
-  useEffect(() => {
-    // @ts-ignore
-    window.gtag_report_conversion = function(url: string | undefined) {
-      var callback = function () {
-        if (typeof(url) != 'undefined') {
-          window.location.href = url;
-        }
-      };
-      // @ts-ignore
-      gtag('event', 'conversion', {
-        'send_to': 'AW-16927678460/CU5DCJ2Tk6oaEPy_34c_',
-        'value': 1.0,
-        'currency': 'BRL',
-        'event_callback': callback
-      });
-      return false;
-    };
-  }, []);
-
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     // @ts-ignore

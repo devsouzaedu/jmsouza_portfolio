@@ -101,7 +101,20 @@ export default function Home() {
           <div className="flex flex-col sm:flex-row justify-center gap-4 animate-fadeIn animation-delay-600">
             {/* Botão WhatsApp - Estilo ajustado: Branco -> Verde */}
             <Button asChild size="lg" className="bg-white text-black hover:bg-green-500 hover:text-white transition-colors duration-300 transform hover:scale-105">
-              <a href="https://wa.me/5511954997799?text=Oi!,%20gostaria%20de%20melhorar%20minha%20presença%20digital..." target="_blank" rel="noopener noreferrer">
+              <a 
+                href="https://wa.me/5511954997799?text=Oi!,%20gostaria%20de%20melhorar%20minha%20presença%20digital..." 
+                target="_blank" 
+                rel="noopener noreferrer"
+                onClick={(e) => {
+                  e.preventDefault(); // Previne a navegação padrão imediata
+                  // @ts-ignore
+                  if (window.gtag_report_conversion) {
+                    // @ts-ignore
+                    window.gtag_report_conversion(e.currentTarget.href);
+                  }
+                  return false;
+                }}
+              >
                 Chamar no whatsapp
               </a>
             </Button>
@@ -181,7 +194,20 @@ export default function Home() {
                 <h3 className="text-xl font-semibold text-black mb-2">Treinamento na Plataforma</h3>
                 <p className="text-gray-600 text-sm mb-4 flex-grow">Após a finalização do seu site, você receberá um treinamento de como gerenciar o seu site da melhor forma possível.</p>
                 <Button asChild size="default" className="mt-auto bg-green-500 text-white hover:bg-green-600 transition-colors duration-300 w-full">
-                   <a href="https://wa.me/5511954997799?text=Oi!,%20gostaria%20de%20saber%20mais%20sobre%20o%20treinamento..." target="_blank" rel="noopener noreferrer">
+                   <a 
+                     href="https://wa.me/5511954997799?text=Oi!,%20gostaria%20de%20saber%20mais%20sobre%20o%20treinamento..." 
+                     target="_blank" 
+                     rel="noopener noreferrer"
+                     onClick={(e) => {
+                       e.preventDefault();
+                       // @ts-ignore
+                       if (window.gtag_report_conversion) {
+                         // @ts-ignore
+                         window.gtag_report_conversion(e.currentTarget.href);
+                       }
+                       return false;
+                     }}
+                   >
                      Chamar no WhatsApp
                    </a>
                 </Button>
@@ -296,7 +322,20 @@ export default function Home() {
             {/* Botões já animados no hover */}
             <div className="flex flex-col sm:flex-row justify-center gap-4">
               <Button asChild size="lg" className="bg-green-500 text-white hover:bg-green-600 transition-colors duration-300 transform hover:scale-105">
-                <a href="https://wa.me/5511954997799?text=Oi!,%20gostaria%20de%20receber%20uma%20análise%20gratuita..." target="_blank" rel="noopener noreferrer">
+                <a 
+                  href="https://wa.me/5511954997799?text=Oi!,%20gostaria%20de%20receber%20uma%20análise%20gratuita..." 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    // @ts-ignore
+                    if (window.gtag_report_conversion) {
+                      // @ts-ignore
+                      window.gtag_report_conversion(e.currentTarget.href);
+                    }
+                    return false;
+                  }}
+                >
                   Chamar no Whatsapp
                 </a>
               </Button>
@@ -343,15 +382,27 @@ export default function Home() {
                 </div>
               </form>
               {/* Coluna do Texto/Botão WhatsApp (ajustado alinhamento mobile) */}
-              <div className="text-center md:text-left">
-                 <h3 className="text-2xl font-semibold text-black mb-4">Prefere falar agora?</h3>
-                 <p className="text-gray-600 mb-6">Clique no botão abaixo para iniciar uma conversa diretamente pelo WhatsApp e tirar suas dúvidas rapidamente.</p>
-                 {/* Botão já animado no hover */} 
-                 <Button asChild size="lg" className="bg-green-500 text-white hover:bg-green-600 transition-colors duration-300 transform hover:scale-105 w-full sm:w-auto">
-                    <a href="https://wa.me/5511954997799?text=Oi!,%20gostaria%20de%20solicitar%20um%20orçamento..." target="_blank" rel="noopener noreferrer">
-                        Chamar no Whatsapp
-                    </a>
-                 </Button>
+              <div className="text-center md:text-left animate-in fade-in slide-in-from-right-10 duration-500">
+                <h2 className="text-3xl font-bold text-black mb-4">Prefere conversar diretamente?</h2>
+                <p className="text-gray-600 mb-6">Clique no botão abaixo para iniciar uma conversa diretamente pelo WhatsApp e tirar suas dúvidas rapidamente.</p>
+                <Button asChild size="lg" className="bg-green-500 text-white hover:bg-green-600 transition-colors duration-300 transform hover:scale-105">
+                  <a 
+                    href="https://wa.me/5511954997799?text=Oi!,%20gostaria%20de%20solicitar%20um%20orçamento..." 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      // @ts-ignore
+                      if (window.gtag_report_conversion) {
+                        // @ts-ignore
+                        window.gtag_report_conversion(e.currentTarget.href);
+                      }
+                      return false;
+                    }}
+                  >
+                    Chamar no Whatsapp
+                  </a>
+                </Button>
               </div>
             </div>
           </div>
