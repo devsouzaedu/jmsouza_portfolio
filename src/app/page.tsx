@@ -99,8 +99,8 @@ export default function Home() {
             Parece mágica, mas é apenas a internet funcionando para sua empresa aumentar o faturamento
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-4 animate-fadeIn animation-delay-600">
-            {/* Botão WhatsApp - Estilo ajustado: Branco -> Verde */}
-            <Button asChild size="lg" className="bg-white text-black hover:bg-green-500 hover:text-white transition-colors duration-300 transform hover:scale-105">
+            {/* Botão WhatsApp - Estilo ajustado: Branco -> Preto, hover verde mantido */}
+            <Button asChild size="lg" className="bg-black text-white hover:bg-green-500 hover:text-white transition-colors duration-300 transform hover:scale-105">
               <a 
                 href="https://wa.me/5511954997799?text=Oi!,%20gostaria%20de%20melhorar%20minha%20presença%20digital..." 
                 target="_blank" 
@@ -144,7 +144,7 @@ export default function Home() {
                 { icon: FaLink, title: 'Integração', desc: "Integramos com os principais CRM's, ERP's, sistemas e plataformas de pagamentos digitais, para automatizar seus processos." },
               ].map((item, index) => (
                 <div key={index} className="text-center p-6 bg-white rounded-lg shadow-sm hover:shadow-lg transition-shadow duration-300 animate-in fade-in slide-in-from-bottom-10 duration-500" style={{ animationDelay: `${index * 100}ms` }}>
-                  <item.icon className="text-4xl text-[#ffa300] mx-auto mb-4" />
+                  <item.icon className="text-4xl text-black mx-auto mb-4" />
                   <h3 className="text-xl font-semibold text-black mb-2">{item.title}</h3>
                   <p className="text-gray-700 text-sm">{item.desc}</p>
                 </div>
@@ -158,8 +158,8 @@ export default function Home() {
           <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 animate-in fade-in duration-700">
             {/* Adicionar a imagem do logo do Google Partner aqui se tiver */}
             {/* <Image src="/google-partner-logo.png" alt="Google Partner Logo" width={150} height={50} className="mx-auto mb-6"/> */}
-            <h2 className="text-3xl font-bold text-black mb-4">Orgulhosamente Parceiros Oficiais do Google</h2>
-            <p className="text-lg text-gray-800">
+            <h2 className="text-3xl font-bold text-black mb-4 animate-in fade-in slide-in-from-bottom-10 duration-500">Orgulhosamente Parceiros Oficiais do Google</h2>
+            <p className="text-lg text-gray-800 animate-in fade-in slide-in-from-bottom-10 duration-500" style={{ animationDelay: `100ms` }}>
               O Google processa aproximadamente 40 mil buscas por SEGUNDO. Todos os dias são realizadas 3,5 mil milhões de pesquisas no Google, ou seja, a cada minuto que você deixa de ter uma presença online, a sua empresa perde diversas oportunidades de conquistar novos clientes. E temos orgulho de ser parceiros oficiais do Google!
             </p>
           </div>
@@ -172,25 +172,25 @@ export default function Home() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
               {/* Card 1 */} 
               <div className="p-6 bg-white rounded-lg shadow-sm hover:shadow-lg transition-shadow duration-300 flex flex-col items-center animate-in fade-in slide-in-from-bottom-10 duration-500" style={{ animationDelay: `100ms` }}>
-                <FaRocket className="text-4xl text-[#ffa300] mb-4" />
+                <FaRocket className="text-4xl text-black mb-4" />
                 <h3 className="text-xl font-semibold text-black mb-2">Tecnologia Atual</h3>
                 <p className="text-gray-700 text-sm mb-4 flex-grow">Criamos seu site com o que há de mais inovador em tecnologia, análise de dados avançada e o poder transformador da inteligência artificial.</p>
-                <Button asChild size="default" className="mt-auto bg-[#ffa300] text-black hover:bg-[#ffc107] transition-colors duration-300 w-full">
+                <Button asChild size="default" className="mt-auto bg-black text-white hover:bg-gray-800 transition-colors duration-300 w-full">
                   <Link href="#orcamento">Solicitar Orçamento</Link>
                 </Button>
               </div>
               {/* Card 2 */} 
               <div className="p-6 bg-white rounded-lg shadow-sm hover:shadow-lg transition-shadow duration-300 flex flex-col items-center animate-in fade-in slide-in-from-bottom-10 duration-500" style={{ animationDelay: `200ms` }}>
-                <FaFileAlt className="text-4xl text-[#ffa300] mb-4" />
+                <FaFileAlt className="text-4xl text-black mb-4" />
                 <h3 className="text-xl font-semibold text-black mb-2">Conteúdo Gerenciável</h3>
                 <p className="text-gray-700 text-sm mb-4 flex-grow">O conteúdo do site poderá ser gerenciado por você, como alteração de fotos e textos, inclusão de produtos ou postagens de notícias.</p>
-                <Button asChild size="default" className="mt-auto border-[#ffa300] text-[#ffa300] hover:bg-[#ffa300]/10 transition-colors duration-300 w-full" variant="outline">
+                <Button asChild size="default" className="mt-auto border-black text-black hover:bg-gray-200 transition-colors duration-300 w-full" variant="outline">
                   <Link href="#analise-gratuita">Receber uma Análise</Link>
                 </Button>
               </div>
               {/* Card 3 */} 
                <div className="p-6 bg-white rounded-lg shadow-sm hover:shadow-lg transition-shadow duration-300 flex flex-col items-center animate-in fade-in slide-in-from-bottom-10 duration-500" style={{ animationDelay: `300ms` }}>
-                <FaComments className="text-4xl text-[#ffa300] mb-4" />
+                <FaComments className="text-4xl text-black mb-4" />
                 <h3 className="text-xl font-semibold text-black mb-2">Treinamento na Plataforma</h3>
                 <p className="text-gray-700 text-sm mb-4 flex-grow">Após a finalização do seu site, você receberá um treinamento de como gerenciar o seu site da melhor forma possível.</p>
                 <Button asChild size="default" className="mt-auto bg-green-500 text-white hover:bg-green-600 transition-colors duration-300 w-full">
@@ -238,7 +238,7 @@ export default function Home() {
               ].map((project, index) => (
                 <Link key={index} href={project.href} target="_blank" className={`block transform transition-all duration-500 hover:-translate-y-2 animate-in fade-in slide-in-from-bottom-10 duration-500`} style={{ animationDelay: `${index * 100}ms` }}>
                   <div
-                    className="border border-[#ffa300] rounded-xl shadow-md bg-white hover:bg-gray-100 transition-all duration-300 relative overflow-hidden cursor-pointer flex flex-col h-full"
+                    className="border border-black rounded-xl shadow-md bg-white hover:bg-gray-100 transition-all duration-300 relative overflow-hidden cursor-pointer flex flex-col h-full"
                   >
                     <div className="relative aspect-video w-full" // Container para a imagem de fundo
                       style={{
@@ -270,7 +270,7 @@ export default function Home() {
             </div>
             <div className="relative max-w-4xl mx-auto">
               {/* Linha vertical */}
-              <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-0.5 bg-[#ffa300]/30 " style={{ transform: 'translateX(-50%)' }}></div>
+              <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-0.5 bg-black/30 " style={{ transform: 'translateX(-50%)' }}></div>
 
               <div className="space-y-8 md:space-y-12 relative">
                 {[
@@ -283,7 +283,7 @@ export default function Home() {
                 ].map((step, index) => (
                   <div key={index} className="relative flex items-start md:items-center group animate-in fade-in slide-in-from-bottom-10 duration-500" style={{ animationDelay: `${index * 150}ms` }}>
                     {/* Ponto na timeline (ajustado para mobile) */}
-                    <div className="flex-shrink-0 flex items-center justify-center w-8 h-8 md:w-12 md:h-12 rounded-full bg-[#ffa300] text-white absolute left-0 md:left-1/2 top-0 md:top-1/2 transform md:-translate-x-1/2 md:-translate-y-1/2 shadow-lg z-10">
+                    <div className="flex-shrink-0 flex items-center justify-center w-8 h-8 md:w-12 md:h-12 rounded-full bg-black text-white absolute left-0 md:left-1/2 top-0 md:top-1/2 transform md:-translate-x-1/2 md:-translate-y-1/2 shadow-lg z-10">
                       <step.icon className="text-lg md:text-2xl" />
                     </div>
                     {/* Conteúdo do Passo (ajustado para mobile) */}
@@ -313,10 +313,10 @@ export default function Home() {
         </section>
 
         {/* Seção Análise Gratuita CTA - Animação Fade-in */}
-        <section id="analise-gratuita" className="py-16 lg:py-24 bg-[#ffa300] text-center overflow-hidden">
+        <section id="analise-gratuita" className="py-16 lg:py-24 bg-black text-center overflow-hidden">
           <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 animate-in fade-in duration-700">
-            <h2 className="text-3xl font-bold text-black mb-4">Receba uma análise gratuita!</h2>
-            <p className="text-lg text-gray-800 mb-8">
+            <h2 className="text-3xl font-bold text-white mb-4">Receba uma análise gratuita!</h2>
+            <p className="text-lg text-gray-300 mb-8">
               Receba uma análise gratuita em sua conta de Google Ads, Facebook Ads, Site e Redes Sociais. Recomendaremos o melhor caminho para o sucesso do seu negócio na internet.
             </p>
             {/* Botões já animados no hover */}
@@ -360,23 +360,23 @@ export default function Home() {
               <form className="space-y-4">
                 <div>
                   <label htmlFor="nome" className="block text-sm font-medium text-gray-700">Nome</label>
-                  <input type="text" name="nome" id="nome" required className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-[#ffa300] focus:border-[#ffa300] sm:text-sm" placeholder="Seu nome completo" />
+                  <input type="text" name="nome" id="nome" required className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-black focus:border-black sm:text-sm" placeholder="Seu nome completo" />
                 </div>
                 <div>
                   <label htmlFor="whatsapp" className="block text-sm font-medium text-gray-700">WhatsApp</label>
-                  <input type="tel" name="whatsapp" id="whatsapp" required className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-[#ffa300] focus:border-[#ffa300] sm:text-sm" placeholder="(XX) XXXXX-XXXX" />
+                  <input type="tel" name="whatsapp" id="whatsapp" required className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-black focus:border-black sm:text-sm" placeholder="(XX) XXXXX-XXXX" />
                 </div>
                 <div>
                   <label htmlFor="email" className="block text-sm font-medium text-gray-700">E-mail</label>
-                  <input type="email" name="email" id="email" required className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-[#ffa300] focus:border-[#ffa300] sm:text-sm" placeholder="seu@email.com" />
+                  <input type="email" name="email" id="email" required className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-black focus:border-black sm:text-sm" placeholder="seu@email.com" />
                 </div>
                 <div>
                   <label htmlFor="mensagem" className="block text-sm font-medium text-gray-700">Mensagem</label>
-                  <textarea name="mensagem" id="mensagem" rows={4} required className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-[#ffa300] focus:border-[#ffa300] sm:text-sm" placeholder="Conte-nos sobre seu projeto..."></textarea>
+                  <textarea name="mensagem" id="mensagem" rows={4} required className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-black focus:border-black sm:text-sm" placeholder="Conte-nos sobre seu projeto..."></textarea>
                 </div>
                 <div>
                   {/* Ação do formulário precisa ser implementada (API, Server Action, etc.) */}
-                  <Button type="submit" size="lg" className="w-full bg-[#ffa300] text-black hover:bg-[#ffc107] transition-colors duration-300">
+                  <Button type="submit" size="lg" className="w-full bg-black text-white hover:bg-gray-800 transition-colors duration-300">
                     Enviar Pedido de Orçamento
                   </Button>
                 </div>
@@ -411,8 +411,8 @@ export default function Home() {
          {/* Seção de "Sobre mim" - Animação Fade-in */}
          <section id="sobre" className="py-16 lg:py-24 bg-white overflow-hidden">
           <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center animate-in fade-in duration-700">
-            <h2 className="text-3xl font-bold text-black mb-4 transform transition-all duration-500 hover:scale-105">Sobre Mim</h2>
-            <p className="text-lg text-gray-800">
+            <h2 className="text-3xl font-bold text-black mb-4 transform transition-all duration-500 hover:scale-105 animate-in fade-in slide-in-from-bottom-10 duration-500">Sobre Mim</h2>
+            <p className="text-lg text-gray-800 animate-in fade-in slide-in-from-bottom-10 duration-500" style={{ animationDelay: `100ms` }}>
               Desde cedo, sempre fui fascinado pela magia da tecnologia e o poder transformador da programação.
               Ao longo dos anos, desenvolvi habilidades tanto no front-end quanto no back-end, o que me permite
               criar soluções completas e integradas. Acredito que o futuro é construído hoje e estou comprometido
@@ -422,7 +422,7 @@ export default function Home() {
         </section>
 
         {/* Footer (sem animação específica necessária) */}
-        <footer className="bg-black text-gray-400 py-8">
+        <footer className="bg-black text-gray-400 py-8 animate-in fade-in duration-1000">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-sm">
             <p>&copy; {new Date().getFullYear()} JMSOUZA Soluções Digitais. Todos os direitos reservados.</p>
             {/* Adicionar links de redes sociais ou outras informações se necessário */}
