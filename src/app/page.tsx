@@ -143,7 +143,7 @@ export default function Home() {
                 { icon: FaCogs, title: 'Personalização Total', desc: 'Desenvolvemos todos os sites de forma personalizada, layouts 100% exclusivos para a sua marca. Uma aparência moderna e profissional.' },
                 { icon: FaLink, title: 'Integração', desc: "Integramos com os principais CRM's, ERP's, sistemas e plataformas de pagamentos digitais, para automatizar seus processos." },
               ].map((item, index) => (
-                <div key={index} className={`text-center p-6 bg-white rounded-lg shadow-sm hover:shadow-lg transition-shadow duration-300 animate-in fade-in ${index % 2 === 0 ? 'slide-in-from-left-12' : 'slide-in-from-right-12'} duration-400`} style={{ animationDelay: `${index * 100}ms` }}> {/* Ajuste animação: slide alternado, duration-400 */}
+                <div key={index} className={`text-center p-6 bg-white rounded-lg shadow-sm hover:shadow-lg transition-shadow duration-300 animate-in fade-in ${index % 2 === 0 ? 'slide-in-from-left-20' : 'slide-in-from-right-20'} duration-500`} style={{ animationDelay: `${index * 100}ms` }}>
                   <item.icon className="text-4xl text-black mx-auto mb-4" />
                   <h3 className="text-xl font-semibold text-black mb-2">{item.title}</h3>
                   <p className="text-gray-700 text-sm">{item.desc}</p>
@@ -158,8 +158,8 @@ export default function Home() {
           <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 animate-in fade-in duration-500"> {/* Duração ajustada */}
             {/* Adicionar a imagem do logo do Google Partner aqui se tiver */}
             {/* <Image src="/google-partner-logo.png" alt="Google Partner Logo" width={150} height={50} className="mx-auto mb-6"/> */}
-            <h2 className="text-3xl font-bold text-black mb-4 animate-in fade-in slide-in-from-bottom-12 duration-400">Orgulhosamente Parceiros Oficiais do Google</h2> {/* Ajuste animação */}
-            <p className="text-lg text-gray-800 animate-in fade-in slide-in-from-bottom-12 duration-400" style={{ animationDelay: `100ms` }}> {/* Ajuste animação */}
+            <h2 className="text-3xl font-bold text-black mb-4 animate-in fade-in slide-in-from-bottom-20 duration-500">Orgulhosamente Parceiros Oficiais do Google</h2> {/* Ajuste animação */}
+            <p className="text-lg text-gray-800 animate-in fade-in slide-in-from-bottom-20 duration-500" style={{ animationDelay: `100ms` }}> {/* Ajuste animação */}
               O Google processa aproximadamente 40 mil buscas por SEGUNDO. Todos os dias são realizadas 3,5 mil milhões de pesquisas no Google, ou seja, a cada minuto que você deixa de ter uma presença online, a sua empresa perde diversas oportunidades de conquistar novos clientes. E temos orgulho de ser parceiros oficiais do Google!
             </p>
           </div>
@@ -168,10 +168,10 @@ export default function Home() {
         {/* Seção Por que escolher - Animação Staggered */}
         <section id="porque-escolher" className="py-16 lg:py-24 bg-gray-100 overflow-hidden">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 className="text-3xl font-bold text-black mb-12 animate-in fade-in slide-in-from-bottom-12 duration-400">Por que escolher a JMSOUZA para o seu projeto?</h2> {/* Ajuste animação */}
+            <h2 className="text-3xl font-bold text-black mb-12 animate-in fade-in slide-in-from-bottom-20 duration-500">Por que escolher a JMSOUZA para o seu projeto?</h2> {/* Ajuste animação */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
               {/* Card 1 */}
-              <div className="p-6 bg-white rounded-lg shadow-sm hover:shadow-lg transition-shadow duration-300 flex flex-col items-center animate-in fade-in slide-in-from-left-12 duration-400" style={{ animationDelay: `100ms` }}> {/* Ajuste animação */}
+              <div className="p-6 bg-white rounded-lg shadow-sm hover:shadow-lg transition-shadow duration-300 flex flex-col items-center animate-in fade-in slide-in-from-left-20 duration-500" style={{ animationDelay: `100ms` }}> {/* Ajuste animação */}
                 <FaRocket className="text-4xl text-black mb-4" />
                 <h3 className="text-xl font-semibold text-black mb-2">Tecnologia Atual</h3>
                 <p className="text-gray-700 text-sm mb-4 flex-grow">Criamos seu site com o que há de mais inovador em tecnologia, análise de dados avançada e o poder transformador da inteligência artificial.</p>
@@ -180,7 +180,7 @@ export default function Home() {
                 </Button>
               </div>
               {/* Card 2 */}
-              <div className="p-6 bg-white rounded-lg shadow-sm hover:shadow-lg transition-shadow duration-300 flex flex-col items-center animate-in fade-in slide-in-from-bottom-12 duration-400" style={{ animationDelay: `200ms` }}> {/* Ajuste animação */}
+              <div className="p-6 bg-white rounded-lg shadow-sm hover:shadow-lg transition-shadow duration-300 flex flex-col items-center animate-in fade-in slide-in-from-bottom-20 duration-500" style={{ animationDelay: `200ms` }}> {/* Ajuste animação */}
                 <FaFileAlt className="text-4xl text-black mb-4" />
                 <h3 className="text-xl font-semibold text-black mb-2">Conteúdo Gerenciável</h3>
                 <p className="text-gray-700 text-sm mb-4 flex-grow">O conteúdo do site poderá ser gerenciado por você, como alteração de fotos e textos, inclusão de produtos ou postagens de notícias.</p>
@@ -189,7 +189,7 @@ export default function Home() {
                 </Button>
               </div>
               {/* Card 3 */}
-               <div className="p-6 bg-white rounded-lg shadow-sm hover:shadow-lg transition-shadow duration-300 flex flex-col items-center animate-in fade-in slide-in-from-right-12 duration-400" style={{ animationDelay: `300ms` }}> {/* Ajuste animação */}
+               <div className="p-6 bg-white rounded-lg shadow-sm hover:shadow-lg transition-shadow duration-300 flex flex-col items-center animate-in fade-in slide-in-from-right-20 duration-500" style={{ animationDelay: `300ms` }}> {/* Ajuste animação */}
                 <FaComments className="text-4xl text-black mb-4" />
                 <h3 className="text-xl font-semibold text-black mb-2">Treinamento na Plataforma</h3>
                 <p className="text-gray-700 text-sm mb-4 flex-grow">Após a finalização do seu site, você receberá um treinamento de como gerenciar o seu site da melhor forma possível.</p>
@@ -219,7 +219,7 @@ export default function Home() {
         {/* Seção Nossos Cases (Antiga Meus Projetos) - Animação Staggered */}
         <section id="cases" className="py-16 lg:py-24 bg-white overflow-hidden">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-12 animate-in fade-in slide-in-from-bottom-12 duration-400"> {/* Ajuste animação */}
+            <div className="text-center mb-12 animate-in fade-in slide-in-from-bottom-20 duration-500"> {/* Ajuste animação */}
               <h2 className="text-3xl font-bold text-black mb-2">Nossos Cases</h2>
               <p className="text-lg text-gray-700">Alguns projetos realizados ao decorrer da nossa trajetória</p>
             </div>
@@ -239,7 +239,7 @@ export default function Home() {
                 { href: "https://meu-arb-fav.vercel.app/", img: "/arbitro_fundo_site.png", title: "Site - Árbitros SP", desc: "Plataforma para conectar árbitros e times amadores de futebol em São Paulo.", delay: "0.9s" },
               ].map((project, index) => (
                 // Animação individual dos cards mantida como slide-in-from-bottom, mas com duration ajustada
-                <Link key={index} href={project.href} target="_blank" className={`block transform transition-all duration-500 hover:-translate-y-2 animate-in fade-in slide-in-from-bottom-12 duration-400`} style={{ animationDelay: `${index * 100}ms` }}> {/* Ajuste animação */}
+                <Link key={index} href={project.href} target="_blank" className={`block transform transition-all duration-500 hover:-translate-y-2 animate-in fade-in slide-in-from-bottom-20 duration-500`} style={{ animationDelay: `${index * 100}ms` }}> {/* Ajuste animação */}
                   <div
                     className="border border-black rounded-xl shadow-md bg-white hover:bg-gray-100 transition-all duration-300 relative overflow-hidden cursor-pointer flex flex-col h-full"
                   >
@@ -267,7 +267,7 @@ export default function Home() {
         {/* Seção Processos - Animação Staggered */}
         <section id="processos" className="py-16 lg:py-24 bg-gray-100 overflow-hidden">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-12 animate-in fade-in slide-in-from-bottom-12 duration-400"> {/* Ajuste animação */}
+            <div className="text-center mb-12 animate-in fade-in slide-in-from-bottom-20 duration-500"> {/* Ajuste animação */}
               <h2 className="text-3xl font-bold text-black mb-2">Como funcionam nossos processos?</h2>
               <p className="text-lg text-gray-700">Nossos processos são pautados pela objetividade e foco em resultados incríveis, combinando análises precisas, estratégias eficazes e treinamento contínuo.</p>
             </div>
@@ -284,7 +284,7 @@ export default function Home() {
                   { icon: FaCogs, title: 'Programação Web & Mobile', desc: 'Desenvolvimento técnico com foco em performance e responsividade.' },
                   { icon: FaRocket, title: 'Treinamento e Publicação', desc: 'Capacitação para gerenciamento e lançamento oficial do site.' },
                 ].map((step, index) => (
-                  <div key={index} className={`relative flex items-start md:items-center group animate-in fade-in ${index % 2 === 0 ? 'slide-in-from-left-12' : 'slide-in-from-right-12'} duration-400`} style={{ animationDelay: `${index * 150}ms` }}> {/* Ajuste animação: slide alternado */}
+                  <div key={index} className={`relative flex items-start md:items-center group animate-in fade-in ${index % 2 === 0 ? 'slide-in-from-left-20' : 'slide-in-from-right-20'} duration-500`} style={{ animationDelay: `${index * 150}ms` }}> {/* Ajuste animação: slide alternado */}
                     {/* Ponto na timeline (ajustado para mobile) */}
                     <div className="flex-shrink-0 flex items-center justify-center w-8 h-8 md:w-12 md:h-12 rounded-full bg-black text-white absolute left-0 md:left-1/2 top-0 md:top-1/2 transform md:-translate-x-1/2 md:-translate-y-1/2 shadow-lg z-10">
                       <step.icon className="text-lg md:text-2xl" />
@@ -306,28 +306,46 @@ export default function Home() {
         {/* Seção Feedback Clientes - Animação Fade-in */}
         <section id="feedback" className="py-16 lg:py-24 bg-white text-center overflow-hidden">
           <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 animate-in fade-in duration-500"> {/* Ajuste animação */}
-            <h2 className="text-3xl font-bold text-black mb-2 animate-in fade-in slide-in-from-bottom-12 duration-400">Feedback dos nossos clientes</h2> {/* Ajuste animação */}
-            <p className="text-lg text-gray-700 mb-8 animate-in fade-in slide-in-from-bottom-12 duration-400" style={{ animationDelay: `100ms` }}>Descubra o impacto real do nosso trabalho através das vozes de quem mais importa: nossos clientes!</p> {/* Ajuste animação */}
+            <h2 className="text-3xl font-bold text-black mb-2 animate-in fade-in slide-in-from-bottom-20 duration-500">Feedback dos nossos clientes</h2> {/* Ajuste animação */}
+            <p className="text-lg text-gray-700 mb-8 animate-in fade-in slide-in-from-bottom-20 duration-500" style={{ animationDelay: `100ms` }}>Descubra o impacto real do nosso trabalho através das vozes de quem mais importa: nossos clientes!</p> {/* Ajuste animação */}
             {/* Placeholder */}
-            <div className="border border-dashed border-gray-300 rounded-lg p-8 text-gray-400 animate-in fade-in scale-95 duration-500" style={{ animationDelay: `200ms` }}> {/* Ajuste animação */}
+            <div className="border border-dashed border-gray-300 rounded-lg p-8 text-gray-400 animate-in fade-in scale-90 duration-500" style={{ animationDelay: `200ms` }}> {/* Ajuste animação */}
               Em breve: Depoimentos de clientes satisfeitos.
+            </div>
+          </div>
+        </section>
+
+        {/* NOVA Seção Área de Atendimento */}
+        <section id="area-atendimento" className="py-16 lg:py-24 bg-gray-100 overflow-hidden">
+          <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center animate-in fade-in duration-500">
+            <h2 className="text-3xl font-bold text-black mb-4 animate-in fade-in slide-in-from-bottom-20 duration-500">Atendemos sua Região</h2>
+            <p className="text-lg text-gray-700 mb-8 animate-in fade-in slide-in-from-bottom-20 duration-500" style={{ animationDelay: `100ms` }}>
+              Nossa agência está localizada em Barueri, com fácil acesso para atender clientes em toda a região, incluindo Alphaville, Tamboré e cidades vizinhas.
+            </p>
+            <div className="bg-white p-6 rounded-lg shadow-sm inline-block animate-in fade-in scale-90 duration-500" style={{ animationDelay: `200ms` }}>
+              <p className="text-black font-semibold">JMSOUZA AGENCIA</p>
+              <p className="text-gray-700">Rua Maria Fernanda, 429</p>
+              <p className="text-gray-700">Jardim Graziela - Barueri, SP</p>
             </div>
           </div>
         </section>
 
         {/* Seção Análise Gratuita CTA - Animação Fade-in */}
         <section id="analise-gratuita" className="py-16 lg:py-24 bg-black text-center overflow-hidden">
-          <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 animate-in fade-in duration-500"> {/* Ajuste animação */}
-            <h2 className="text-3xl font-bold text-white mb-4 animate-in fade-in slide-in-from-bottom-12 duration-400">Receba uma análise gratuita!</h2> {/* Ajuste animação */}
-            <p className="text-lg text-gray-300 mb-8 animate-in fade-in slide-in-from-bottom-12 duration-400" style={{ animationDelay: `100ms` }}> {/* Ajuste animação */}
+          <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 animate-in fade-in duration-500">
+             {/* Ajuste animação: offset -20 */}
+            <h2 className="text-3xl font-bold text-white mb-4 animate-in fade-in slide-in-from-bottom-20 duration-500">Receba uma análise gratuita!</h2>
+             {/* Ajuste animação: offset -20 */}
+            <p className="text-lg text-gray-300 mb-8 animate-in fade-in slide-in-from-bottom-20 duration-500" style={{ animationDelay: `100ms` }}>
               Receba uma análise gratuita em sua conta de Google Ads, Facebook Ads, Site e Redes Sociais. Recomendaremos o melhor caminho para o sucesso do seu negócio na internet.
             </p>
             {/* Botões já animados no hover */}
-            <div className="flex flex-col sm:flex-row justify-center gap-4 animate-in fade-in scale-95 duration-500" style={{ animationDelay: `200ms` }}> {/* Ajuste animação */}
+            {/* Ajuste animação: scale */}
+            <div className="flex flex-col sm:flex-row justify-center gap-4 animate-in fade-in scale-90 duration-500" style={{ animationDelay: `200ms` }}>
               <Button asChild size="lg" className="bg-green-500 text-white hover:bg-green-600 transition-colors duration-300 transform hover:scale-105">
-                <a 
-                  href="https://wa.me/5511954997799?text=Oi!,%20gostaria%20de%20receber%20uma%20análise%20gratuita..." 
-                  target="_blank" 
+                <a
+                  href="https://wa.me/5511954997799?text=Oi!,%20gostaria%20de%20receber%20uma%20análise%20gratuita..."
+                  target="_blank"
                   rel="noopener noreferrer"
                   onClick={(e) => {
                     e.preventDefault();
@@ -342,9 +360,24 @@ export default function Home() {
                   Chamar no Whatsapp
                 </a>
               </Button>
-              <Button size="lg" className="transition-colors duration-300 transform hover:scale-105"> {/* Remover bg-black text-white hover:bg-gray-800 - Usará default CVA */}
-                {/* Idealmente, isso abriria um modal ou iria para uma página de formulário */}
-                Receber análise gratuita
+              {/* Botão Atualizado para ir ao WhatsApp */}
+              <Button asChild size="lg" className="bg-white text-black hover:bg-gray-200 transition-colors duration-300 transform hover:scale-105">
+                 <a
+                  href="https://wa.me/5511954997799?text=Oi!,%20gostaria%20de%20receber%20uma%20análise%20gratuita..."
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    // @ts-ignore
+                    if (window.gtag_report_conversion) {
+                      // @ts-ignore
+                      window.gtag_report_conversion(e.currentTarget.href);
+                    }
+                    return false;
+                  }}
+                 >
+                   Receber análise gratuita
+                 </a>
               </Button>
             </div>
           </div>
@@ -352,15 +385,17 @@ export default function Home() {
 
         {/* Seção Orçamento CTA e Formulário - Animação Fade-in */}
         <section id="orcamento" className="py-16 lg:py-24 bg-gray-200 overflow-hidden">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 animate-in fade-in duration-500"> {/* Ajuste animação */}
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 animate-in fade-in duration-500">
             <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-black mb-2 animate-in fade-in slide-in-from-bottom-12 duration-400">Solicite um orçamento</h2> {/* Ajuste animação */}
-              <p className="text-lg text-gray-700 animate-in fade-in slide-in-from-bottom-12 duration-400" style={{ animationDelay: `100ms` }}>Preencha o formulário abaixo com os dados necessários. Nosso setor comercial irá entrar em contato com você.</p> {/* Ajuste animação */}
+               {/* Ajuste animação: offset -20 */}
+              <h2 className="text-3xl font-bold text-black mb-2 animate-in fade-in slide-in-from-bottom-20 duration-500">Solicite um orçamento</h2>
+               {/* Ajuste animação: offset -20 */}
+              <p className="text-lg text-gray-700 animate-in fade-in slide-in-from-bottom-20 duration-500" style={{ animationDelay: `100ms` }}>Preencha o formulário abaixo com os dados necessários. Nosso setor comercial irá entrar em contato com você.</p>
             </div>
             {/* Grid responsivo: 1 col (default), 2 cols (md) */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
-              {/* Coluna do Formulário (inputs já são full width por padrão) */}
-              <form className="space-y-4 animate-in fade-in slide-in-from-left-12 duration-400" style={{ animationDelay: `200ms` }}> {/* Ajuste animação */}
+              {/* Coluna do Formulário - Ajuste animação: offset -20 */}
+              <form className="space-y-4 animate-in fade-in slide-in-from-left-20 duration-500" style={{ animationDelay: `200ms` }}>
                 <div>
                   <label htmlFor="nome" className="block text-sm font-medium text-gray-700">Nome</label>
                   <input type="text" name="nome" id="nome" required className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-black focus:border-black sm:text-sm" placeholder="Seu nome completo" />
@@ -384,14 +419,14 @@ export default function Home() {
                   </Button>
                 </div>
               </form>
-              {/* Coluna do Texto/Botão WhatsApp (ajustado alinhamento mobile) */}
-              <div className="text-center md:text-left animate-in fade-in slide-in-from-right-12 duration-400" style={{ animationDelay: `300ms` }}> {/* Ajuste animação */}
+              {/* Coluna do Texto/Botão WhatsApp - Ajuste animação: offset -20 */}
+              <div className="text-center md:text-left animate-in fade-in slide-in-from-right-20 duration-500" style={{ animationDelay: `300ms` }}>
                 <h2 className="text-3xl font-bold text-black mb-4">Prefere conversar diretamente?</h2>
                 <p className="text-gray-700 mb-6">Clique no botão abaixo para iniciar uma conversa diretamente pelo WhatsApp e tirar suas dúvidas rapidamente.</p>
                 <Button asChild size="lg" className="bg-green-500 text-white hover:bg-green-600 transition-colors duration-300 transform hover:scale-105">
-                  <a 
-                    href="https://wa.me/5511954997799?text=Oi!,%20gostaria%20de%20solicitar%20um%20orçamento..." 
-                    target="_blank" 
+                  <a
+                    href="https://wa.me/5511954997799?text=Oi!,%20gostaria%20de%20solicitar%20um%20orçamento..."
+                    target="_blank"
                     rel="noopener noreferrer"
                     onClick={(e) => {
                       e.preventDefault();
@@ -413,9 +448,11 @@ export default function Home() {
 
          {/* Seção de "Sobre mim" - Animação Fade-in */}
          <section id="sobre" className="py-16 lg:py-24 bg-white overflow-hidden">
-          <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center animate-in fade-in duration-500"> {/* Ajuste animação */}
-            <h2 className="text-3xl font-bold text-black mb-4 transform transition-all duration-500 hover:scale-105 animate-in fade-in slide-in-from-bottom-12 duration-400">Sobre Mim</h2> {/* Ajuste animação */}
-            <p className="text-lg text-gray-800 animate-in fade-in slide-in-from-bottom-12 duration-400" style={{ animationDelay: `100ms` }}> {/* Ajuste animação */}
+          <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center animate-in fade-in duration-500">
+             {/* Ajuste animação: offset -20 */}
+            <h2 className="text-3xl font-bold text-black mb-4 transform transition-all duration-500 hover:scale-105 animate-in fade-in slide-in-from-bottom-20 duration-500">Sobre Mim</h2>
+             {/* Ajuste animação: offset -20 */}
+            <p className="text-lg text-gray-800 animate-in fade-in slide-in-from-bottom-20 duration-500" style={{ animationDelay: `100ms` }}>
               Desde cedo, sempre fui fascinado pela magia da tecnologia e o poder transformador da programação.
               Ao longo dos anos, desenvolvi habilidades tanto no front-end quanto no back-end, o que me permite
               criar soluções completas e integradas. Acredito que o futuro é construído hoje e estou comprometido
@@ -425,7 +462,7 @@ export default function Home() {
         </section>
 
         {/* Footer (sem animação específica necessária) */}
-        <footer className="bg-black text-gray-400 py-8 animate-in fade-in duration-700"> {/* Duração ajustada */}
+        <footer className="bg-black text-gray-400 py-8 animate-in fade-in duration-700">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-sm">
             <p>&copy; {new Date().getFullYear()} JMSOUZA Soluções Digitais. Todos os direitos reservados.</p>
             {/* Adicionar links de redes sociais ou outras informações se necessário */}
