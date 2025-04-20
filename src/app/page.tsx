@@ -146,7 +146,7 @@ export default function Home() {
                 <div key={index} className="text-center p-6 bg-white rounded-lg shadow-sm hover:shadow-lg transition-shadow duration-300 animate-in fade-in slide-in-from-bottom-10 duration-500" style={{ animationDelay: `${index * 100}ms` }}>
                   <item.icon className="text-4xl text-[#ffa300] mx-auto mb-4" />
                   <h3 className="text-xl font-semibold text-black mb-2">{item.title}</h3>
-                  <p className="text-gray-600 text-sm">{item.desc}</p>
+                  <p className="text-gray-700 text-sm">{item.desc}</p>
                 </div>
               ))}
             </div>
@@ -159,7 +159,7 @@ export default function Home() {
             {/* Adicionar a imagem do logo do Google Partner aqui se tiver */}
             {/* <Image src="/google-partner-logo.png" alt="Google Partner Logo" width={150} height={50} className="mx-auto mb-6"/> */}
             <h2 className="text-3xl font-bold text-black mb-4">Orgulhosamente Parceiros Oficiais do Google</h2>
-            <p className="text-lg text-gray-700">
+            <p className="text-lg text-gray-800">
               O Google processa aproximadamente 40 mil buscas por SEGUNDO. Todos os dias são realizadas 3,5 mil milhões de pesquisas no Google, ou seja, a cada minuto que você deixa de ter uma presença online, a sua empresa perde diversas oportunidades de conquistar novos clientes. E temos orgulho de ser parceiros oficiais do Google!
             </p>
           </div>
@@ -174,7 +174,7 @@ export default function Home() {
               <div className="p-6 bg-white rounded-lg shadow-sm hover:shadow-lg transition-shadow duration-300 flex flex-col items-center animate-in fade-in slide-in-from-bottom-10 duration-500" style={{ animationDelay: `100ms` }}>
                 <FaRocket className="text-4xl text-[#ffa300] mb-4" />
                 <h3 className="text-xl font-semibold text-black mb-2">Tecnologia Atual</h3>
-                <p className="text-gray-600 text-sm mb-4 flex-grow">Criamos seu site com o que há de mais inovador em tecnologia, análise de dados avançada e o poder transformador da inteligência artificial.</p>
+                <p className="text-gray-700 text-sm mb-4 flex-grow">Criamos seu site com o que há de mais inovador em tecnologia, análise de dados avançada e o poder transformador da inteligência artificial.</p>
                 <Button asChild size="default" className="mt-auto bg-[#ffa300] text-black hover:bg-[#ffc107] transition-colors duration-300 w-full">
                   <Link href="#orcamento">Solicitar Orçamento</Link>
                 </Button>
@@ -183,7 +183,7 @@ export default function Home() {
               <div className="p-6 bg-white rounded-lg shadow-sm hover:shadow-lg transition-shadow duration-300 flex flex-col items-center animate-in fade-in slide-in-from-bottom-10 duration-500" style={{ animationDelay: `200ms` }}>
                 <FaFileAlt className="text-4xl text-[#ffa300] mb-4" />
                 <h3 className="text-xl font-semibold text-black mb-2">Conteúdo Gerenciável</h3>
-                <p className="text-gray-600 text-sm mb-4 flex-grow">O conteúdo do site poderá ser gerenciado por você, como alteração de fotos e textos, inclusão de produtos ou postagens de notícias.</p>
+                <p className="text-gray-700 text-sm mb-4 flex-grow">O conteúdo do site poderá ser gerenciado por você, como alteração de fotos e textos, inclusão de produtos ou postagens de notícias.</p>
                 <Button asChild size="default" className="mt-auto border-[#ffa300] text-[#ffa300] hover:bg-[#ffa300]/10 transition-colors duration-300 w-full" variant="outline">
                   <Link href="#analise-gratuita">Receber uma Análise</Link>
                 </Button>
@@ -192,7 +192,7 @@ export default function Home() {
                <div className="p-6 bg-white rounded-lg shadow-sm hover:shadow-lg transition-shadow duration-300 flex flex-col items-center animate-in fade-in slide-in-from-bottom-10 duration-500" style={{ animationDelay: `300ms` }}>
                 <FaComments className="text-4xl text-[#ffa300] mb-4" />
                 <h3 className="text-xl font-semibold text-black mb-2">Treinamento na Plataforma</h3>
-                <p className="text-gray-600 text-sm mb-4 flex-grow">Após a finalização do seu site, você receberá um treinamento de como gerenciar o seu site da melhor forma possível.</p>
+                <p className="text-gray-700 text-sm mb-4 flex-grow">Após a finalização do seu site, você receberá um treinamento de como gerenciar o seu site da melhor forma possível.</p>
                 <Button asChild size="default" className="mt-auto bg-green-500 text-white hover:bg-green-600 transition-colors duration-300 w-full">
                    <a 
                      href="https://wa.me/5511954997799?text=Oi!,%20gostaria%20de%20saber%20mais%20sobre%20o%20treinamento..." 
@@ -221,7 +221,7 @@ export default function Home() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12 animate-in fade-in slide-in-from-bottom-10 duration-500">
               <h2 className="text-3xl font-bold text-black mb-2">Nossos Cases</h2>
-              <p className="text-lg text-gray-600">Alguns projetos realizados ao decorrer da nossa trajetória</p>
+              <p className="text-lg text-gray-700">Alguns projetos realizados ao decorrer da nossa trajetória</p>
             </div>
             {/* Grid Responsivo: 1 col (default), 2 cols (sm), 3 cols (md) */}
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
@@ -251,7 +251,7 @@ export default function Home() {
                     </div>
                     <div className="p-6 flex flex-col flex-grow"> {/* Conteúdo abaixo da imagem */}
                       <h3 className="text-xl font-semibold text-black mb-2">{project.title}</h3>
-                      <p className="text-gray-600 text-sm flex-grow mb-3">{project.desc}</p>
+                      <p className="text-gray-700 text-sm flex-grow mb-3">{project.desc}</p>
                       <p className="text-xs text-gray-500 mt-auto">{getDomainFromUrl(project.href)}</p> {/* Domínio adicionado */}
                     </div>
                   </div>
@@ -266,7 +266,7 @@ export default function Home() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12 animate-in fade-in slide-in-from-bottom-10 duration-500">
               <h2 className="text-3xl font-bold text-black mb-2">Como funcionam nossos processos?</h2>
-              <p className="text-lg text-gray-600">Nossos processos são pautados pela objetividade e foco em resultados incríveis, combinando análises precisas, estratégias eficazes e treinamento contínuo.</p>
+              <p className="text-lg text-gray-700">Nossos processos são pautados pela objetividade e foco em resultados incríveis, combinando análises precisas, estratégias eficazes e treinamento contínuo.</p>
             </div>
             <div className="relative max-w-4xl mx-auto">
               {/* Linha vertical */}
@@ -291,7 +291,7 @@ export default function Home() {
                        {/* Seta indicadora (apenas desktop) */}
                        <div className={`hidden md:block absolute top-1/2 transform -translate-y-1/2 w-3 h-3 bg-white rotate-45 ${index % 2 === 0 ? '-right-1.5' : '-left-1.5'}`}></div>
                       <h3 className="text-lg md:text-xl font-semibold text-black mb-1 md:mb-2">{step.title}</h3>
-                      <p className="text-gray-600 text-sm">{step.desc}</p>
+                      <p className="text-gray-700 text-sm">{step.desc}</p>
                     </div>
                   </div>
                 ))}
@@ -304,7 +304,7 @@ export default function Home() {
         <section id="feedback" className="py-16 lg:py-24 bg-white text-center overflow-hidden">
           <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 animate-in fade-in duration-700">
             <h2 className="text-3xl font-bold text-black mb-2">Feedback dos nossos clientes</h2>
-            <p className="text-lg text-gray-600 mb-8">Descubra o impacto real do nosso trabalho através das vozes de quem mais importa: nossos clientes!</p>
+            <p className="text-lg text-gray-700 mb-8">Descubra o impacto real do nosso trabalho através das vozes de quem mais importa: nossos clientes!</p>
             {/* Placeholder */} 
             <div className="border border-dashed border-gray-300 rounded-lg p-8 text-gray-400">
               Em breve: Depoimentos de clientes satisfeitos.
@@ -352,7 +352,7 @@ export default function Home() {
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 animate-in fade-in duration-700">
             <div className="text-center mb-12">
               <h2 className="text-3xl font-bold text-black mb-2">Solicite um orçamento</h2>
-              <p className="text-lg text-gray-600">Preencha o formulário abaixo com os dados necessários. Nosso setor comercial irá entrar em contato com você.</p>
+              <p className="text-lg text-gray-700">Preencha o formulário abaixo com os dados necessários. Nosso setor comercial irá entrar em contato com você.</p>
             </div>
             {/* Grid responsivo: 1 col (default), 2 cols (md) */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
@@ -384,7 +384,7 @@ export default function Home() {
               {/* Coluna do Texto/Botão WhatsApp (ajustado alinhamento mobile) */}
               <div className="text-center md:text-left animate-in fade-in slide-in-from-right-10 duration-500">
                 <h2 className="text-3xl font-bold text-black mb-4">Prefere conversar diretamente?</h2>
-                <p className="text-gray-600 mb-6">Clique no botão abaixo para iniciar uma conversa diretamente pelo WhatsApp e tirar suas dúvidas rapidamente.</p>
+                <p className="text-gray-700 mb-6">Clique no botão abaixo para iniciar uma conversa diretamente pelo WhatsApp e tirar suas dúvidas rapidamente.</p>
                 <Button asChild size="lg" className="bg-green-500 text-white hover:bg-green-600 transition-colors duration-300 transform hover:scale-105">
                   <a 
                     href="https://wa.me/5511954997799?text=Oi!,%20gostaria%20de%20solicitar%20um%20orçamento..." 
@@ -412,7 +412,7 @@ export default function Home() {
          <section id="sobre" className="py-16 lg:py-24 bg-white overflow-hidden">
           <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center animate-in fade-in duration-700">
             <h2 className="text-3xl font-bold text-black mb-4 transform transition-all duration-500 hover:scale-105">Sobre Mim</h2>
-            <p className="text-lg text-gray-700">
+            <p className="text-lg text-gray-800">
               Desde cedo, sempre fui fascinado pela magia da tecnologia e o poder transformador da programação.
               Ao longo dos anos, desenvolvi habilidades tanto no front-end quanto no back-end, o que me permite
               criar soluções completas e integradas. Acredito que o futuro é construído hoje e estou comprometido
