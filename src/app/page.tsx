@@ -130,7 +130,7 @@ export default function Home() {
 
       <main className="bg-white text-black">
         {/* Seção de Benefícios - Animação Staggered */}
-        <section id="beneficios" className="py-16 lg:py-24 bg-gray-50 overflow-hidden"> {/* overflow-hidden para conter animações */}
+        <section id="beneficios" className="py-16 lg:py-24 bg-gray-100 overflow-hidden"> {/* bg-gray-50 -> bg-gray-100 */}
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
               {[
@@ -166,7 +166,7 @@ export default function Home() {
         </section>
 
         {/* Seção Por que escolher - Animação Staggered */}
-        <section id="porque-escolher" className="py-16 lg:py-24 bg-gray-50 overflow-hidden">
+        <section id="porque-escolher" className="py-16 lg:py-24 bg-gray-100 overflow-hidden"> {/* bg-gray-50 -> bg-gray-100 */}
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h2 className="text-3xl font-bold text-black mb-12 animate-in fade-in slide-in-from-bottom-10 duration-500">Por que escolher a JMSOUZA para o seu projeto?</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
@@ -247,7 +247,7 @@ export default function Home() {
                         backgroundPosition: 'center',
                       }}
                     >
-                       <div className="absolute inset-0 bg-white/80 backdrop-blur-sm"></div> {/* Overlay sobre a imagem */}
+                       {/* <div className="absolute inset-0 bg-white/80 backdrop-blur-sm"></div> Remover overlay com blur */}
                     </div>
                     <div className="p-6 flex flex-col flex-grow"> {/* Conteúdo abaixo da imagem */}
                       <h3 className="text-xl font-semibold text-black mb-2">{project.title}</h3>
@@ -262,7 +262,7 @@ export default function Home() {
         </section>
 
         {/* Seção Processos - Animação Staggered */}
-        <section id="processos" className="py-16 lg:py-24 bg-gray-50 overflow-hidden">
+        <section id="processos" className="py-16 lg:py-24 bg-gray-100 overflow-hidden"> {/* bg-gray-50 -> bg-gray-100 */}
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12 animate-in fade-in slide-in-from-bottom-10 duration-500">
               <h2 className="text-3xl font-bold text-black mb-2">Como funcionam nossos processos?</h2>
@@ -339,7 +339,7 @@ export default function Home() {
                   Chamar no Whatsapp
                 </a>
               </Button>
-              <Button size="lg" className="bg-black text-white hover:bg-gray-800 transition-colors duration-300 transform hover:scale-105">
+              <Button size="lg" className="transition-colors duration-300 transform hover:scale-105"> {/* Remover bg-black text-white hover:bg-gray-800 - Usará default CVA */}
                 {/* Idealmente, isso abriria um modal ou iria para uma página de formulário */}
                 Receber análise gratuita
               </Button>
@@ -348,7 +348,7 @@ export default function Home() {
         </section>
 
         {/* Seção Orçamento CTA e Formulário - Animação Fade-in */}
-        <section id="orcamento" className="py-16 lg:py-24 bg-gray-100 overflow-hidden">
+        <section id="orcamento" className="py-16 lg:py-24 bg-gray-200 overflow-hidden"> {/* bg-gray-100 -> bg-gray-200 */}
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 animate-in fade-in duration-700">
             <div className="text-center mb-12">
               <h2 className="text-3xl font-bold text-black mb-2">Solicite um orçamento</h2>
