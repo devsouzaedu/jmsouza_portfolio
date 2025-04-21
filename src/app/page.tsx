@@ -39,7 +39,7 @@ export default function Home() {
         style={{ backgroundImage: 'url(/hero_bc_empresa.jpg)' }}
       >
         {/* Overlay Escuro */}
-        <div className="absolute top-0 left-0 w-full h-full bg-black/60 z-10"></div>
+        <div className="absolute top-0 left-0 w-full h-full bg-black/80 z-10"></div>
 
         {/* Conteúdo - Animações simplificadas ou mantidas sutis */}
         <div className="relative z-20 px-4 text-white max-w-3xl mx-auto">
@@ -244,21 +244,45 @@ export default function Home() {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {/* Feedback 1 */}
               <div className="bg-white p-6 rounded-lg shadow-md flex flex-col items-center text-left">
-                <div className="w-16 h-16 rounded-full bg-pink-500 flex items-center justify-center text-white text-2xl font-semibold mb-4">AS</div>
+                <div className="w-20 h-20 rounded-full overflow-hidden mb-4">
+                  <Image 
+                    src="/garotas_feedback_pfp (1).jpg" 
+                    alt="Ana Silva" 
+                    width={80} 
+                    height={80}
+                    className="w-full h-full object-cover" 
+                  />
+                </div>
                 <p className="text-gray-600 italic mb-4 flex-grow">"Amei o resultado do meu site! A equipe foi super atenciosa e entendeu exatamente o que eu precisava. Recomendo de olhos fechados!"</p>
                 <p className="font-semibold text-black">Ana Silva</p>
                 <p className="text-sm text-gray-500">Empreendedora</p>
               </div>
               {/* Feedback 2 */}
               <div className="bg-white p-6 rounded-lg shadow-md flex flex-col items-center text-left">
-                <div className="w-16 h-16 rounded-full bg-purple-500 flex items-center justify-center text-white text-2xl font-semibold mb-4">BC</div>
+                <div className="w-20 h-20 rounded-full overflow-hidden mb-4">
+                  <Image 
+                    src="/garotas_feedback_pfp (2).jpg" 
+                    alt="Beatriz Costa" 
+                    width={80} 
+                    height={80}
+                    className="w-full h-full object-cover" 
+                  />
+                </div>
                 <p className="text-gray-600 italic mb-4 flex-grow">"Profissionalismo nota mil! O projeto foi entregue no prazo e superou minhas expectativas. O suporte pós-lançamento também é excelente."</p>
                 <p className="font-semibold text-black">Beatriz Costa</p>
                 <p className="text-sm text-gray-500">Designer</p>
               </div>
               {/* Feedback 3 */}
               <div className="bg-white p-6 rounded-lg shadow-md flex flex-col items-center text-left">
-                <div className="w-16 h-16 rounded-full bg-blue-500 flex items-center justify-center text-white text-2xl font-semibold mb-4">CS</div>
+                <div className="w-20 h-20 rounded-full overflow-hidden mb-4">
+                  <Image 
+                    src="/garotas_feedback_pfp (3).jpg" 
+                    alt="Carla Santos" 
+                    width={80} 
+                    height={80}
+                    className="w-full h-full object-cover" 
+                  />
+                </div>
                 <p className="text-gray-600 italic mb-4 flex-grow">"Finalmente encontrei uma agência que realmente entrega sites rápidos e bonitos. Meu negócio online decolou depois do trabalho da JMSOUZA."</p>
                 <p className="font-semibold text-black">Carla Santos</p>
                 <p className="text-sm text-gray-500">Lojista</p>
