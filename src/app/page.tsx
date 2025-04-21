@@ -2,6 +2,7 @@
 
 // src/app/page.tsx
 import Navbar from '@/components/Navbar';
+import Footer from '@/components/Footer'; // Importando o componente Footer
 import { Button } from '@/components/Button';
 import { ContactButton } from '@/components/ContactButton'; // Manter se usado no novo formulário/footer
 import Link from 'next/link';
@@ -418,8 +419,8 @@ export default function Home() {
           </div>
         </section>
 
-         {/* Seção de "Sobre mim" - Animações Simplificadas */}
-         <section id="sobre" className="py-16 lg:py-24 bg-white overflow-hidden">
+        {/* Seção de "Sobre mim" - Animações Simplificadas */}
+        <section id="sobre" className="py-16 lg:py-24 bg-white overflow-hidden">
           <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
              {/* Título com animação sutil */}
             <h2 className="text-3xl font-bold text-black mb-4 transform transition-all duration-500 hover:scale-105 animate-in fade-in slide-in-from-bottom-12 duration-700">Sobre Mim</h2>
@@ -433,19 +434,8 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Footer sem animação */}
-        <footer className="bg-black text-gray-400 py-8">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-sm">
-            <p>&copy; {new Date().getFullYear()} JMSOUZA Soluções Digitais. Todos os direitos reservados.</p>
-            {/* Adicionar links de redes sociais ou outras informações se necessário */}
-            {/* Exemplo:
-            <div className="flex justify-center space-x-4 mt-4">
-              <Link href="#" className="hover:text-white"><FaInstagram /></Link>
-              <Link href="#" className="hover:text-white"><FaLinkedin /></Link>
-            </div>
-            */}
-          </div>
-        </footer>
+        {/* Usar o componente Footer importado */}
+        <Footer />
       </main>
     </div>
   );
