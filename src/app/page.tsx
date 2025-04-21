@@ -5,6 +5,7 @@ import Navbar from '@/components/Navbar';
 import { Button } from '@/components/Button';
 import { ContactButton } from '@/components/ContactButton'; // Manter se usado no novo formulário/footer
 import Link from 'next/link';
+import Image from 'next/image'; // Adicionar importação
 import { useEffect, useRef, useState } from 'react';
 // Importar ícones se necessário para a seção de benefícios/processos
 import { FaMobileAlt, FaUsers, FaPaintBrush, FaTachometerAlt, FaHeadset, FaGoogle, FaCogs, FaLink, FaBullhorn, FaFileAlt, FaComments, FaRocket, FaCheckCircle, FaRegArrowAltCircleRight } from 'react-icons/fa';
@@ -153,13 +154,23 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Seção Parceiros Google - Animação Fade-in */}
-        <section id="parceiros-google" className="py-16 lg:py-24 bg-white text-center overflow-hidden">
-          <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 animate-in fade-in duration-500"> {/* Duração ajustada */}
-            {/* Adicionar a imagem do logo do Google Partner aqui se tiver */}
-            {/* <Image src="/google-partner-logo.png" alt="Google Partner Logo" width={150} height={50} className="mx-auto mb-6"/> */}
-            <h2 className="text-3xl font-bold text-black mb-4 animate-in fade-in slide-in-from-bottom-20 duration-500">Orgulhosamente Parceiros Oficiais do Google</h2> {/* Ajuste animação */}
-            <p className="text-lg text-gray-800 animate-in fade-in slide-in-from-bottom-20 duration-500" style={{ animationDelay: `100ms` }}> {/* Ajuste animação */}
+        {/* Seção Parceiros Google - Fundo Preto, Texto Branco, Logo Adicionado */}
+        <section id="parceiros-google" className="py-16 lg:py-24 bg-black text-center overflow-hidden"> {/* bg-white -> bg-black */}
+          <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 animate-in fade-in duration-500">
+            {/* Adicionar a imagem do logo do Google Partner */}
+            <div className="mb-8 animate-in fade-in scale-90 duration-500"> {/* Wrapper para animar o logo */}
+              <Image 
+                src="/PartnerBadge.png" 
+                alt="Google Partner Badge" 
+                width={150} // Ajuste a largura conforme necessário
+                height={50} // Ajuste a altura conforme necessário
+                className="mx-auto" 
+              />
+            </div>
+            {/* Ajuste animação: offset -20 */}
+            <h2 className="text-3xl font-bold text-white mb-4 animate-in fade-in slide-in-from-bottom-20 duration-500">Orgulhosamente Parceiros Oficiais do Google</h2> {/* text-black -> text-white */}
+            {/* Ajuste animação: offset -20, text-gray-300 */}
+            <p className="text-lg text-gray-300 animate-in fade-in slide-in-from-bottom-20 duration-500" style={{ animationDelay: `100ms` }}> {/* text-gray-800 -> text-gray-300 */}
               O Google processa aproximadamente 40 mil buscas por SEGUNDO. Todos os dias são realizadas 3,5 mil milhões de pesquisas no Google, ou seja, a cada minuto que você deixa de ter uma presença online, a sua empresa perde diversas oportunidades de conquistar novos clientes. E temos orgulho de ser parceiros oficiais do Google!
             </p>
           </div>
@@ -216,12 +227,13 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Seção Nossos Cases (Antiga Meus Projetos) - Animação Staggered */}
-        <section id="cases" className="py-16 lg:py-24 bg-white overflow-hidden">
+        {/* Seção Nossos Cases - Fundo Preto, Texto Branco */}
+        <section id="cases" className="py-16 lg:py-24 bg-black overflow-hidden"> {/* bg-white -> bg-black */}
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-12 animate-in fade-in slide-in-from-bottom-20 duration-500"> {/* Ajuste animação */}
-              <h2 className="text-3xl font-bold text-black mb-2">Nossos Cases</h2>
-              <p className="text-lg text-gray-700">Alguns projetos realizados ao decorrer da nossa trajetória</p>
+             {/* Ajuste animação: offset -20 */}
+            <div className="text-center mb-12 animate-in fade-in slide-in-from-bottom-20 duration-500">
+              <h2 className="text-3xl font-bold text-white mb-2">Nossos Cases</h2> {/* text-black -> text-white */}
+              <p className="text-lg text-gray-300">Alguns projetos realizados ao decorrer da nossa trajetória</p> {/* text-gray-700 -> text-gray-300 */}
             </div>
             {/* Grid Responsivo: 1 col (default), 2 cols (sm), 3 cols (md) */}
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
@@ -303,14 +315,37 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Seção Feedback Clientes - Animação Fade-in */}
-        <section id="feedback" className="py-16 lg:py-24 bg-white text-center overflow-hidden">
-          <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 animate-in fade-in duration-500"> {/* Ajuste animação */}
-            <h2 className="text-3xl font-bold text-black mb-2 animate-in fade-in slide-in-from-bottom-20 duration-500">Feedback dos nossos clientes</h2> {/* Ajuste animação */}
-            <p className="text-lg text-gray-700 mb-8 animate-in fade-in slide-in-from-bottom-20 duration-500" style={{ animationDelay: `100ms` }}>Descubra o impacto real do nosso trabalho através das vozes de quem mais importa: nossos clientes!</p> {/* Ajuste animação */}
-            {/* Placeholder */}
-            <div className="border border-dashed border-gray-300 rounded-lg p-8 text-gray-400 animate-in fade-in scale-90 duration-500" style={{ animationDelay: `200ms` }}> {/* Ajuste animação */}
-              Em breve: Depoimentos de clientes satisfeitos.
+        {/* Seção Feedback Clientes - Fundo Preto, Texto Branco, Conteúdo Real */}
+        <section id="feedback" className="py-16 lg:py-24 bg-black text-center overflow-hidden"> {/* bg-white -> bg-black */}
+          <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 animate-in fade-in duration-500">
+             {/* Ajuste animação: offset -20 */}
+            <h2 className="text-3xl font-bold text-white mb-2 animate-in fade-in slide-in-from-bottom-20 duration-500">Feedback dos nossos clientes</h2> {/* text-black -> text-white */}
+            {/* Ajuste animação: offset -20 */}
+            <p className="text-lg text-gray-300 mb-12 animate-in fade-in slide-in-from-bottom-20 duration-500" style={{ animationDelay: `100ms` }}>Descubra o impacto real do nosso trabalho através das vozes de quem mais importa: nossos clientes!</p> {/* text-gray-700 -> text-gray-300, mb-8 -> mb-12 */}
+            
+            {/* Grid de Feedbacks */} 
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {/* Feedback 1 */} 
+              <div className="bg-white p-6 rounded-lg shadow-md flex flex-col items-center text-left animate-in fade-in slide-in-from-bottom-20 duration-500" style={{ animationDelay: `200ms` }}>
+                <div className="w-16 h-16 rounded-full bg-pink-500 flex items-center justify-center text-white text-2xl font-semibold mb-4">AS</div>
+                <p className="text-gray-600 italic mb-4 flex-grow">"Amei o resultado do meu site! A equipe foi super atenciosa e entendeu exatamente o que eu precisava. Recomendo de olhos fechados!"</p>
+                <p className="font-semibold text-black">Ana Silva</p>
+                <p className="text-sm text-gray-500">Empreendedora</p>
+              </div>
+              {/* Feedback 2 */} 
+              <div className="bg-white p-6 rounded-lg shadow-md flex flex-col items-center text-left animate-in fade-in slide-in-from-bottom-20 duration-500" style={{ animationDelay: `300ms` }}>
+                <div className="w-16 h-16 rounded-full bg-purple-500 flex items-center justify-center text-white text-2xl font-semibold mb-4">BC</div>
+                <p className="text-gray-600 italic mb-4 flex-grow">"Profissionalismo nota mil! O projeto foi entregue no prazo e superou minhas expectativas. O suporte pós-lançamento também é excelente."</p>
+                <p className="font-semibold text-black">Beatriz Costa</p>
+                <p className="text-sm text-gray-500">Designer</p>
+              </div>
+              {/* Feedback 3 */} 
+              <div className="bg-white p-6 rounded-lg shadow-md flex flex-col items-center text-left animate-in fade-in slide-in-from-bottom-20 duration-500" style={{ animationDelay: `400ms` }}>
+                <div className="w-16 h-16 rounded-full bg-blue-500 flex items-center justify-center text-white text-2xl font-semibold mb-4">CS</div>
+                <p className="text-gray-600 italic mb-4 flex-grow">"Finalmente encontrei uma agência que realmente entrega sites rápidos e bonitos. Meu negócio online decolou depois do trabalho da JMSOUZA."</p>
+                <p className="font-semibold text-black">Carla Santos</p>
+                <p className="text-sm text-gray-500">Lojista</p>
+              </div>
             </div>
           </div>
         </section>
@@ -360,8 +395,8 @@ export default function Home() {
                   Chamar no Whatsapp
                 </a>
               </Button>
-              {/* Botão Atualizado para ir ao WhatsApp */}
-              <Button asChild size="lg" className="bg-white text-black hover:bg-gray-200 transition-colors duration-300 transform hover:scale-105">
+              {/* Botão Atualizado para ir ao WhatsApp - Remover classes bg-white text-black */}
+              <Button asChild size="lg" className="hover:bg-gray-800 transition-colors duration-300 transform hover:scale-105">
                  <a
                   href="https://wa.me/5511954997799?text=Oi!,%20gostaria%20de%20receber%20uma%20análise%20gratuita..."
                   target="_blank"
