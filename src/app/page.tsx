@@ -48,7 +48,7 @@ export default function Home() {
             Aumente suas vendas com sites inteligentes
           </h1>
            {/* Parágrafo - Animação mantida */}
-          <p className="text-lg md:text-xl mb-8 animate-fadeIn animation-delay-400">
+          <p className="text-lg md:text-2xl font-medium mb-8 animate-fadeIn animation-delay-400">
             Parece mágica, mas é apenas a internet funcionando para sua empresa aumentar o faturamento
           </p>
            {/* Botões - Animação mantida */}
@@ -95,7 +95,7 @@ export default function Home() {
                  { icon: FaCogs, title: 'Personalização Total', desc: 'Desenvolvemos todos os sites de forma personalizada, layouts 100% exclusivos para a sua marca. Uma aparência moderna e profissional.' },
                  { icon: FaLink, title: 'Integração', desc: "Integramos com os principais CRM's, ERP's, sistemas e plataformas de pagamentos digitais, para automatizar seus processos." },
               ].map((item, index) => (
-                <div key={index} className={`text-center p-6 bg-white rounded-lg shadow-sm hover:shadow-lg transition-shadow duration-300 animate-slideUp animation-delay-${index * 100}`} style={{ animationDelay: `${index * 100}ms` }}> 
+                <div key={index} className="text-center p-6 bg-white rounded-lg shadow-sm hover:shadow-lg transition-shadow duration-300 animate-slideUp animation-delay-100">
                   <item.icon className="text-4xl text-black mx-auto mb-4" />
                   <h3 className="text-xl font-semibold text-black mb-2">{item.title}</h3>
                   <p className="text-gray-700 text-sm">{item.desc}</p>
@@ -109,7 +109,7 @@ export default function Home() {
         <section id="parceiros-google" className="py-16 lg:py-24 bg-black text-center overflow-hidden">
           <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
             {/* Logo com animação fade-in */}
-            <div className="mb-8 animate-in fade-in duration-700">
+            <div className="mb-8 animate-fadeIn animation-delay-200">
               <Image 
                 src="/PartnerBadge.png" 
                 alt="Google Partner Badge" 
@@ -119,21 +119,21 @@ export default function Home() {
               />
             </div>
             {/* Título com animação sutil */}
-            <h2 className="text-3xl font-bold text-white mb-4 animate-in fade-in slide-in-from-bottom-12 duration-700">Orgulhosamente Parceiros Oficiais do Google</h2> 
+            <h2 className="text-3xl font-bold text-white mb-4 animate-fadeIn animation-delay-400">Orgulhosamente Parceiros Oficiais do Google</h2> 
             {/* Parágrafo sem animação */}
-            <p className="text-lg text-gray-300 animate-fadeIn animation-delay-400">
-              O Google processa aproximadamente 40 mil buscas por SEGUNDO. Todos os dias são realizadas 3,5 mil milhões de pesquisas no Google, ou seja, a cada minuto que você deixa de ter uma presença online, a sua empresa perde diversas oportunidades de conquistar novos clientes. E temos orgulho de ser parceiros oficiais do Google!
-            </p>
+            <p className="text-lg text-gray-300 animate-fadeIn animation-delay-600">
+  O Google processa aproximadamente 40 mil buscas por SEGUNDO. Todos os dias são realizadas 3,5 mil milhões de pesquisas no Google, ou seja, a cada minuto que você deixa de ter uma presença online, a sua empresa perde diversas oportunidades de conquistar novos clientes. E temos orgulho de ser parceiros oficiais do Google!
+</p>
           </div>
         </section>
 
         {/* Seção Por que escolher - Sintaxe Corrigida (Sem animação nos cards) */}
         <section id="porque-escolher" className="py-16 lg:py-24 bg-gray-100 overflow-hidden">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 className="text-3xl font-bold text-black mb-12 animate-in fade-in slide-in-from-bottom-12 duration-700">Por que escolher a JMSOUZA para o seu projeto?</h2> 
+            <h2 className="text-3xl font-bold text-black mb-12 animate-fadeIn animation-delay-200">Por que escolher a JMSOUZA para o seu projeto?</h2> 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
               {/* Card 1 */}
-              <div className="p-6 bg-white rounded-lg shadow-sm hover:shadow-lg transition-shadow duration-300 flex flex-col items-center animate-slideUp animation-delay-200">
+              <div className="p-6 bg-white rounded-lg shadow-sm hover:shadow-lg transition-shadow duration-300 flex flex-col items-center animate-slideUp animation-delay-400">
                  <FaRocket className="text-4xl text-black mb-4" />
                  <h3 className="text-xl font-semibold text-black mb-2">Tecnologia Atual</h3>
                  <p className="text-gray-700 text-sm mb-4 flex-grow">Criamos seu site com o que há de mais inovador em tecnologia, análise de dados avançada e o poder transformador da inteligência artificial.</p>
@@ -142,7 +142,7 @@ export default function Home() {
                  </Button>
               </div>
               {/* Card 2 */}
-              <div className="p-6 bg-white rounded-lg shadow-sm hover:shadow-lg transition-shadow duration-300 flex flex-col items-center animate-slideUp animation-delay-200">
+              <div className="p-6 bg-white rounded-lg shadow-sm hover:shadow-lg transition-shadow duration-300 flex flex-col items-center animate-slideUp animation-delay-400">
                  <FaFileAlt className="text-4xl text-black mb-4" />
                  <h3 className="text-xl font-semibold text-black mb-2">Conteúdo Gerenciável</h3>
                  <p className="text-gray-700 text-sm mb-4 flex-grow">O conteúdo do site poderá ser gerenciado por você, como alteração de fotos e textos, inclusão de produtos ou postagens de notícias.</p>
@@ -151,7 +151,7 @@ export default function Home() {
                  </Button>
               </div>
               {/* Card 3 */}
-              <div className="p-6 bg-white rounded-lg shadow-sm hover:shadow-lg transition-shadow duration-300 flex flex-col items-center animate-slideUp animation-delay-200">
+              <div className="p-6 bg-white rounded-lg shadow-sm hover:shadow-lg transition-shadow duration-300 flex flex-col items-center animate-slideUp animation-delay-400">
                  <FaComments className="text-4xl text-black mb-4" />
                  <h3 className="text-xl font-semibold text-black mb-2">Treinamento na Plataforma</h3>
                  <p className="text-gray-700 text-sm mb-4 flex-grow">Após a finalização do seu site, você receberá um treinamento de como gerenciar o seu site da melhor forma possível.</p>
