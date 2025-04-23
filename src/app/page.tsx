@@ -2,7 +2,6 @@
 
 // src/app/page.tsx
 import Navbar from '@/components/Navbar';
-import Footer from '@/components/Footer'; // Importando o componente Footer
 import { Button } from '@/components/Button';
 import { ContactButton } from '@/components/ContactButton'; // Manter se usado no novo formulário/footer
 import Link from 'next/link';
@@ -435,7 +434,7 @@ export default function Home() {
         </section>
 
         {/* Usar o componente Footer importado */}
-        <Footer />
+        
       </main>
     </div>
   );
