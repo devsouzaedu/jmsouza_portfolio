@@ -8,27 +8,27 @@ import Footer from '@/components/Footer'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'Eduardo - Desenvolvedor Full-Stack & IA',
-  description: 'Desenvolvedor Full-Stack especializado na criação de aplicações web e mobile com integração de Inteligência Artificial. Transformando ideias em soluções tecnológicas inovadoras.',
-  keywords: ['desenvolvedor full-stack', 'inteligência artificial', 'desenvolvimento web', 'aplicações IA', 'programador', 'react', 'next.js', 'node.js'],
-  authors: [{ name: 'Eduardo' }],
-  creator: 'Eduardo',
-  publisher: 'Eduardo',
+  title: 'Criação de site - JMSOUZA AGÊNCIA',
+  description: 'Criação de sites profissionais, landing pages e soluções digitais personalizadas para empresas. Agência JMSOUZA: destaque sua marca no digital.',
+  keywords: ['criação de site', 'agência digital', 'landing page', 'sites profissionais', 'JMSOUZA', 'desenvolvimento web', 'SEO', 'marketing digital'],
+  authors: [{ name: 'JMSOUZA AGÊNCIA' }],
+  creator: 'JMSOUZA AGÊNCIA',
+  publisher: 'JMSOUZA AGÊNCIA',
   icons: {
     icon: '/favicon.ico',
     apple: '/favicon.ico',
   },
   openGraph: {
-    title: 'Eduardo - Desenvolvedor Full-Stack & IA',
-    description: 'Desenvolvedeor Full-Stack especializado na criação de aplicações web e mobile com integração de Inteligência Artificial.',
+    title: 'Criação de site - JMSOUZA AGÊNCIA',
+    description: 'Criação de sites profissionais, landing pages e soluções digitais personalizadas para empresas. Agência JMSOUZA: destaque sua marca no digital.',
     url: 'https://seu-dominio.com',
-    siteName: 'Portfólio de Eduardo',
+    siteName: 'Criação de site - JMSOUZA AGÊNCIA',
     images: [
       {
         url: '/favicon.ico',
         width: 800,
         height: 600,
-        alt: 'Eduardo - Desenvolvedor Full-Stack & IA',
+        alt: 'Criação de site - JMSOUZA AGÊNCIA',
       },
     ],
     locale: 'pt_BR',
@@ -36,8 +36,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Eduardo - Desenveolvedor Full-Stack & IA',
-    description: 'Desenvolvedor Full-Stack especializado na criação de aplicações web e mobile com integração de Inteligência Artificial.',
+    title: 'Criação de site - JMSOUZA AGÊNCIA',
+    description: 'Criação de sites profissionais, landing pages e soluções digitais personalizadas para empresas. Agência JMSOUZA: destaque sua marca no digital.',
     images: ['/favicon.ico'],
   },
   robots: {

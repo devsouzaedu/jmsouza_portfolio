@@ -40,7 +40,7 @@ export default function Home() {
         style={{ backgroundImage: 'url(/hero_bc_empresa.jpg)' }}
       >
         {/* Overlay Escuro */}
-        <div className="absolute top-0 left-0 w-full h-full bg-black/80 z-10"></div>
+        <div className="absolute top-0 left-0 w-full h-full bg-black/95 z-10"></div>
 
         {/* Conteúdo - Animações simplificadas ou mantidas sutis */}
         <div className="relative z-20 px-4 text-white max-w-3xl mx-auto">
@@ -96,7 +96,7 @@ export default function Home() {
                  { icon: FaCogs, title: 'Personalização Total', desc: 'Desenvolvemos todos os sites de forma personalizada, layouts 100% exclusivos para a sua marca. Uma aparência moderna e profissional.' },
                  { icon: FaLink, title: 'Integração', desc: "Integramos com os principais CRM's, ERP's, sistemas e plataformas de pagamentos digitais, para automatizar seus processos." },
               ].map((item, index) => (
-                <div key={index} className={`text-center p-6 bg-white rounded-lg shadow-sm hover:shadow-lg transition-shadow duration-300 animate-in fade-in slide-in-from-bottom-12 duration-700`} style={{ animationDelay: `${index * 100}ms` }}> 
+                <div key={index} className={`text-center p-6 bg-white rounded-lg shadow-sm hover:shadow-lg transition-shadow duration-300 animate-slideUp animation-delay-${index * 100}`} style={{ animationDelay: `${index * 100}ms` }}> 
                   <item.icon className="text-4xl text-black mx-auto mb-4" />
                   <h3 className="text-xl font-semibold text-black mb-2">{item.title}</h3>
                   <p className="text-gray-700 text-sm">{item.desc}</p>
@@ -122,7 +122,7 @@ export default function Home() {
             {/* Título com animação sutil */}
             <h2 className="text-3xl font-bold text-white mb-4 animate-in fade-in slide-in-from-bottom-12 duration-700">Orgulhosamente Parceiros Oficiais do Google</h2> 
             {/* Parágrafo sem animação */}
-            <p className="text-lg text-gray-300">
+            <p className="text-lg text-gray-300 animate-fadeIn animation-delay-400">
               O Google processa aproximadamente 40 mil buscas por SEGUNDO. Todos os dias são realizadas 3,5 mil milhões de pesquisas no Google, ou seja, a cada minuto que você deixa de ter uma presença online, a sua empresa perde diversas oportunidades de conquistar novos clientes. E temos orgulho de ser parceiros oficiais do Google!
             </p>
           </div>
@@ -134,7 +134,7 @@ export default function Home() {
             <h2 className="text-3xl font-bold text-black mb-12 animate-in fade-in slide-in-from-bottom-12 duration-700">Por que escolher a JMSOUZA para o seu projeto?</h2> 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
               {/* Card 1 */}
-              <div className="p-6 bg-white rounded-lg shadow-sm hover:shadow-lg transition-shadow duration-300 flex flex-col items-center">
+              <div className="p-6 bg-white rounded-lg shadow-sm hover:shadow-lg transition-shadow duration-300 flex flex-col items-center animate-slideUp animation-delay-200">
                  <FaRocket className="text-4xl text-black mb-4" />
                  <h3 className="text-xl font-semibold text-black mb-2">Tecnologia Atual</h3>
                  <p className="text-gray-700 text-sm mb-4 flex-grow">Criamos seu site com o que há de mais inovador em tecnologia, análise de dados avançada e o poder transformador da inteligência artificial.</p>
@@ -143,7 +143,7 @@ export default function Home() {
                  </Button>
               </div>
               {/* Card 2 */}
-              <div className="p-6 bg-white rounded-lg shadow-sm hover:shadow-lg transition-shadow duration-300 flex flex-col items-center">
+              <div className="p-6 bg-white rounded-lg shadow-sm hover:shadow-lg transition-shadow duration-300 flex flex-col items-center animate-slideUp animation-delay-200">
                  <FaFileAlt className="text-4xl text-black mb-4" />
                  <h3 className="text-xl font-semibold text-black mb-2">Conteúdo Gerenciável</h3>
                  <p className="text-gray-700 text-sm mb-4 flex-grow">O conteúdo do site poderá ser gerenciado por você, como alteração de fotos e textos, inclusão de produtos ou postagens de notícias.</p>
@@ -152,7 +152,7 @@ export default function Home() {
                  </Button>
               </div>
               {/* Card 3 */}
-              <div className="p-6 bg-white rounded-lg shadow-sm hover:shadow-lg transition-shadow duration-300 flex flex-col items-center">
+              <div className="p-6 bg-white rounded-lg shadow-sm hover:shadow-lg transition-shadow duration-300 flex flex-col items-center animate-slideUp animation-delay-200">
                  <FaComments className="text-4xl text-black mb-4" />
                  <h3 className="text-xl font-semibold text-black mb-2">Treinamento na Plataforma</h3>
                  <p className="text-gray-700 text-sm mb-4 flex-grow">Após a finalização do seu site, você receberá um treinamento de como gerenciar o seu site da melhor forma possível.</p>
@@ -170,8 +170,8 @@ export default function Home() {
         <section id="cases" className="py-16 lg:py-24 bg-black overflow-hidden">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12 animate-in fade-in slide-in-from-bottom-12 duration-700">
-              <h2 className="text-3xl font-bold text-white mb-2">Nossos Cases</h2>
-              <p className="text-lg text-gray-300">Alguns projetos realizados ao decorrer da nossa trajetória</p>
+              <h2 className="text-3xl font-bold text-white mb-2 animate-fadeIn animation-delay-200">Nossos Cases</h2>
+              <p className="text-lg text-gray-300 animate-fadeIn animation-delay-400">Alguns projetos realizados ao decorrer da nossa trajetória</p>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
               {[
