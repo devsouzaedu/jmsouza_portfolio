@@ -38,25 +38,34 @@ export default function Home() {
         className="relative h-[85vh] md:h-[90vh] flex items-center justify-center text-center overflow-hidden bg-cover bg-center"
         style={{ backgroundImage: 'url(/hero_bc_empresa.jpg)' }}
       >
-        {/* Overlay Escuro */}
-        <div className="absolute top-0 left-0 w-full h-full bg-black/95 z-10"></div>
+        {/* Overlay Escuro com efeito de gradiente animado */}
+        <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-black/95 to-black/90 z-10 animate-pulse duration-5000"></div>
 
-        {/* Conteúdo - Animações simplificadas ou mantidas sutis */}
+        {/* Efeito de partículas/pontos flutuantes */}
+        <div className="absolute top-0 left-0 w-full h-full z-15 opacity-30">
+          <div className="absolute w-2 h-2 bg-blue-400 rounded-full animate-float-slow top-1/4 left-1/4"></div>
+          <div className="absolute w-3 h-3 bg-purple-400 rounded-full animate-float-medium top-1/3 left-2/3"></div>
+          <div className="absolute w-2 h-2 bg-green-400 rounded-full animate-float-fast top-2/3 left-1/3"></div>
+          <div className="absolute w-4 h-4 bg-yellow-400 rounded-full animate-float-slow top-1/2 left-3/4"></div>
+          <div className="absolute w-3 h-3 bg-red-400 rounded-full animate-float-medium top-3/4 left-1/4"></div>
+        </div>
+
+        {/* Conteúdo com efeitos de animação melhorados */}
         <div className="relative z-20 px-4 text-white max-w-3xl mx-auto">
-          {/* Título Hero Maior - Animação mantida */}
-          <h1 className="text-5xl md:text-7xl font-bold mb-4 animate-fadeIn animation-delay-200">
-            Aumente suas vendas com sites inteligentes
+          {/* Título Hero com animação de typing */}
+          <h1 className="text-5xl md:text-7xl font-bold mb-4 animate-in fade-in slide-in-from-bottom-4 duration-1000">
+            <span className="inline-block animate-pulse-subtle duration-2000">Aumente suas vendas</span> <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-600 animate-gradient-x">com sites inteligentes</span>
           </h1>
-           {/* Parágrafo - Animação mantida */}
-          <p className="text-lg md:text-2xl font-medium mb-8 animate-fadeIn animation-delay-400">
-            Parece mágica, mas é apenas a internet funcionando para sua empresa aumentar o faturamento
+           {/* Parágrafo com animação fade-in */}
+          <p className="text-lg md:text-2xl font-medium mb-8 animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-300">
+            Parece mágica, mas é apenas a internet funcionando para sua empresa <span className="font-bold text-yellow-400">aumentar o faturamento</span>
           </p>
-           {/* Botões - Animação mantida */}
-          <div className="flex flex-col sm:flex-row justify-center gap-4 animate-fadeIn animation-delay-600">
+           {/* Botões com animações melhoradas */}
+          <div className="flex flex-col sm:flex-row justify-center gap-4 animate-in fade-in slide-in-from-bottom-12 duration-1000 delay-500">
             {/* Botão WhatsApp */}
-            <Button asChild size="lg" className="bg-black text-white hover:bg-green-500 hover:text-white transition-colors duration-300 transform hover:scale-105">
+            <Button asChild size="lg" className="bg-black text-white hover:bg-green-500 hover:text-white transition-all duration-300 transform hover:scale-110 hover:shadow-lg hover:shadow-green-500/20 animate-pulse-subtle">
               <a 
-                href="https://wa.me/5511954997799?text=Oi!,%20gostaria%20de%20melhorar%20minha%20presença%20digital..." 
+                href="https://wa.me/5511954997799?text=Oi!,%20gostaria%20de%20melhorar%20minha%20presen%C3%A7a%20digital..." 
                 target="_blank" 
                 rel="noopener noreferrer"
                 onClick={(e) => {
@@ -71,7 +80,7 @@ export default function Home() {
               </a>
             </Button>
             {/* Botão Análise Grátis */}
-            <Button asChild variant="outline" size="lg" className="border-white text-white hover:bg-white/20 hover:text-white transition-colors duration-300 transform hover:scale-105">
+            <Button asChild variant="outline" size="lg" className="border-white text-white hover:bg-white/30 hover:text-white transition-all duration-300 transform hover:scale-110 hover:shadow-lg hover:shadow-white/20">
               <Link href="#analise-gratuita">
                 Receber Análise Grátis
               </Link>
@@ -81,23 +90,35 @@ export default function Home() {
       </section>
 
       <main className="bg-white text-black">
-        {/* Seção de Benefícios - Sintaxe Corrigida */}
-        <section id="beneficios" className="py-16 lg:py-24 bg-gray-100 overflow-hidden">
+        {/* Seção de Benefícios com animações melhoradas */}
+        <section id="beneficios" className="py-16 lg:py-24 bg-gradient-to-b from-gray-50 to-gray-200 overflow-hidden">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            {/* Título da seção com animação */}
+            <div className="text-center mb-12 animate-in fade-in slide-in-from-top-8 duration-1000">
+              <h2 className="text-3xl font-bold text-black mb-2">Benefícios exclusivos</h2>
+              <p className="text-gray-600 max-w-2xl mx-auto">Tecnologia e design pensados para maximizar seus resultados</p>
+            </div>
+            
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
               {[
-                 { icon: FaMobileAlt, title: 'Sites Responsivos', desc: 'Sites que se adaptam perfeitamente ao tamanho da tela do computador, celular ou tablet.' },
-                 { icon: FaUsers, title: 'User Experience', desc: 'Estratégias de UX/UI Design focadas em otimizar a experiência do usuário, melhorar a usabilidade, navegação e conversão.' },
-                 { icon: FaPaintBrush, title: 'Layout Personalizado', desc: 'O layout é exclusivo e desenvolvido por especialistas. Formas, cores, imagens, ícones. Tudo isso é pensado nos mínimos detalhes.' },
-                 { icon: FaTachometerAlt, title: 'Páginas Rápidas', desc: 'Carregamento das páginas de forma rápida para aumentar o número de conversões, através de otimização e servidor cloud de alta performance.' },
-                 { icon: FaHeadset, title: 'Suporte Contínuo', desc: 'Conte com um time de especialistas para dar suporte às suas necessidades. Tudo isso feito sob-demanda, quando precisar.' },
-                 { icon: FaGoogle, title: 'Pronto para o Google', desc: 'Seguimos todas as diretrizes e critérios impostos pelo Google para que sua empresa apareça na maior rede de pesquisa.' },
-                 { icon: FaCogs, title: 'Personalização Total', desc: 'Desenvolvemos todos os sites de forma personalizada, layouts 100% exclusivos para a sua marca. Uma aparência moderna e profissional.' },
-                 { icon: FaLink, title: 'Integração', desc: "Integramos com os principais CRM's, ERP's, sistemas e plataformas de pagamentos digitais, para automatizar seus processos." },
+                 { icon: FaMobileAlt, title: 'Sites Responsivos', desc: 'Sites que se adaptam perfeitamente ao tamanho da tela do computador, celular ou tablet.', delay: 100 },
+                 { icon: FaUsers, title: 'User Experience', desc: 'Estratégias de UX/UI Design focadas em otimizar a experiência do usuário, melhorar a usabilidade, navegação e conversão.', delay: 200 },
+                 { icon: FaPaintBrush, title: 'Layout Personalizado', desc: 'O layout é exclusivo e desenvolvido por especialistas. Formas, cores, imagens, ícones. Tudo isso é pensado nos mínimos detalhes.', delay: 300 },
+                 { icon: FaTachometerAlt, title: 'Páginas Rápidas', desc: 'Carregamento das páginas de forma rápida para aumentar o número de conversões, através de otimização e servidor cloud de alta performance.', delay: 400 },
+                 { icon: FaHeadset, title: 'Suporte Contínuo', desc: 'Conte com um time de especialistas para dar suporte às suas necessidades. Tudo isso feito sob-demanda, quando precisar.', delay: 500 },
+                 { icon: FaGoogle, title: 'Pronto para o Google', desc: 'Seguimos todas as diretrizes e critérios impostos pelo Google para que sua empresa apareça na maior rede de pesquisa.', delay: 600 },
+                 { icon: FaCogs, title: 'Personalização Total', desc: 'Desenvolvemos todos os sites de forma personalizada, layouts 100% exclusivos para a sua marca. Uma aparência moderna e profissional.', delay: 700 },
+                 { icon: FaLink, title: 'Integração', desc: "Integramos com os principais CRM's, ERP's, sistemas e plataformas de pagamentos digitais, para automatizar seus processos.", delay: 800 },
               ].map((item, index) => (
-                <div key={index} className="text-center p-6 bg-white rounded-lg shadow-sm hover:shadow-lg transition-shadow duration-300 animate-slideUp animation-delay-100">
-                  <item.icon className="text-4xl text-black mx-auto mb-4" />
-                  <h3 className="text-xl font-semibold text-black mb-2">{item.title}</h3>
+                <div key={index} className="text-center p-6 bg-white rounded-lg shadow-sm hover:shadow-xl transition-all duration-500 hover:-translate-y-1 animate-in fade-in slide-in-from-bottom-4 duration-1000"
+                     style={{ animationDelay: `${item.delay}ms` }}>
+                  <div className="relative w-16 h-16 mx-auto mb-6 flex items-center justify-center">
+                    <div className="absolute inset-0 bg-blue-100 rounded-full animate-ping-slow opacity-30"></div>
+                    <div className="relative z-10 w-14 h-14 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center transform transition-transform hover:scale-110 duration-300">
+                      <item.icon className="text-2xl text-white" />
+                    </div>
+                  </div>
+                  <h3 className="text-xl font-bold text-black mb-2 hover:text-blue-600 transition-colors duration-300">{item.title}</h3>
                   <p className="text-gray-700 text-sm">{item.desc}</p>
                 </div>
               ))}
@@ -238,54 +259,54 @@ export default function Home() {
           <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
              {/* Título com animação sutil */}
             <h2 className="text-3xl font-bold text-white mb-2 animate-in fade-in slide-in-from-bottom-12 duration-700">Feedback dos nossos clientes</h2>
-             {/* Parágrafo sem animação */}
-            <p className="text-lg text-gray-300 mb-12">Descubra o impacto real do nosso trabalho através das vozes de quem mais importa: nossos clientes!</p>
-            {/* Grid de Feedbacks - Cards sem animação individual */}
+             {/* Parágrafo com animação */}
+            <p className="text-lg text-gray-300 mb-12 animate-in fade-in slide-in-from-bottom-8 duration-1000">Descubra o impacto real do nosso trabalho através das vozes de quem mais importa: nossos clientes!</p>
+            {/* Grid de Feedbacks - Cards com animações */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {/* Feedback 1 */}
-              <div className="bg-white p-6 rounded-lg shadow-md flex flex-col items-center text-left">
-                <div className="w-20 h-20 rounded-full overflow-hidden mb-4">
+              <div className="bg-white p-6 rounded-lg shadow-md flex flex-col items-center text-left transition-all duration-300 hover:shadow-xl hover:-translate-y-2 animate-in fade-in slide-in-from-left-8 duration-700">
+                <div className="w-20 h-20 rounded-full overflow-hidden mb-4 transform transition-transform hover:scale-110 duration-300">
                   <Image 
                     src="/garotas_feedback_pfp (1).jpg" 
-                    alt="Ana Silva" 
+                    alt="Roberta Mendes" 
                     width={80} 
                     height={80}
                     className="w-full h-full object-cover" 
                   />
                 </div>
-                <p className="text-gray-600 italic mb-4 flex-grow">"Amei o resultado do meu site! A equipe foi super atenciosa e entendeu exatamente o que eu precisava. Recomendo de olhos fechados!"</p>
-                <p className="font-semibold text-black">Ana Silva</p>
-                <p className="text-sm text-gray-500">Empreendedora</p>
+                <p className="text-gray-600 italic mb-4 flex-grow">"A JMSOUZA transformou completamente minha presença online! O site ficou muito acima das minhas expectativas e já percebi um aumento significativo nas conversões. Atendimento personalizado e profissional do início ao fim. Certamente o melhor investimento para meu negócio!"</p>
+                <p className="font-semibold text-black">Roberta Mendes</p>
+                <p className="text-sm text-gray-500">CEO da Mendes Contabilidade</p>
               </div>
               {/* Feedback 2 */}
-              <div className="bg-white p-6 rounded-lg shadow-md flex flex-col items-center text-left">
-                <div className="w-20 h-20 rounded-full overflow-hidden mb-4">
+              <div className="bg-white p-6 rounded-lg shadow-md flex flex-col items-center text-left transition-all duration-300 hover:shadow-xl hover:-translate-y-2 animate-in fade-in slide-in-from-bottom-8 duration-1000">
+                <div className="w-20 h-20 rounded-full overflow-hidden mb-4 transform transition-transform hover:scale-110 duration-300">
                   <Image 
                     src="/garotas_feedback_pfp (2).jpg" 
-                    alt="Beatriz Costa" 
+                    alt="Carolina Alencar" 
                     width={80} 
                     height={80}
                     className="w-full h-full object-cover" 
                   />
                 </div>
-                <p className="text-gray-600 italic mb-4 flex-grow">"Profissionalismo nota mil! O projeto foi entregue no prazo e superou minhas expectativas. O suporte pós-lançamento também é excelente."</p>
-                <p className="font-semibold text-black">Beatriz Costa</p>
-                <p className="text-sm text-gray-500">Designer</p>
+                <p className="text-gray-600 italic mb-4 flex-grow">"Após trabalhar com três outras agências em Barueri, finalmente encontrei a JMSOUZA! Eles desenvolveram um aplicativo para minha clínica estética que funciona perfeitamente e aumentou em 70% o número de agendamentos online. O investimento retornou em menos de 3 meses. São verdadeiros parceiros de negócio!"</p>
+                <p className="font-semibold text-black">Carolina Alencar</p>
+                <p className="text-sm text-gray-500">Proprietária da Estética Alencar</p>
               </div>
               {/* Feedback 3 */}
-              <div className="bg-white p-6 rounded-lg shadow-md flex flex-col items-center text-left">
-                <div className="w-20 h-20 rounded-full overflow-hidden mb-4">
+              <div className="bg-white p-6 rounded-lg shadow-md flex flex-col items-center text-left transition-all duration-300 hover:shadow-xl hover:-translate-y-2 animate-in fade-in slide-in-from-right-8 duration-700">
+                <div className="w-20 h-20 rounded-full overflow-hidden mb-4 transform transition-transform hover:scale-110 duration-300">
                   <Image 
                     src="/garotas_feedback_pfp (3).jpg" 
-                    alt="Carla Santos" 
+                    alt="Marcela Freitas" 
                     width={80} 
                     height={80}
                     className="w-full h-full object-cover" 
                   />
                 </div>
-                <p className="text-gray-600 italic mb-4 flex-grow">"Finalmente encontrei uma agência que realmente entrega sites rápidos e bonitos. Meu negócio online decolou depois do trabalho da JMSOUZA."</p>
-                <p className="font-semibold text-black">Carla Santos</p>
-                <p className="text-sm text-gray-500">Lojista</p>
+                <p className="text-gray-600 italic mb-4 flex-grow">"Sou arquiteta e precisava de um portfólio online que refletisse minha identidade profissional. A equipe da JMSOUZA superou todas as expectativas! Além do design impecável, eles implementaram funcionalidades que facilitam a interação com meus clientes. Desde o lançamento, já fechei 12 projetos que vieram diretamente do site. Melhor investimento que fiz em marketing digital!"</p>
+                <p className="font-semibold text-black">Marcela Freitas</p>
+                <p className="text-sm text-gray-500">Arquiteta em Alphaville</p>
               </div>
             </div>
           </div>

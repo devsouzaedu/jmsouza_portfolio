@@ -8,7 +8,7 @@ import Footer from '@/components/Footer'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'Criação de site - JMSOUZA AGÊNCIA',
+  title: 'Referencia em criação de sites e aplicativos em Barueri e Alphaville - JMSOUZA',
   description: 'Criação de sites profissionais, landing pages e soluções digitais personalizadas para empresas. Agência JMSOUZA: destaque sua marca no digital.',
   keywords: ['criação de site', 'agência digital', 'landing page', 'sites profissionais', 'JMSOUZA', 'desenvolvimento web', 'SEO', 'marketing digital'],
   authors: [{ name: 'JMSOUZA AGÊNCIA' }],
@@ -19,16 +19,16 @@ export const metadata: Metadata = {
     apple: '/favicon.ico',
   },
   openGraph: {
-    title: 'Criação de site - JMSOUZA AGÊNCIA',
+    title: 'Referencia em criação de sites e aplicativos em Barueri e Alphaville - JMSOUZA',
     description: 'Criação de sites profissionais, landing pages e soluções digitais personalizadas para empresas. Agência JMSOUZA: destaque sua marca no digital.',
     url: 'https://seu-dominio.com',
-    siteName: 'Criação de site - JMSOUZA AGÊNCIA',
+    siteName: 'Referencia em criação de sites e aplicativos em Barueri e Alphaville - JMSOUZA',
     images: [
       {
         url: '/favicon.ico',
         width: 800,
         height: 600,
-        alt: 'Criação de site - JMSOUZA AGÊNCIA',
+        alt: 'Referencia em criação de sites e aplicativos em Barueri e Alphaville - JMSOUZA',
       },
     ],
     locale: 'pt_BR',
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Criação de site - JMSOUZA AGÊNCIA',
+    title: 'Referencia em criação de sites e aplicativos em Barueri e Alphaville - JMSOUZA',
     description: 'Criação de sites profissionais, landing pages e soluções digitais personalizadas para empresas. Agência JMSOUZA: destaque sua marca no digital.',
     images: ['/favicon.ico'],
   },
