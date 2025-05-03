@@ -15,7 +15,7 @@
     "@types/react-syntax-highlighter": "^15.5.13",
     "class-variance-authority": "^0.7.1",
     "date-fns": "^4.1.0",
-    "framer-motion": "^12.4.4",
+    "framer-motion": "^12.9.4",
     "gray-matter": "^4.0.3",
     "highlight.js": "^11.11.1",
     "isomorphic-dompurify": "^2.22.0",

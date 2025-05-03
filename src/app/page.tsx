@@ -8,6 +8,8 @@ import Link from 'next/link';
 import Image from 'next/image'; // Adicionar importação
 // Importar ícones se necessário para a seção de benefícios/processos
 import { FaMobileAlt, FaUsers, FaPaintBrush, FaTachometerAlt, FaHeadset, FaGoogle, FaCogs, FaLink, FaBullhorn, FaFileAlt, FaComments, FaRocket, FaCheckCircle, FaRegArrowAltCircleRight } from 'react-icons/fa';
+import { motion } from 'framer-motion';
+import { useInView } from 'framer-motion';
 
 // Declaração para o gtag_report_conversion usado nos botões
 declare global {
@@ -53,7 +55,7 @@ export default function Home() {
         {/* Conteúdo com efeitos de animação melhorados */}
         <div className="relative z-20 px-4 text-white max-w-3xl mx-auto">
           {/* Título Hero com animação de typing */}
-          <h1 className="text-5xl md:text-7xl font-bold mb-4 animate-in fade-in slide-in-from-bottom-4 duration-1000">
+          <h1 className="text-5xl md:text-7xl font-bold mb-10 animate-in fade-in slide-in-from-bottom-4 duration-1000">
             <span className="inline-block animate-pulse-subtle duration-2000">Aumente suas vendas</span> <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-600 animate-typing">com sites inteligentes</span>
           </h1>
            {/* Parágrafo com animação fade-in */}
@@ -101,27 +103,38 @@ export default function Home() {
             
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
               {[
-                 { icon: FaMobileAlt, title: 'Sites Responsivos', desc: 'Sites que se adaptam perfeitamente ao tamanho da tela do computador, celular ou tablet.', delay: 100 },
-                 { icon: FaUsers, title: 'User Experience', desc: 'Estratégias de UX/UI Design focadas em otimizar a experiência do usuário, melhorar a usabilidade, navegação e conversão.', delay: 200 },
-                 { icon: FaPaintBrush, title: 'Layout Personalizado', desc: 'O layout é exclusivo e desenvolvido por especialistas. Formas, cores, imagens, ícones. Tudo isso é pensado nos mínimos detalhes.', delay: 300 },
-                 { icon: FaTachometerAlt, title: 'Páginas Rápidas', desc: 'Carregamento das páginas de forma rápida para aumentar o número de conversões, através de otimização e servidor cloud de alta performance.', delay: 400 },
-                 { icon: FaHeadset, title: 'Suporte Contínuo', desc: 'Conte com um time de especialistas para dar suporte às suas necessidades. Tudo isso feito sob-demanda, quando precisar.', delay: 500 },
-                 { icon: FaGoogle, title: 'Pronto para o Google', desc: 'Seguimos todas as diretrizes e critérios impostos pelo Google para que sua empresa apareça na maior rede de pesquisa.', delay: 600 },
-                 { icon: FaCogs, title: 'Personalização Total', desc: 'Desenvolvemos todos os sites de forma personalizada, layouts 100% exclusivos para a sua marca. Uma aparência moderna e profissional.', delay: 700 },
-                 { icon: FaLink, title: 'Integração', desc: "Integramos com os principais CRM's, ERP's, sistemas e plataformas de pagamentos digitais, para automatizar seus processos.", delay: 800 },
-              ].map((item, index) => (
-                <div key={index} className="text-center p-6 bg-white rounded-lg shadow-sm hover:shadow-xl transition-all duration-500 hover:-translate-y-1 animate-in fade-in slide-in-from-bottom-4 duration-1000"
-                     style={{ animationDelay: `${item.delay}ms` }}>
-                  <div className="relative w-16 h-16 mx-auto mb-6 flex items-center justify-center">
-                    <div className="absolute inset-0 bg-blue-100 rounded-full animate-ping-slow opacity-30"></div>
-                    <div className="relative z-10 w-14 h-14 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center transform transition-transform hover:scale-110 duration-300">
-                      <item.icon className="text-2xl text-white" />
+                 { icon: FaMobileAlt, title: 'Sites Responsivos', desc: 'Sites que se adaptam perfeitamente ao tamanho da tela do computador, celular ou tablet.', delay: 0.1 },
+                 { icon: FaUsers, title: 'User Experience', desc: 'Estratégias de UX/UI Design focadas em otimizar a experiência do usuário, melhorar a usabilidade, navegação e conversão.', delay: 0.2 },
+                 { icon: FaPaintBrush, title: 'Layout Personalizado', desc: 'O layout é exclusivo e desenvolvido por especialistas. Formas, cores, imagens, ícones. Tudo isso é pensado nos mínimos detalhes.', delay: 0.3 },
+                 { icon: FaTachometerAlt, title: 'Páginas Rápidas', desc: 'Carregamento das páginas de forma rápida para aumentar o número de conversões, através de otimização e servidor cloud de alta performance.', delay: 0.4 },
+                 { icon: FaHeadset, title: 'Suporte Contínuo', desc: 'Conte com um time de especialistas para dar suporte às suas necessidades. Tudo isso feito sob-demanda, quando precisar.', delay: 0.5 },
+                 { icon: FaGoogle, title: 'Pronto para o Google', desc: 'Seguimos todas as diretrizes e critérios impostos pelo Google para que sua empresa apareça na maior rede de pesquisa.', delay: 0.6 },
+                 { icon: FaCogs, title: 'Personalização Total', desc: 'Desenvolvemos todos os sites de forma personalizada, layouts 100% exclusivos para a sua marca. Uma aparência moderna e profissional.', delay: 0.7 },
+                 { icon: FaLink, title: 'Integração', desc: "Integramos com os principais CRM's, ERP's, sistemas e plataformas de pagamentos digitais, para automatizar seus processos.", delay: 0.8 },
+              ].map((item, index) => {
+                return (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, y: 50 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, amount: 0.3 }}
+                    transition={{ duration: 0.5, delay: item.delay }}
+                    className="text-center p-6 bg-white rounded-lg shadow-sm hover:shadow-xl transition-all duration-500 hover:-translate-y-1"
+                  >
+                    <div className="relative w-16 h-16 mx-auto mb-6 flex items-center justify-center">
+                      <div className="absolute inset-0 bg-blue-100 rounded-full animate-ping-slow opacity-30"></div>
+                      <motion.div
+                        whileHover={{ scale: 1.1 }}
+                        className="relative z-10 w-14 h-14 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center"
+                      >
+                        <item.icon className="text-2xl text-white" />
+                      </motion.div>
                     </div>
-                  </div>
-                  <h3 className="text-xl font-bold text-black mb-2 hover:text-blue-600 transition-colors duration-300">{item.title}</h3>
-                  <p className="text-gray-700 text-sm">{item.desc}</p>
-                </div>
-              ))}
+                    <h3 className="text-xl font-bold text-black mb-2 hover:text-blue-600 transition-colors duration-300">{item.title}</h3>
+                    <p className="text-gray-700 text-sm">{item.desc}</p>
+                  </motion.div>
+                );
+              })}
             </div>
           </div>
         </section>
