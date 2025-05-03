@@ -54,7 +54,7 @@ export default function Home() {
         <div className="relative z-20 px-4 text-white max-w-3xl mx-auto">
           {/* Título Hero com animação de typing */}
           <h1 className="text-5xl md:text-7xl font-bold mb-4 animate-in fade-in slide-in-from-bottom-4 duration-1000">
-            <span className="inline-block animate-pulse-subtle duration-2000">Aumente suas vendas</span> <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-600 animate-gradient-x">com sites inteligentes</span>
+            <span className="inline-block animate-pulse-subtle duration-2000">Aumente suas vendas</span> <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-600 animate-typing">com sites inteligentes</span>
           </h1>
            {/* Parágrafo com animação fade-in */}
           <p className="text-lg md:text-2xl font-medium mb-8 animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-300">
@@ -63,7 +63,7 @@ export default function Home() {
            {/* Botões com animações melhoradas */}
           <div className="flex flex-col sm:flex-row justify-center gap-4 animate-in fade-in slide-in-from-bottom-12 duration-1000 delay-500">
             {/* Botão WhatsApp */}
-            <Button asChild size="lg" className="bg-black text-white hover:bg-green-500 hover:text-white transition-all duration-300 transform hover:scale-110 hover:shadow-lg hover:shadow-green-500/20 animate-pulse-subtle">
+            <Button asChild size="lg" className="bg-green-600 text-white hover:bg-green-700 hover:text-white transition-all duration-300 transform hover:scale-110 hover:shadow-lg hover:shadow-green-500/20 animate-pulse-subtle">
               <a 
                 href="https://wa.me/5511954997799?text=Oi!,%20gostaria%20de%20melhorar%20minha%20presen%C3%A7a%20digital..." 
                 target="_blank" 
