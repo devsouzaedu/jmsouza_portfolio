@@ -10,6 +10,8 @@ import Image from 'next/image'; // Adicionar importação
 import { FaMobileAlt, FaUsers, FaPaintBrush, FaTachometerAlt, FaHeadset, FaGoogle, FaCogs, FaLink, FaBullhorn, FaFileAlt, FaComments, FaRocket, FaCheckCircle, FaRegArrowAltCircleRight } from 'react-icons/fa';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
+import { useEffect } from 'react';
+import AOS from 'aos';
 
 // Declaração para o gtag_report_conversion usado nos botões
 declare global {
@@ -44,6 +46,15 @@ const AnimatedSection = ({ children, className, id, delay = 0 }: { children: Rea
 };
 
 export default function Home() {
+  // Inicialização do AOS
+  useEffect(() => {
+    AOS.init({
+      duration: 1000,
+      once: false,
+      mirror: true,
+    });
+  }, []);
+
   return (
     <div className="flex flex-col min-h-screen">
       <Navbar />
@@ -61,16 +72,16 @@ export default function Home() {
           playsInline
         ></video>
         
-        {/* Overlay Escuro com efeito de gradiente (sem animação) */}
-        <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-black/95 to-black/90 z-10"></div>
+        {/* Overlay com efeito de gradiente mais claro */}
+        <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-black/60 to-black/50 z-10"></div>
 
         {/* Conteúdo com efeitos de animação melhorados */}
         <div className="relative z-20 px-2 text-white max-w-3xl mx-auto">
           {/* Título Hero com animação de typing */}
-          <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold mb-6 md:mb-10 ">
-            <span className="inline-block ">Aumente suas vendas</span>
+          <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold mb-6 md:mb-10">
+            <span className="inline-block" data-aos="fade-up">Aumente suas vendas</span>
             <div className="overflow-hidden w-full mt-2">
-              <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-600  inline-block">com sites inteligentes</span>
+              <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-600 inline-block animate-typing" data-aos="fade-up" data-aos-delay="300">com sites inteligentes</span>
             </div>
           </h1>
            {/* Parágrafo com animação fade-in */}

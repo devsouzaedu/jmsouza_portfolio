@@ -5,6 +5,9 @@ import type { Metadata } from 'next'
 import Script from 'next/script'
 import Footer from '@/components/Footer'
 
+// Importação do AOS para animações
+import 'aos/dist/aos.css'
+
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {

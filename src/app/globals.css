@@ -21,7 +21,16 @@ body {
   overflow-x: hidden;
 }
 
-/* Animações desativadas */
+/* Animações principais - apenas máquina de escrever ativa */
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+
+@keyframes blink-caret {
+  from, to { border-color: transparent }
+  50% { border-color: rgba(59, 130, 246, 0.5) }
+}
 
 @layer utilities {
   .animate-typing {
@@ -29,6 +38,9 @@ body {
     overflow: hidden;
     white-space: nowrap;
     border-right: 3px solid transparent;
+    animation: 
+      typing 3.5s steps(40, end),
+      blink-caret .75s step-end infinite;
   }
   
   .animate-fadeIn {
