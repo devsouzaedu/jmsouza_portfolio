@@ -31,24 +31,15 @@ const getDomainFromUrl = (url: string): string => {
   }
 };
 
-// Componente de seção animada reutilizável
+// Componente de seção sem animação
 const AnimatedSection = ({ children, className, id, delay = 0 }: { children: React.ReactNode, className?: string, id?: string, delay?: number }) => {
-  const [ref, inView] = useInView({
-    triggerOnce: false,
-    threshold: 0.05,
-  });
-
   return (
-    <motion.section
+    <section
       id={id}
-      ref={ref}
-      initial={{ opacity: 0, y: 50 }}
-      animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
-      transition={{ duration: 0.4, delay: delay * 0.5 }}
       className={className}
     >
       {children}
-    </motion.section>
+    </section>
   );
 };
 
@@ -56,40 +47,40 @@ export default function Home() {
   return (
     <div className="flex flex-col min-h-screen">
       <Navbar />
-      {/* Seção Hero - Layout Simplificado com Imagem Estática */}
+      {/* Seção Hero - Com Vídeo */}
       <section 
-        className="relative h-[100vh] flex items-center justify-center text-center overflow-hidden bg-cover bg-center px-4"
-        style={{ backgroundImage: 'url(/hero_bc_empresa.jpg)' }}
+        className="relative h-[100vh] flex items-center justify-center text-center overflow-hidden px-4"
       >
-        {/* Overlay Escuro com efeito de gradiente animado */}
-        <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-black/95 to-black/90 z-10 animate-pulse duration-5000"></div>
-
-        {/* Efeito de partículas/pontos flutuantes */}
-        <div className="absolute top-0 left-0 w-full h-full z-15 opacity-30">
-          <div className="absolute w-2 h-2 bg-blue-400 rounded-full animate-float-slow top-1/4 left-1/4"></div>
-          <div className="absolute w-3 h-3 bg-purple-400 rounded-full animate-float-medium top-1/3 left-2/3"></div>
-          <div className="absolute w-2 h-2 bg-green-400 rounded-full animate-float-fast top-2/3 left-1/3"></div>
-          <div className="absolute w-4 h-4 bg-yellow-400 rounded-full animate-float-slow top-1/2 left-3/4"></div>
-          <div className="absolute w-3 h-3 bg-red-400 rounded-full animate-float-medium top-3/4 left-1/4"></div>
-        </div>
+        {/* Vídeo de fundo */}
+        <video 
+          className="absolute top-0 left-0 min-w-full min-h-full object-cover z-0" 
+          src="/videohero_ (4) (1).mp4" 
+          autoPlay 
+          muted 
+          loop 
+          playsInline
+        ></video>
+        
+        {/* Overlay Escuro com efeito de gradiente (sem animação) */}
+        <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-black/95 to-black/90 z-10"></div>
 
         {/* Conteúdo com efeitos de animação melhorados */}
         <div className="relative z-20 px-2 text-white max-w-3xl mx-auto">
           {/* Título Hero com animação de typing */}
-          <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold mb-6 md:mb-10 animate-in fade-in slide-in-from-bottom-4 duration-1000">
-            <span className="inline-block animate-pulse-subtle duration-2000">Aumente suas vendas</span>
+          <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold mb-6 md:mb-10 ">
+            <span className="inline-block ">Aumente suas vendas</span>
             <div className="overflow-hidden w-full mt-2">
-              <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-600 animate-typing inline-block">com sites inteligentes</span>
+              <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-600  inline-block">com sites inteligentes</span>
             </div>
           </h1>
            {/* Parágrafo com animação fade-in */}
-          <p className="text-base sm:text-lg md:text-2xl font-medium mb-8 animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-300">
+          <p className="text-base sm:text-lg md:text-2xl font-medium mb-8 ">
             Parece mágica, mas é apenas a internet funcionando para sua empresa <span className="font-bold text-yellow-400">aumentar o faturamento</span>
           </p>
            {/* Botões com animações melhoradas */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-md mx-auto sm:max-w-none animate-in fade-in slide-in-from-bottom-12 duration-1000 delay-500">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-md mx-auto sm:max-w-none ">
             {/* Botão WhatsApp */}
-            <Button asChild size="lg" className="w-full bg-green-600 text-white hover:bg-green-700 hover:text-white transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-green-500/20 animate-pulse-subtle py-6 sm:py-4 text-base sm:text-lg">
+            <Button asChild size="lg" className="w-full bg-green-600 text-white hover:bg-green-700 hover:text-white transition-all duration-300 transform  hover:shadow-lg hover:shadow-green-500/20 animate-pulse-subtle py-6 sm:py-4 text-base sm:text-lg">
               <a 
                 href="https://wa.me/5511954997799?text=Oi!,%20gostaria%20de%20melhorar%20minha%20presen%C3%A7a%20digital..." 
                 target="_blank" 
@@ -106,7 +97,7 @@ export default function Home() {
               </a>
             </Button>
             {/* Botão Análise Grátis */}
-            <Button asChild variant="outline" size="lg" className="w-full border-white text-white hover:bg-white/30 hover:text-white transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-white/20 py-6 sm:py-4 text-base sm:text-lg">
+            <Button asChild variant="outline" size="lg" className="w-full border-white text-white hover:bg-white/30 hover:text-white transition-all duration-300 transform  hover:shadow-lg hover:shadow-white/20 py-6 sm:py-4 text-base sm:text-lg">
               <Link href="#analise-gratuita">
                 Receber Análise Grátis
               </Link>
@@ -121,10 +112,7 @@ export default function Home() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             {/* Título da seção com animação */}
             <motion.div 
-              initial={{ opacity: 0, y: -30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.3 }}
+              
               className="text-center mb-12"
             >
               <h2 className="text-3xl font-bold text-white mb-2">Benefícios exclusivos</h2>
@@ -145,16 +133,13 @@ export default function Home() {
                 return (
                   <motion.div
                     key={index}
-                    initial={{ opacity: 0, y: 50 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: false, amount: 0.1 }}
-                    transition={{ duration: 0.3, delay: item.delay * 0.5 }}
+                    
                     className="text-center p-6 bg-white rounded-lg shadow-sm hover:shadow-xl transition-all duration-500 hover:-translate-y-1"
                   >
                     <div className="relative w-16 h-16 mx-auto mb-6 flex items-center justify-center">
-                      <div className="absolute inset-0 bg-blue-100 rounded-full animate-ping-slow opacity-30"></div>
+                      <div className="absolute inset-0 bg-blue-100 rounded-full  opacity-30"></div>
                       <motion.div
-                        whileHover={{ scale: 1.1 }}
+                        
                         className="relative z-10 w-14 h-14 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center"
                       >
                         <item.icon className="text-2xl text-white" />
@@ -174,10 +159,7 @@ export default function Home() {
           <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
             {/* Logo com animação */}
             <motion.div 
-              initial={{ opacity: 0, scale: 0.8 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
+              
               className="mb-8"
             >
               <Image 
@@ -190,10 +172,7 @@ export default function Home() {
             </motion.div>
             {/* Título com animação */}
             <motion.h2 
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.2 }}
+              
               className="text-3xl font-bold text-white mb-4"
             >
               Orgulhosamente Parceiros Oficiais do Google
@@ -448,7 +427,7 @@ export default function Home() {
             </p>
             {/* Botões sem animação de container */}
             <div className="flex flex-col sm:flex-row justify-center gap-4">
-              <Button asChild size="lg" className="bg-green-500 text-white hover:bg-green-600 transition-colors duration-300 transform hover:scale-105">
+              <Button asChild size="lg" className="bg-green-500 text-white hover:bg-green-600 transition-colors duration-300 transform ">
                 <a
                   href="https://wa.me/5511954997799?text=Oi!,%20gostaria%20de%20receber%20uma%20análise%20gratuita..."
                   target="_blank"
@@ -465,7 +444,7 @@ export default function Home() {
                 </a>
               </Button>
               {/* Botão Atualizado para ir ao WhatsApp - Remover classes bg-white text-black */}
-              <Button asChild size="lg" className="hover:bg-gray-800 transition-colors duration-300 transform hover:scale-105">
+              <Button asChild size="lg" className="hover:bg-gray-800 transition-colors duration-300 transform ">
                  <a
                   href="https://wa.me/5511954997799?text=Oi!,%20gostaria%20de%20receber%20uma%20análise%20gratuita..."
                   target="_blank"
@@ -525,7 +504,7 @@ export default function Home() {
               <div className="text-center md:text-left">
                 <h2 className="text-3xl font-bold text-black mb-4">Prefere conversar diretamente?</h2>
                 <p className="text-gray-700 mb-6">Clique no botão abaixo para iniciar uma conversa diretamente pelo WhatsApp e tirar suas dúvidas rapidamente.</p>
-                <Button asChild size="lg" className="bg-green-500 text-white hover:bg-green-600 transition-colors duration-300 transform hover:scale-105">
+                <Button asChild size="lg" className="bg-green-500 text-white hover:bg-green-600 transition-colors duration-300 transform ">
                   <a
                     href="https://wa.me/5511954997799?text=Oi!,%20gostaria%20de%20solicitar%20um%20orçamento..."
                     target="_blank"
@@ -550,7 +529,7 @@ export default function Home() {
         <section id="sobre" className="py-16 lg:py-24 bg-white overflow-hidden">
           <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
              {/* Título com animação sutil */}
-            <h2 className="text-3xl font-bold text-black mb-4 transform transition-all duration-500 hover:scale-105 animate-in fade-in slide-in-from-bottom-12 duration-700">Sobre Mim</h2>
+            <h2 className="text-3xl font-bold text-black mb-4 transform transition-all duration-500  animate-in fade-in slide-in-from-bottom-12 duration-700">Sobre Mim</h2>
              {/* Parágrafo sem animação */}
             <p className="text-lg text-gray-800">
               Desde cedo, sempre fui fascinado pela magia da tecnologia e o poder transformador da programação.
