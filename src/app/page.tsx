@@ -10,7 +10,7 @@ import Image from 'next/image';
 import { FaMobileAlt, FaUsers, FaPaintBrush, FaTachometerAlt, FaHeadset, FaGoogle, FaCogs, FaLink, FaBullhorn, FaFileAlt, FaComments, FaRocket, FaCheckCircle, FaRegArrowAltCircleRight } from 'react-icons/fa';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { useEffect } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import AOS from 'aos';
 
 // Declaração para o gtag_report_conversion usado nos botões
@@ -45,6 +45,63 @@ const AnimatedSection = ({ children, className, id, delay = 0 }: { children: Rea
   );
 };
 
+// Componente de contador animado para resultados
+function AnimatedCounter({ value, suffix, prefix }: { value: number, suffix?: string, prefix?: string }) {
+  const [count, setCount] = useState(0);
+  const countRef = useRef<HTMLSpanElement>(null);
+  const { ref, inView } = useInView({
+    threshold: 0.3,
+    triggerOnce: true
+  });
+
+  useEffect(() => {
+    if (!inView) return;
+    
+    let start = 0;
+    const duration = 1500;
+    const end = Math.min(value, 9999); // Limitando para evitar contagens muito longas
+    const startTime = Date.now();
+    
+    const timer = setInterval(() => {
+      const timePassed = Date.now() - startTime;
+      const progress = Math.min(timePassed / duration, 1);
+      
+      // Efeito de easing
+      const easedProgress = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
+      const currentCount = Math.floor(easedProgress * end);
+      
+      setCount(currentCount);
+      
+      if (progress === 1) {
+        clearInterval(timer);
+      }
+    }, 20);
+    
+    return () => clearInterval(timer);
+  }, [inView, value]);
+
+  return (
+    <span ref={ref} className="font-semibold">
+      {prefix && <span>{prefix}</span>}
+      <span ref={countRef}>{count}</span>
+      {suffix && <span>{suffix}</span>}
+    </span>
+  );
+}
+
+// Define o tipo para os cases
+type ProjectCase = {
+  id: string;
+  href: string;
+  img: string;
+  title: string;
+  desc: string;
+  results: string;
+  tags: string[];
+  category: string;
+  numericResult?: number;
+};
+
 export default function Home() {
   // Inicialização do AOS
   useEffect(() => {
@@ -54,6 +111,87 @@ export default function Home() {
       mirror: true,
     });
   }, []);
+
+  // Estado para o filtro de categorias
+  const [activeCategory, setActiveCategory] = useState("Todos");
+
+  // Lista de categorias disponíveis
+  const categories = ["Todos", "Sites", "E-commerce", "Apps", "Jogos"];
+
+  // Lista completa de cases
+  const allCases: ProjectCase[] = [
+    { 
+      id: "case-1",
+      href: "https://www.alessandranutri.com.br/", 
+      img: "/dra_alessandranutricionista_card.png", 
+      title: "Dra. Alessandra Nutricionista", 
+      desc: "Site profissional com agendamento online e blog de nutrição que aumentou em 45% os agendamentos de consultas.",
+      results: "+200% de tráfego orgânico",
+      tags: ["Site", "SEO"],
+      category: "Sites",
+      numericResult: 200
+    },
+    { 
+      id: "case-2",
+      href: "https://martins-balonismo-2.vercel.app/", 
+      img: "/martins_balonismo_card.jpg", 
+      title: "Martins Balonismo", 
+      desc: "Plataforma de reservas de voos de balão que triplicou as vendas online em apenas três meses.",
+      results: "+180% de conversão",
+      tags: ["E-commerce", "UX"],
+      category: "E-commerce",
+      numericResult: 180
+    },
+    { 
+      id: "case-3",
+      href: "https://www.barbeariadagringa.com.br/", 
+      img: "/barbearia_da_gringa_card.png", 
+      title: "Barbearia da Gringa", 
+      desc: "Sistema de agendamento que reduziu em 80% as faltas e aumentou a ocupação da agenda em 65%.",
+      results: "+65% de agendamentos",
+      tags: ["App", "Marketing"],
+      category: "Apps",
+      numericResult: 65
+    },
+    { 
+      id: "case-4",
+      href: "https://www.espacooliverbeauty.com.br/", 
+      img: "/oliver_fundo_site.jpg", 
+      title: "Espaço Oliver Beauty", 
+      desc: "Catálogo digital que expandiu a base de clientes para novas regiões de São Paulo.",
+      results: "+120% de novos clientes",
+      tags: ["Site", "Branding"],
+      category: "Sites",
+      numericResult: 120
+    },
+    { 
+      id: "case-5",
+      href: "https://www.cristianeduarte.com.br/", 
+      img: "/dra_cris_bg.png", 
+      title: "Dra. Cristiane Duarte", 
+      desc: "Presença digital completa que posicionou a profissional como referência em sua especialidade.",
+      results: "1ª página no Google",
+      tags: ["Site", "SEO"],
+      category: "Sites",
+      numericResult: 1
+    },
+    { 
+      id: "case-6",
+      href: "https://unia-app-nail-designer.vercel.app", 
+      img: "/opera_TGia9OiBNt.png", 
+      title: "Unia.App", 
+      desc: "Aplicativo para nail designers que revolucionou a gestão de agendas e finanças de profissionais autônomos.",
+      results: "+3000 usuários ativos",
+      tags: ["App", "SaaS"],
+      category: "Apps",
+      numericResult: 3000
+    },
+  ];
+
+  // Filtra os casos com base na categoria selecionada
+  const filteredCases = activeCategory === "Todos" 
+    ? allCases 
+    : allCases.filter(project => project.category === activeCategory);
 
   return (
     <div className="flex flex-col min-h-screen">
@@ -110,6 +248,128 @@ export default function Home() {
             <Button asChild variant="outline" size="lg" className="w-full border-white text-white hover:bg-white/30 hover:text-white transition-all duration-300 transform  hover:shadow-lg hover:shadow-white/20 py-6 sm:py-4 text-base sm:text-lg">
               <Link href="#analise-gratuita">
                 Receber Análise Grátis
+              </Link>
+            </Button>
+          </div>
+        </div>
+      </section>
+
+      {/* Seção Nossos Cases - Redesenhada e posicionada logo após o Hero */}
+      <section id="cases" className="py-16 lg:py-20 bg-gradient-to-b from-black to-gray-900 overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-10" data-aos="fade-up">
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-3">Cases de Sucesso</h2>
+            <p className="text-lg text-gray-300 max-w-2xl mx-auto">Transformamos negócios através de soluções digitais inovadoras</p>
+          </div>
+
+          {/* Estatísticas Gerais - Novo componente */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
+            {[
+              { value: 200, label: "Projetos Entregues", icon: FaRocket },
+              { value: 95, label: "Taxa de Satisfação", suffix: "%", icon: FaCheckCircle },
+              { value: 45, label: "Dias (média de entrega)", icon: FaTachometerAlt },
+              { value: 86, label: "Clientes Recorrentes", suffix: "%", icon: FaUsers },
+            ].map((stat, index) => (
+              <div 
+                key={`stat-${index}`} 
+                className="bg-gray-800/50 backdrop-blur-sm rounded-lg p-4 text-center transform hover:scale-105 transition-all duration-300"
+                data-aos="fade-up" 
+                data-aos-delay={(50 * index).toString()}
+              >
+                <stat.icon className="text-blue-400 text-2xl mx-auto mb-2" />
+                <div className="text-2xl md:text-3xl font-bold text-white flex justify-center">
+                  <AnimatedCounter value={stat.value} suffix={stat.suffix} />
+                </div>
+                <p className="text-sm text-gray-300 mt-1">{stat.label}</p>
+              </div>
+            ))}
+          </div>
+          
+          {/* Tabs para categorias de projetos */}
+          <div className="flex justify-center mb-8 overflow-x-auto pb-2" data-aos="fade-up" data-aos-delay="100">
+            <div className="flex space-x-1 bg-gray-800/50 p-1 rounded-lg">
+              {categories.map((category) => (
+                <button 
+                  key={category}
+                  onClick={() => setActiveCategory(category)}
+                  className={`px-4 py-2 text-sm font-medium rounded-md transition-all ${
+                    activeCategory === category
+                      ? "bg-blue-600 text-white"
+                      : "text-gray-300 hover:bg-gray-700/50 hover:text-white"
+                  }`}
+                >
+                  {category}
+                </button>
+              ))}
+            </div>
+          </div>
+          
+          {/* Cards com cases de sucesso - Design moderno com efeitos hover */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+            {filteredCases.map((project, index) => (
+              <a 
+                href={project.href} 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                key={project.id} 
+                className="group" 
+                data-aos="fade-up" 
+                data-aos-delay={(100 + index * 50).toString()}
+              >
+                <div className="bg-gray-800 rounded-xl overflow-hidden h-full transition-all duration-500 transform group-hover:-translate-y-2 group-hover:shadow-xl group-hover:shadow-blue-500/20">
+                  <div className="relative aspect-video w-full overflow-hidden">
+                    <div 
+                      className="w-full h-full bg-cover bg-center transform transition-transform duration-700 group-hover:scale-110" 
+                      style={{ backgroundImage: `url(${project.img})` }}
+                    >
+                      <div className="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent opacity-50 group-hover:opacity-30 transition-opacity duration-500"></div>
+                    </div>
+                    <div className="absolute top-3 right-3 flex space-x-2">
+                      {project.tags.map((tag, idx) => (
+                        <span key={idx} className="px-2 py-1 text-xs font-medium rounded bg-blue-600/80 text-white backdrop-blur-sm">
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                    
+                    {/* Botão "Ver projeto" que aparece no hover */}
+                    <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      <span className="px-4 py-2 bg-blue-600 text-white rounded-md font-medium text-sm backdrop-blur-sm">
+                        Ver projeto
+                      </span>
+                    </div>
+                  </div>
+                  
+                  <div className="p-6">
+                    <h3 className="text-xl font-bold text-white mb-2 group-hover:text-blue-400 transition-colors">{project.title}</h3>
+                    <p className="text-gray-300 text-sm mb-4">{project.desc}</p>
+                    
+                    <div className="flex items-center justify-between">
+                      <span className="text-xs text-gray-400">{getDomainFromUrl(project.href)}</span>
+                      <span className="text-sm font-semibold text-green-400">
+                        {project.results.startsWith("+") ? (
+                          <>
+                            <span>+</span>
+                            <AnimatedCounter 
+                              value={project.numericResult || 0} 
+                              suffix={project.results.includes("%") ? "%" : ""}
+                            />
+                          </>
+                        ) : project.results}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            ))}
+          </div>
+          
+          {/* Botão "Ver mais cases" */}
+          <div className="mt-12 text-center" data-aos="fade-up">
+            <Button asChild size="lg" variant="outline" className="border-white text-white hover:bg-white/10">
+              <Link href="#contato">
+                Quero resultados como esses
+                <FaRegArrowAltCircleRight className="ml-2" />
               </Link>
             </Button>
           </div>
@@ -278,43 +538,6 @@ export default function Home() {
             </div>
           </div>
         </AnimatedSection>
-
-        {/* Seção Nossos Cases - Sintaxe Corrigida (Sem animação nos cards) */}
-        <section id="cases" className="py-16 lg:py-24 bg-black overflow-hidden">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-12 animate-in fade-in slide-in-from-bottom-12 duration-700">
-              <h2 className="text-3xl font-bold text-white mb-2 animate-fadeIn animation-delay-200">Nossos Cases</h2>
-              <p className="text-lg text-gray-300 animate-fadeIn animation-delay-400">Alguns projetos realizados ao decorrer da nossa trajetória</p>
-            </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
-              {[
-                 { href: "https://www.alessandranutri.com.br/", img: "/dra_alessandranutricionista_card.png", title: "Site - Dra. Alessandra", desc: "Site profissional para nutricionista especializada, com design moderno e informações sobre consultas e serviços.", delay: "0.1s" },
-                 { href: "https://martins-balonismo-2.vercel.app/", img: "/martins_balonismo_card.jpg", title: "Martins Balonismo", desc: "Site para empresa de passeios de balão de ar quente, com agendamento de voos e galeria de imagens.", delay: "0.2s" },
-                 { href: "https://www.barbeariadagringa.com.br/", img: "/barbearia_da_gringa_card.png", title: "Barbearia da Gringa", desc: "Site profissional para barbearia moderna, com agendamento online e apresentação dos serviços oferecidos.", delay: "0.3s" },
-                 { href: "https://www.espacooliverbeauty.com.br/", img: "/oliver_fundo_site.jpg", title: "Site - Espaço Oliver", desc: "Site elegante para salão de beleza especializado em nail design, com agendamento online.", delay: "0.4s" }, 
-                 { href: "https://www.cristianeduarte.com.br/", img: "/dra_cris_bg.png", title: "Site - Dra. Cristiane", desc: "Site profissional para psicóloga clínica, com design elegante e foco na experiência do paciente.", delay: "0.5s" }, 
-                 { href: "https://unia-app-nail-designer.vercel.app", img: "/opera_TGia9OiBNt.png", title: "Unia.App", desc: "Transformando a vida das manicures com ferramentas digitais: inspiração, cronômetro, tutoriais, finanças e agendamento.", delay: "0.6s" },
-                 { href: "https://devsouzaedu.github.io/Hotair_Hot_air_balloon_game/", img: "/opera_dd3DQtwf08.png", title: "HotAir - Jogo Multiplayer", desc: "Jogo multiplayer competitivo de balão de ar quente, unindo tecnologia (Three.js) e criatividade.", delay: "0.4s" },
-                 { href: "https://libracomwindbanner.com.br", img: "/libracom_fundo_card_2.png", title: "Libracom Wind Banners", desc: "Primeiro site da LibraCom, empresa de bandeiras e comunicação visual.", delay: "0.5s" },
-                 { href: "https://eduardo-libra-portfolio-2025.vercel.app/", img: "/eduardo_libra_bg.png", title: "Site - Eduardo Libra", desc: "Portfolio artístico para especialista em obras de arte infláveis gigantes.", delay: "0.6s" },
-                 { href: "https://www.mariananails.com.br/", img: "/mariana_fundo_site.png", title: "Site - Mariana Nails", desc: "Site profissional para nail designer, com galeria de trabalhos e agendamento online.", delay: "0.7s" },
-                 { href: "https://www.lavanderiablitz.com.br/", img: "/blitz_lavanderia_fundo_card.png", title: "Site - Blitz Lavanderia", desc: "Site para lavanderia com agendamento online e rastreamento de pedidos.", delay: "0.8s" }, 
-                 { href: "https://meu-arb-fav.vercel.app/", img: "/arbitro_fundo_site.png", title: "Site - Árbitros SP", desc: "Plataforma para conectar árbitros e times amadores de futebol em São Paulo.", delay: "0.9s" },
-              ].map((project, index) => (
-                <Link key={index} href={project.href} target="_blank" className={`block transform transition-all duration-500 hover:-translate-y-2`}>
-                  <div className="border border-black rounded-xl shadow-md bg-white hover:bg-gray-100 transition-all duration-300 relative overflow-hidden cursor-pointer flex flex-col h-full">
-                    <div className="relative aspect-video w-full" style={{ backgroundImage: `url(${project.img})`, backgroundSize: 'cover', backgroundPosition: 'center' }}></div>
-                    <div className="p-6 flex flex-col flex-grow">
-                      <h3 className="text-xl font-semibold text-black mb-2">{project.title}</h3>
-                      <p className="text-gray-700 text-sm flex-grow mb-3">{project.desc}</p>
-                      <p className="text-xs text-gray-500 mt-auto">{getDomainFromUrl(project.href)}</p>
-                    </div>
-                  </div>
-                </Link>
-              ))}
-            </div>
-          </div>
-        </section>
 
         {/* Seção Processos - Sintaxe Corrigida (Sem animação nos steps) */}
         <section id="processos" className="py-16 lg:py-24 bg-gray-100 overflow-hidden">
