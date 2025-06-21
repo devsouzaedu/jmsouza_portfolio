@@ -5,7 +5,7 @@ import Navbar from '@/components/Navbar';
 import { Button } from '@/components/Button';
 import { ContactButton } from '@/components/ContactButton'; // Manter se usado no novo formulário/footer
 import Link from 'next/link';
-import Image from 'next/image'; // Adicionar importação
+import Image from 'next/image';
 // Importar ícones se necessário para a seção de benefícios/processos
 import { FaMobileAlt, FaUsers, FaPaintBrush, FaTachometerAlt, FaHeadset, FaGoogle, FaCogs, FaLink, FaBullhorn, FaFileAlt, FaComments, FaRocket, FaCheckCircle, FaRegArrowAltCircleRight } from 'react-icons/fa';
 import { motion } from 'framer-motion';
@@ -58,19 +58,18 @@ export default function Home() {
   return (
     <div className="flex flex-col min-h-screen">
       <Navbar />
-      {/* Seção Hero - Com Vídeo */}
+      {/* Seção Hero - Com Imagem */}
       <section 
         className="relative h-[100vh] flex items-center justify-center text-center overflow-hidden px-4"
       >
-        {/* Vídeo de fundo */}
-        <video 
-          className="absolute top-0 left-0 min-w-full min-h-full object-cover z-0" 
-          src="/videohero_ (4) (1).mp4" 
-          autoPlay 
-          muted 
-          loop 
-          playsInline
-        ></video>
+        {/* Imagem de fundo */}
+        <Image
+          className="absolute top-0 left-0 min-w-full min-h-full object-cover z-0"
+          src="/hero_imagem_fundo_trafego_pago_barueri_jmsouza.jpg"
+          alt="Tráfego Pago Barueri JMSOUZA"
+          fill
+          priority
+        />
         
         {/* Overlay com efeito de gradiente mais claro */}
         <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-black/60 to-black/50 z-10"></div>
