@@ -254,15 +254,15 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Seção Nossos Cases - Redesenhada e posicionada logo após o Hero */}
-      <section id="cases" className="py-16 lg:py-20 bg-gradient-to-b from-black to-gray-900 overflow-hidden">
+      {/* Seção Nossos Cases - Redesenhada e posicionada logo após o Hero com tema claro */}
+      <section id="cases" className="py-16 lg:py-20 bg-gradient-to-b from-white to-gray-100 overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-10" data-aos="fade-up">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-3">Cases de Sucesso</h2>
-            <p className="text-lg text-gray-300 max-w-2xl mx-auto">Transformamos negócios através de soluções digitais inovadoras</p>
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-3">Cases de Sucesso</h2>
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto">Transformamos negócios através de soluções digitais inovadoras</p>
           </div>
 
-          {/* Estatísticas Gerais - Novo componente */}
+          {/* Estatísticas Gerais - Novo componente com tema claro */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
             {[
               { value: 200, label: "Projetos Entregues", icon: FaRocket },
@@ -272,22 +272,22 @@ export default function Home() {
             ].map((stat, index) => (
               <div 
                 key={`stat-${index}`} 
-                className="bg-gray-800/50 backdrop-blur-sm rounded-lg p-4 text-center transform hover:scale-105 transition-all duration-300"
+                className="bg-white shadow-md rounded-lg p-4 text-center transform hover:scale-105 transition-all duration-300"
                 data-aos="fade-up" 
                 data-aos-delay={(50 * index).toString()}
               >
-                <stat.icon className="text-blue-400 text-2xl mx-auto mb-2" />
-                <div className="text-2xl md:text-3xl font-bold text-white flex justify-center">
+                <stat.icon className="text-blue-600 text-2xl mx-auto mb-2" />
+                <div className="text-2xl md:text-3xl font-bold text-gray-800 flex justify-center">
                   <AnimatedCounter value={stat.value} suffix={stat.suffix} />
                 </div>
-                <p className="text-sm text-gray-300 mt-1">{stat.label}</p>
+                <p className="text-sm text-gray-600 mt-1">{stat.label}</p>
               </div>
             ))}
           </div>
           
-          {/* Tabs para categorias de projetos */}
+          {/* Tabs para categorias de projetos com tema claro */}
           <div className="flex justify-center mb-8 overflow-x-auto pb-2" data-aos="fade-up" data-aos-delay="100">
-            <div className="flex space-x-1 bg-gray-800/50 p-1 rounded-lg">
+            <div className="flex space-x-1 bg-white/80 shadow p-1 rounded-lg">
               {categories.map((category) => (
                 <button 
                   key={category}
@@ -295,7 +295,7 @@ export default function Home() {
                   className={`px-4 py-2 text-sm font-medium rounded-md transition-all ${
                     activeCategory === category
                       ? "bg-blue-600 text-white"
-                      : "text-gray-300 hover:bg-gray-700/50 hover:text-white"
+                      : "text-gray-700 hover:bg-gray-100 hover:text-gray-900"
                   }`}
                 >
                   {category}
@@ -304,7 +304,7 @@ export default function Home() {
             </div>
           </div>
           
-          {/* Cards com cases de sucesso - Design moderno com efeitos hover */}
+          {/* Cards com cases de sucesso - Design moderno com efeitos hover e tema claro */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
             {filteredCases.map((project, index) => (
               <a 
@@ -316,17 +316,17 @@ export default function Home() {
                 data-aos="fade-up" 
                 data-aos-delay={(100 + index * 50).toString()}
               >
-                <div className="bg-gray-800 rounded-xl overflow-hidden h-full transition-all duration-500 transform group-hover:-translate-y-2 group-hover:shadow-xl group-hover:shadow-blue-500/20">
+                <div className="bg-white rounded-xl overflow-hidden h-full transition-all duration-500 transform group-hover:-translate-y-2 group-hover:shadow-xl group-hover:shadow-blue-500/20 border border-gray-200">
                   <div className="relative aspect-video w-full overflow-hidden">
                     <div 
                       className="w-full h-full bg-cover bg-center transform transition-transform duration-700 group-hover:scale-110" 
                       style={{ backgroundImage: `url(${project.img})` }}
                     >
-                      <div className="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent opacity-50 group-hover:opacity-30 transition-opacity duration-500"></div>
+                      <div className="absolute inset-0 bg-gradient-to-t from-white/80 to-transparent opacity-0 group-hover:opacity-30 transition-opacity duration-500"></div>
                     </div>
                     <div className="absolute top-3 right-3 flex space-x-2">
                       {project.tags.map((tag, idx) => (
-                        <span key={idx} className="px-2 py-1 text-xs font-medium rounded bg-blue-600/80 text-white backdrop-blur-sm">
+                        <span key={idx} className="px-2 py-1 text-xs font-medium rounded bg-blue-600 text-white backdrop-blur-sm">
                           {tag}
                         </span>
                       ))}
@@ -334,19 +334,19 @@ export default function Home() {
                     
                     {/* Botão "Ver projeto" que aparece no hover */}
                     <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                      <span className="px-4 py-2 bg-blue-600 text-white rounded-md font-medium text-sm backdrop-blur-sm">
+                      <span className="px-4 py-2 bg-blue-600 text-white rounded-md font-medium text-sm shadow-lg">
                         Ver projeto
                       </span>
                     </div>
                   </div>
                   
                   <div className="p-6">
-                    <h3 className="text-xl font-bold text-white mb-2 group-hover:text-blue-400 transition-colors">{project.title}</h3>
-                    <p className="text-gray-300 text-sm mb-4">{project.desc}</p>
+                    <h3 className="text-xl font-bold text-gray-800 mb-2 group-hover:text-blue-600 transition-colors">{project.title}</h3>
+                    <p className="text-gray-600 text-sm mb-4">{project.desc}</p>
                     
                     <div className="flex items-center justify-between">
-                      <span className="text-xs text-gray-400">{getDomainFromUrl(project.href)}</span>
-                      <span className="text-sm font-semibold text-green-400">
+                      <span className="text-xs text-gray-500">{getDomainFromUrl(project.href)}</span>
+                      <span className="text-sm font-semibold text-green-600">
                         {project.results.startsWith("+") ? (
                           <>
                             <span>+</span>
@@ -364,9 +364,9 @@ export default function Home() {
             ))}
           </div>
           
-          {/* Botão "Ver mais cases" */}
+          {/* Botão "Ver mais cases" com tema claro */}
           <div className="mt-12 text-center" data-aos="fade-up">
-            <Button asChild size="lg" variant="outline" className="border-white text-white hover:bg-white/10">
+            <Button asChild size="lg" className="bg-blue-600 hover:bg-blue-700 text-white">
               <Link href="#contato">
                 Quero resultados como esses
                 <FaRegArrowAltCircleRight className="ml-2" />
