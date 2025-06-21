@@ -133,28 +133,6 @@ export default function Home() {
     },
     { 
       id: "case-2",
-      href: "https://martins-balonismo-2.vercel.app/", 
-      img: "/martins_balonismo_card.jpg", 
-      title: "Martins Balonismo", 
-      desc: "Plataforma de reservas de voos de balão que triplicou as vendas online em apenas três meses.",
-      results: "+180% de conversão",
-      tags: ["E-commerce", "UX"],
-      category: "E-commerce",
-      numericResult: 180
-    },
-    { 
-      id: "case-3",
-      href: "https://www.barbeariadagringa.com.br/", 
-      img: "/barbearia_da_gringa_card.png", 
-      title: "Barbearia da Gringa", 
-      desc: "Sistema de agendamento que reduziu em 80% as faltas e aumentou a ocupação da agenda em 65%.",
-      results: "+65% de agendamentos",
-      tags: ["App", "Marketing"],
-      category: "Apps",
-      numericResult: 65
-    },
-    { 
-      id: "case-4",
       href: "https://www.espacooliverbeauty.com.br/", 
       img: "/oliver_fundo_site.jpg", 
       title: "Espaço Oliver Beauty", 
@@ -165,7 +143,7 @@ export default function Home() {
       numericResult: 120
     },
     { 
-      id: "case-5",
+      id: "case-3",
       href: "https://www.cristianeduarte.com.br/", 
       img: "/dra_cris_bg.png", 
       title: "Dra. Cristiane Duarte", 
@@ -176,15 +154,37 @@ export default function Home() {
       numericResult: 1
     },
     { 
-      id: "case-6",
-      href: "https://unia-app-nail-designer.vercel.app", 
-      img: "/opera_TGia9OiBNt.png", 
-      title: "Unia.App", 
-      desc: "Aplicativo para nail designers que revolucionou a gestão de agendas e finanças de profissionais autônomos.",
-      results: "+3000 usuários ativos",
-      tags: ["App", "SaaS"],
+      id: "case-4",
+      href: "https://www.barbeariadagringa.com.br/", 
+      img: "/barbearia_da_gringa_card.png", 
+      title: "Barbearia da Gringa", 
+      desc: "Sistema de agendamento que reduziu em 80% as faltas e aumentou a ocupação da agenda em 65%.",
+      results: "+65% de agendamentos",
+      tags: ["App", "Marketing"],
       category: "Apps",
-      numericResult: 3000
+      numericResult: 65
+    },
+    { 
+      id: "case-5",
+      href: "https://www.mariananails.com.br/", 
+      img: "/mariana_fundo_site.png", 
+      title: "Mariana Nails", 
+      desc: "Site profissional para nail designer, com galeria de trabalhos e agendamento online.",
+      results: "+90% de engajamento",
+      tags: ["Site", "Marketing"],
+      category: "Sites",
+      numericResult: 90
+    },
+    { 
+      id: "case-6",
+      href: "https://martins-balonismo-2.vercel.app/", 
+      img: "/martins_balonismo_card.jpg", 
+      title: "Martins Balonismo", 
+      desc: "Plataforma de reservas de voos de balão que triplicou as vendas online em apenas três meses.",
+      results: "+180% de conversão",
+      tags: ["E-commerce", "UX"],
+      category: "E-commerce",
+      numericResult: 180
     },
   ];
 
