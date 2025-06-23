@@ -4,23 +4,11 @@ import { Inter } from 'next/font/google'
 import type { Metadata } from 'next'
 import Script from 'next/script'
 import Footer from '@/components/Footer'
-import localFont from "next/font/local"
 
 // Importação do AOS para animações
 import 'aos/dist/aos.css'
 
 const inter = Inter({ subsets: ['latin'] })
-
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff2",
-  variable: "--font-geist-sans",
-  weight: "100 900",
-})
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff2",
-  variable: "--font-geist-mono",
-  weight: "100 900",
-})
 
 export const metadata: Metadata = {
   title: 'Tráfego Pago em Barueri | Especialista em Google Ads e Meta Ads | JMSOUZA',
@@ -90,7 +78,7 @@ export default function RootLayout({
         <meta name="ICBM" content="-23.5106, -46.8761" />
         {/* Google tag (gtag.js) */}
         <Script
-          src="https://www.googletagmanager.com/gtag/js?id=AW-16927678460"
+          src="https://www.googletagmanager.com/gtag/js?id=AW-16771968208"
           strategy="afterInteractive"
         />
         <Script id="google-analytics" strategy="afterInteractive">
@@ -98,10 +86,12 @@ export default function RootLayout({
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
-            gtag('config', 'AW-16927678460');
+            gtag('config', 'AW-16771968208');
           `}
         </Script>
-        <Script id="google-conversion-report" strategy="afterInteractive">
+
+        {/* Google tag (gtag.js) - Conversões */}
+        <Script id="google-conversions" strategy="afterInteractive">
           {`
             function gtag_report_conversion(url) {
               var callback = function () {
@@ -110,9 +100,7 @@ export default function RootLayout({
                 }
               };
               gtag('event', 'conversion', {
-                  'send_to': 'AW-16927678460/tuEOCLD2764bkaEPy_34c_',
-                  'value': 1.0,
-                  'currency': 'BRL',
+                  'send_to': 'AW-16771968208/0gRdCOHfz9kZELLB6Og9',
                   'event_callback': callback
               });
               return false;
@@ -160,7 +148,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+      <body className={inter.className}>
         <div className="flex flex-col min-h-screen">
           <main className="flex-grow">
             {children}
