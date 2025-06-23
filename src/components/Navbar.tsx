@@ -4,11 +4,12 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useState, useEffect } from "react";
-import { FaHome, FaCode, FaEnvelope, FaBlog, FaBars, FaTimes } from "react-icons/fa";
+import { FaHome, FaCode, FaEnvelope, FaBlog, FaBars, FaTimes, FaChevronDown } from "react-icons/fa";
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isServicesOpen, setIsServicesOpen] = useState(false);
 
   // Efeito para detectar o scroll e mudar a aparência da navbar
   useEffect(() => {
@@ -40,6 +41,10 @@ export default function Navbar() {
     setIsMenuOpen(!isMenuOpen);
   };
 
+  const toggleServices = () => {
+    setIsServicesOpen(!isServicesOpen);
+  };
+
   return (
     <>
       <nav className={`fixed w-full z-50 transition-colors duration-300 ${
@@ -52,7 +57,7 @@ export default function Navbar() {
               <Link href="/" className="flex items-center">
                 <Image 
                   src="/logo_novo_jmsouza.png" 
-                  alt="J.M Souza Logo" 
+                  alt="J.M Souza Logo - Tráfego Pago Barueri" 
                   width={80} 
                   height={32} 
                   className="h-10 w-auto" 
@@ -63,11 +68,61 @@ export default function Navbar() {
             {/* Menu para desktop */}
             <div className="hidden md:block">
               <div className="ml-10 flex items-baseline space-x-4">
-                <Link href="#projetos" className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${isScrolled ? 'text-black hover:text-[#ffa300]' : 'text-white hover:text-gray-200'}`}>
-                  Projetos
-                </Link>
-                <Link href="#sobre" className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${isScrolled ? 'text-black hover:text-[#ffa300]' : 'text-white hover:text-gray-200'}`}>
-                  Sobre
+                {/* Dropdown Serviços */}
+                <div className="relative">
+                  <button
+                    onClick={toggleServices}
+                    className={`px-3 py-2 rounded-md text-sm font-medium transition-colors flex items-center ${isScrolled ? 'text-black hover:text-[#ffa300]' : 'text-white hover:text-gray-200'}`}
+                  >
+                    Serviços
+                    <FaChevronDown className={`ml-1 transition-transform ${isServicesOpen ? 'rotate-180' : ''}`} />
+                  </button>
+                  
+                  {isServicesOpen && (
+                    <div className="absolute top-full left-0 mt-1 w-64 bg-white rounded-md shadow-lg z-50">
+                      <div className="py-1">
+                        <Link
+                          href="/trafego-pago-barueri"
+                          className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-[#ffa300]"
+                          onClick={() => setIsServicesOpen(false)}
+                        >
+                          Tráfego Pago em Barueri
+                        </Link>
+                        <Link
+                          href="/google-ads-barueri"
+                          className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-[#ffa300]"
+                          onClick={() => setIsServicesOpen(false)}
+                        >
+                          Google Ads Barueri
+                        </Link>
+                        <Link
+                          href="/meta-ads-barueri"
+                          className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-[#ffa300]"
+                          onClick={() => setIsServicesOpen(false)}
+                        >
+                          Meta Ads Barueri
+                        </Link>
+                        <Link
+                          href="/criacao-de-site-barueri"
+                          className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-[#ffa300]"
+                          onClick={() => setIsServicesOpen(false)}
+                        >
+                          Criação de Site Barueri
+                        </Link>
+                        <Link
+                          href="/trafego-para-psicologas"
+                          className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-[#ffa300]"
+                          onClick={() => setIsServicesOpen(false)}
+                        >
+                          Marketing para Psicólogas
+                        </Link>
+                      </div>
+                    </div>
+                  )}
+                </div>
+
+                <Link href="#cases" className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${isScrolled ? 'text-black hover:text-[#ffa300]' : 'text-white hover:text-gray-200'}`}>
+                  Cases
                 </Link>
                 <Link href="/blog" className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${isScrolled ? 'text-black hover:text-[#ffa300]' : 'text-white hover:text-gray-200'}`}>
                   Blog
@@ -147,19 +202,63 @@ export default function Navbar() {
               >
                 Início
               </Link>
+              
+              {/* Serviços no mobile */}
+              <div>
+                <button
+                  onClick={toggleServices}
+                  className="block text-2xl font-medium text-black hover:text-[#ffa300] flex items-center w-full"
+                >
+                  Serviços
+                  <FaChevronDown className={`ml-2 transition-transform ${isServicesOpen ? 'rotate-180' : ''}`} />
+                </button>
+                {isServicesOpen && (
+                  <div className="mt-2 ml-4 space-y-3">
+                    <Link
+                      href="/trafego-pago-barueri"
+                      className="block text-lg text-gray-700 hover:text-[#ffa300]"
+                      onClick={toggleMenu}
+                    >
+                      Tráfego Pago Barueri
+                    </Link>
+                    <Link
+                      href="/google-ads-barueri"
+                      className="block text-lg text-gray-700 hover:text-[#ffa300]"
+                      onClick={toggleMenu}
+                    >
+                      Google Ads Barueri
+                    </Link>
+                    <Link
+                      href="/meta-ads-barueri"
+                      className="block text-lg text-gray-700 hover:text-[#ffa300]"
+                      onClick={toggleMenu}
+                    >
+                      Meta Ads Barueri
+                    </Link>
+                    <Link
+                      href="/criacao-de-site-barueri"
+                      className="block text-lg text-gray-700 hover:text-[#ffa300]"
+                      onClick={toggleMenu}
+                    >
+                      Criação de Site Barueri
+                    </Link>
+                    <Link
+                      href="/trafego-para-psicologas"
+                      className="block text-lg text-gray-700 hover:text-[#ffa300]"
+                      onClick={toggleMenu}
+                    >
+                      Marketing para Psicólogas
+                    </Link>
+                  </div>
+                )}
+              </div>
+
               <Link
-                href="#projetos"
+                href="#cases"
                 className="block text-2xl font-medium text-black hover:text-[#ffa300]"
                 onClick={toggleMenu}
               >
-                Projetos
-              </Link>
-              <Link
-                href="#sobre"
-                className="block text-2xl font-medium text-black hover:text-[#ffa300]"
-                onClick={toggleMenu}
-              >
-                Sobre
+                Cases
               </Link>
               <Link
                 href="/blog"

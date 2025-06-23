@@ -204,7 +204,7 @@ export default function Home() {
         <Image
           className="absolute top-0 left-0 min-w-full min-h-full object-cover z-0"
           src="/hero_imagem_fundo_trafego_pago_barueri_jmsouza.jpg"
-          alt="Tráfego Pago Barueri JMSOUZA"
+          alt="Tráfego Pago Barueri - Especialista em Google Ads e Meta Ads JMSOUZA"
           fill
           priority
         />
@@ -216,21 +216,22 @@ export default function Home() {
         <div className="relative z-20 px-2 text-white max-w-3xl mx-auto">
           {/* Título Hero com animação de typing */}
           <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold mb-6 md:mb-10">
-            <span className="inline-block" data-aos="fade-up">Aumente suas vendas</span>
+            <span className="inline-block" data-aos="fade-up">Especialista em Tráfego Pago em Barueri</span>
             <div className="overflow-hidden w-full mt-2">
-              <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-600 inline-block animate-typing" data-aos="fade-up" data-aos-delay="300">com sites inteligentes</span>
+              <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-600 inline-block animate-typing" data-aos="fade-up" data-aos-delay="300">e Criação de Site</span>
             </div>
           </h1>
            {/* Parágrafo com animação fade-in */}
           <p className="text-base sm:text-lg md:text-2xl font-medium mb-8 ">
-            Parece mágica, mas é apenas a internet funcionando para sua empresa <span className="font-bold text-yellow-400">aumentar o faturamento</span>
+            Gestor de tráfego Barueri especializado em <span className="font-bold text-yellow-400">Google Ads e Meta Ads</span> para empresas locais. 
+            Marketing digital para psicólogas e sites para psicólogas em Barueri.
           </p>
            {/* Botões com animações melhoradas */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-md mx-auto sm:max-w-none ">
             {/* Botão WhatsApp */}
             <Button asChild size="lg" className="w-full bg-green-600 text-white hover:bg-green-700 hover:text-white transition-all duration-300 transform  hover:shadow-lg hover:shadow-green-500/20 animate-pulse-subtle py-6 sm:py-4 text-base sm:text-lg">
               <a 
-                href="https://wa.me/5511954997799?text=Oi!,%20gostaria%20de%20melhorar%20minha%20presen%C3%A7a%20digital..." 
+                href="https://wa.me/5511954997799?text=Oi!,%20gostaria%20de%20melhorar%20minha%20presen%C3%A7a%20digital%20em%20Barueri..." 
                 target="_blank" 
                 rel="noopener noreferrer"
                 onClick={(e) => {
@@ -241,13 +242,13 @@ export default function Home() {
                   return false;
                 }}
               >
-                Chamar no whatsapp
+                Chamar Especialista em Barueri
               </a>
             </Button>
             {/* Botão Análise Grátis */}
             <Button asChild variant="outline" size="lg" className="w-full border-white text-white hover:bg-white/30 hover:text-white transition-all duration-300 transform  hover:shadow-lg hover:shadow-white/20 py-6 sm:py-4 text-base sm:text-lg">
               <Link href="#analise-gratuita">
-                Receber Análise Grátis
+                Análise Gratuita de Tráfego
               </Link>
             </Button>
           </div>
@@ -385,20 +386,20 @@ export default function Home() {
               
               className="text-center mb-12"
             >
-              <h2 className="text-3xl font-bold text-white mb-2">Benefícios exclusivos</h2>
-              <p className="text-white max-w-2xl mx-auto">Tecnologia e design pensados para maximizar seus resultados</p>
+              <h2 className="text-3xl font-bold text-white mb-2">Agência de Marketing em Barueri</h2>
+              <p className="text-white max-w-2xl mx-auto">Consultoria em Google e Meta Ads com desenvolvimento de site personalizado para presença online profissional</p>
             </motion.div>
             
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
               {[
-                 { icon: FaMobileAlt, title: 'Sites Responsivos', desc: 'Sites que se adaptam perfeitamente ao tamanho da tela do computador, celular ou tablet.', delay: 0.1 },
-                 { icon: FaUsers, title: 'User Experience', desc: 'Estratégias de UX/UI Design focadas em otimizar a experiência do usuário, melhorar a usabilidade, navegação e conversão.', delay: 0.2 },
-                 { icon: FaPaintBrush, title: 'Layout Personalizado', desc: 'O layout é exclusivo e desenvolvido por especialistas. Formas, cores, imagens, ícones. Tudo isso é pensado nos mínimos detalhes.', delay: 0.3 },
-                 { icon: FaTachometerAlt, title: 'Páginas Rápidas', desc: 'Carregamento das páginas de forma rápida para aumentar o número de conversões, através de otimização e servidor cloud de alta performance.', delay: 0.4 },
-                 { icon: FaHeadset, title: 'Suporte Contínuo', desc: 'Conte com um time de especialistas para dar suporte às suas necessidades. Tudo isso feito sob-demanda, quando precisar.', delay: 0.5 },
-                 { icon: FaGoogle, title: 'Pronto para o Google', desc: 'Seguimos todas as diretrizes e critérios impostos pelo Google para que sua empresa apareça na maior rede de pesquisa.', delay: 0.6 },
-                 { icon: FaCogs, title: 'Personalização Total', desc: 'Desenvolvemos todos os sites de forma personalizada, layouts 100% exclusivos para a sua marca. Uma aparência moderna e profissional.', delay: 0.7 },
-                 { icon: FaLink, title: 'Integração', desc: "Integramos com os principais CRM's, ERP's, sistemas e plataformas de pagamentos digitais, para automatizar seus processos.", delay: 0.8 },
+                 { icon: FaMobileAlt, title: 'Sites Responsivos em Barueri', desc: 'Criação de site em Barueri que se adaptam perfeitamente ao tamanho da tela do computador, celular ou tablet.', delay: 0.1 },
+                 { icon: FaUsers, title: 'Tráfego Qualificado para Psicólogas', desc: 'Marketing digital para psicólogas focado em atrair pacientes com campanhas para clínicas e consultórios.', delay: 0.2 },
+                 { icon: FaPaintBrush, title: 'Layout Personalizado', desc: 'Desenvolvimento de site personalizado exclusivo por especialistas. Formas, cores, imagens, ícones pensados nos mínimos detalhes.', delay: 0.3 },
+                 { icon: FaTachometerAlt, title: 'Performance Digital Local', desc: 'Gestão de anúncios online com carregamento rápido para aumentar conversões através de otimização e servidor cloud.', delay: 0.4 },
+                 { icon: FaHeadset, title: 'Suporte Contínuo', desc: 'Profissional de tráfego pago em SP oferecendo suporte especializado às suas necessidades de marketing digital.', delay: 0.5 },
+                 { icon: FaGoogle, title: 'Especialista em Google Ads Barueri', desc: 'Seguimos diretrizes do Google para anúncios regionais segmentados que aparecem na maior rede de pesquisa.', delay: 0.6 },
+                 { icon: FaCogs, title: 'Personalização Total', desc: 'Sites para psicólogas em Barueri com layouts 100% exclusivos. Aparência moderna e profissional para sua marca.', delay: 0.7 },
+                 { icon: FaLink, title: 'Integração Completa', desc: "Integramos com principais CRM's, ERP's e sistemas de pagamento para automatizar processos de anúncios em Barueri.", delay: 0.8 },
               ].map((item, index) => {
                 return (
                   <motion.div

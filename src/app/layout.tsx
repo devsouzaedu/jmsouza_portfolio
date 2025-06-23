@@ -4,48 +4,69 @@ import { Inter } from 'next/font/google'
 import type { Metadata } from 'next'
 import Script from 'next/script'
 import Footer from '@/components/Footer'
+import localFont from "next/font/local"
 
 // Importação do AOS para animações
 import 'aos/dist/aos.css'
 
 const inter = Inter({ subsets: ['latin'] })
 
+const geistSans = localFont({
+  src: "./fonts/GeistVF.woff2",
+  variable: "--font-geist-sans",
+  weight: "100 900",
+})
+const geistMono = localFont({
+  src: "./fonts/GeistMonoVF.woff2",
+  variable: "--font-geist-mono",
+  weight: "100 900",
+})
+
 export const metadata: Metadata = {
-  title: 'Referencia em criação de sites e aplicativos em Barueri e Alphaville - JMSOUZA',
-  description: 'Criação de sites profissionais, landing pages e soluções digitais personalizadas para empresas. Agência JMSOUZA: destaque sua marca no digital.',
-  keywords: ['criação de site', 'agência digital', 'landing page', 'sites profissionais', 'JMSOUZA', 'desenvolvimento web', 'SEO', 'marketing digital'],
-  authors: [{ name: 'JMSOUZA AGÊNCIA' }],
-  creator: 'JMSOUZA AGÊNCIA',
-  publisher: 'JMSOUZA AGÊNCIA',
+  title: 'Tráfego Pago em Barueri | Especialista em Google Ads e Meta Ads | JMSOUZA',
+  description: 'Especialista em tráfego pago em Barueri. Gestor de Google Ads e Meta Ads para empresas locais. Criação de site em Barueri, marketing digital para psicólogas e anúncios regionais segmentados.',
+  keywords: 'tráfego pago em Barueri, criação de site em Barueri, especialista em Google Ads Barueri, gestor de Meta Ads em Barueri, tráfego pago para psicólogas, anúncios para psicólogas no Google, marketing digital para psicólogas, sites para psicólogas em Barueri, anúncios em Barueri, agência de marketing em Barueri, gestor de tráfego Barueri, gestão de anúncios online, performance digital local, campanhas para clínicas e consultórios, presença online profissional, anúncios regionais segmentados, atrair pacientes com marketing digital, tráfego qualificado para psicólogas, consultoria em Google e Meta Ads, desenvolvimento de site personalizado, profissional de tráfego pago em SP',
+  authors: [{ name: 'JMSOUZA Agência Digital' }],
+  creator: 'JMSOUZA',
+  publisher: 'JMSOUZA',
   icons: {
     icon: '/favicon.ico',
     apple: '/favicon.ico',
   },
   openGraph: {
-    title: 'Referencia em criação de sites e aplicativos em Barueri e Alphaville - JMSOUZA',
-    description: 'Criação de sites profissionais, landing pages e soluções digitais personalizadas para empresas. Agência JMSOUZA: destaque sua marca no digital.',
-    url: 'https://seu-dominio.com',
-    siteName: 'Referencia em criação de sites e aplicativos em Barueri e Alphaville - JMSOUZA',
+    type: 'website',
+    locale: 'pt_BR',
+    url: 'https://jmsouza.com',
+    siteName: 'JMSOUZA - Tráfego Pago Barueri',
+    title: 'Tráfego Pago em Barueri | Especialista em Google Ads e Meta Ads',
+    description: 'Especialista em tráfego pago em Barueri. Gestor de Google Ads e Meta Ads para empresas locais. Criação de site em Barueri e marketing digital para psicólogas.',
     images: [
       {
-        url: '/favicon.ico',
-        width: 800,
-        height: 600,
-        alt: 'Referencia em criação de sites e aplicativos em Barueri e Alphaville - JMSOUZA',
+        url: '/hero_imagem_fundo_trafego_pago_barueri_jmsouza.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Tráfego Pago Barueri - Especialista em Google Ads e Meta Ads JMSOUZA',
       },
     ],
-    locale: 'pt_BR',
-    type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Referencia em criação de sites e aplicativos em Barueri e Alphaville - JMSOUZA',
-    description: 'Criação de sites profissionais, landing pages e soluções digitais personalizadas para empresas. Agência JMSOUZA: destaque sua marca no digital.',
-    images: ['/favicon.ico'],
+    title: 'Tráfego Pago em Barueri | Especialista em Google Ads e Meta Ads',
+    description: 'Especialista em tráfego pago em Barueri. Gestor de Google Ads e Meta Ads para empresas locais.',
+    images: ['/hero_imagem_fundo_trafego_pago_barueri_jmsouza.jpg'],
   },
   robots: {
     index: true,
     follow: true,
+  },
+  alternates: {
+    canonical: 'https://jmsouza.com',
+  },
+  other: {
+    "geo.region": "BR-SP",
+    "geo.placename": "Barueri",
+    "geo.position": "-23.5106;-46.8761",
+    "ICBM": "-23.5106, -46.8761",
   },
 }
 
@@ -59,9 +80,14 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="pt-br">
+    <html lang="pt-BR">
       <head>
         <link rel="icon" href="/favicon.ico" />
+        <link rel="canonical" href="https://jmsouza.com" />
+        <meta name="geo.region" content="BR-SP" />
+        <meta name="geo.placename" content="Barueri, São Paulo" />
+        <meta name="geo.position" content="-23.5106;-46.8761" />
+        <meta name="ICBM" content="-23.5106, -46.8761" />
         {/* Google tag (gtag.js) */}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=AW-16927678460"
@@ -93,8 +119,48 @@ export default function RootLayout({
             }
           `}
         </Script>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "LocalBusiness",
+              "name": "JMSOUZA - Tráfego Pago Barueri",
+              "description": "Especialista em tráfego pago em Barueri. Gestor de Google Ads e Meta Ads para empresas locais.",
+              "url": "https://jmsouza.com",
+              "telephone": "+551195499-7799",
+              "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "Rua Maria Fernanda, 429",
+                "addressLocality": "Barueri",
+                "addressRegion": "SP",
+                "postalCode": "06420-160",
+                "addressCountry": "BR"
+              },
+              "geo": {
+                "@type": "GeoCoordinates",
+                "latitude": -23.5106,
+                "longitude": -46.8761
+              },
+              "areaServed": [
+                "Barueri",
+                "Alphaville",
+                "Tamboré",
+                "São Paulo"
+              ],
+              "serviceType": [
+                "Tráfego Pago",
+                "Google Ads",
+                "Meta Ads",
+                "Criação de Sites",
+                "Marketing Digital"
+              ],
+              "priceRange": "$$"
+            })
+          }}
+        />
       </head>
-      <body className={inter.className}>
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <div className="flex flex-col min-h-screen">
           <main className="flex-grow">
             {children}
