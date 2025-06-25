@@ -1,0 +1,68 @@
+{
+  "name": "JMSOUZA - Tráfego Pago Barueri",
+  "short_name": "JMSOUZA",
+  "description": "Especialista certificado em tráfego pago em Barueri. Google Ads Partner e Meta Ads para empresas locais.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#3b82f6",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "lang": "pt-BR",
+  "categories": ["business", "marketing", "productivity"],
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "48x48 32x32 16x16",
+      "type": "image/x-icon",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/logo_novo_jmsouza.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/logo_novo_jmsouza.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/hero_imagem_fundo_trafego_pago_barueri_jmsouza.jpg",
+      "sizes": "1200x630",
+      "type": "image/jpeg",
+      "platform": "wide",
+      "label": "Homepage do JMSOUZA"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Contato WhatsApp",
+      "short_name": "WhatsApp",
+      "description": "Entre em contato via WhatsApp",
+      "url": "https://wa.me/5511954997799",
+      "icons": [
+        {
+          "src": "/favicon.ico",
+          "sizes": "96x96"
+        }
+      ]
+    },
+    {
+      "name": "Tráfego Pago",
+      "short_name": "Tráfego",
+      "description": "Serviços de tráfego pago",
+      "url": "/trafego-pago-barueri",
+      "icons": [
+        {
+          "src": "/favicon.ico",
+          "sizes": "96x96"
+        }
+      ]
+    }
+  ]
+} 
