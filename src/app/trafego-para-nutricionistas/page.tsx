@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 import Image from 'next/image';
 import { Button } from '@/components/Button';
-import { FaWhatsapp, FaGoogle, FaMeta, FaChartLine, FaUtensils, FaHeartbeat } from 'react-icons/fa';
+import { FaWhatsapp, FaGoogle, FaFacebook, FaChartLine, FaUtensils, FaHeartbeat } from 'react-icons/fa';
 
 export const metadata: Metadata = {
   title: 'Tráfego Pago para Nutricionistas | Atraia Mais Pacientes Online',
@@ -60,9 +60,9 @@ export default function TrafegoPagoNutricionistasPage() {
                 Campanhas otimizadas para consultórios de nutrição.
               </p>
             </div>
-            <div className="bg-white p-8 rounded-lg shadow-md">
-              <FaMeta className="text-4xl text-blue-800 mb-4" />
-              <h3 className="text-xl font-bold mb-3">Instagram e Facebook Ads</h3>
+                         <div className="bg-white p-8 rounded-lg shadow-md">
+               <FaFacebook className="text-4xl text-blue-800 mb-4" />
+               <h3 className="text-xl font-bold mb-3">Instagram e Facebook Ads</h3>
               <p className="text-gray-600">
                 Alcance pessoas interessadas em alimentação saudável e perda de peso 
                 nas redes sociais com anúncios segmentados.

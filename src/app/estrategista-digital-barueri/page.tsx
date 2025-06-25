@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Button } from '@/components/Button';
-import { FaWhatsapp, FaGoogle, FaMeta, FaChartLine, FaUsers, FaMapMarkerAlt, FaPhone, FaBrain, FaRocket, FaTarget } from 'react-icons/fa';
+import { FaWhatsapp, FaGoogle, FaChartLine, FaUsers, FaMapMarkerAlt, FaPhone, FaBrain, FaRocket, FaBullseye } from 'react-icons/fa';
 
 export const metadata: Metadata = {
   title: 'Estrategista Digital em Barueri | Consultor de Marketing Digital Especializado',
@@ -103,7 +103,7 @@ export default function EstrategistaDigitalBareruiPage() {
             </div>
 
             <div className="bg-white p-8 rounded-lg shadow-md hover:shadow-lg transition-shadow">
-              <FaTarget className="text-4xl text-green-600 mb-4" />
+              <FaBullseye className="text-4xl text-green-600 mb-4" />
               <h3 className="text-xl font-bold text-gray-900 mb-3">Performance Digital</h3>
               <p className="text-gray-600 mb-4">
                 Otimização contínua de performance digital com foco em ROI e 
@@ -147,7 +147,7 @@ export default function EstrategistaDigitalBareruiPage() {
 
             <div className="text-center">
               <div className="w-20 h-20 bg-purple-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                <FaTarget className="text-white text-2xl" />
+                <FaBullseye className="text-white text-2xl" />
               </div>
               <h3 className="text-lg font-bold text-gray-900 mb-3">Estratégia</h3>
               <p className="text-gray-600 text-sm">

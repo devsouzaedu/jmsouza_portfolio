@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Button } from '@/components/Button';
-import { FaWhatsapp, FaGoogle, FaMeta, FaUserMd, FaCalendarAlt, FaHeart, FaMapMarkerAlt, FaPhone, FaCheckCircle } from 'react-icons/fa';
+import { FaWhatsapp, FaGoogle, FaFacebook, FaUserMd, FaCalendarAlt, FaHeart, FaMapMarkerAlt, FaPhone, FaCheckCircle } from 'react-icons/fa';
 
 export const metadata: Metadata = {
   title: 'Tráfego Pago para Psicólogas | Marketing Digital Especializado',
@@ -145,7 +145,7 @@ export default function TrafegoPsicologasPage() {
                 </div>
 
                 <div className="flex items-start">
-                  <FaMeta className="text-2xl text-blue-800 mt-1 mr-4 flex-shrink-0" />
+                  <FaFacebook className="text-2xl text-blue-800 mt-1 mr-4 flex-shrink-0" />
                   <div>
                     <h3 className="text-xl font-bold text-gray-900 mb-3">
                       Meta Ads para Psicólogas
