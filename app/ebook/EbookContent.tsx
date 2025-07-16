@@ -64,8 +64,8 @@ export default function EbookContent() {
 
   const handleDownload = () => {
     const link = document.createElement('a')
-    link.href = '/Como Vender de Verdade No Instagram em 2025 Jmsouza (3).pdf'
-    link.download = 'Como Vender de Verdade No Instagram em 2025 Jmsouza (3).pdf'
+    link.href = '/Como Vender de Verdade No Instagram em 2025 Jmsouza (4).pdf'
+    link.download = 'Como Vender de Verdade No Instagram em 2025 Jmsouza (4).pdf'
     document.body.appendChild(link)
     link.click()
     document.body.removeChild(link)
