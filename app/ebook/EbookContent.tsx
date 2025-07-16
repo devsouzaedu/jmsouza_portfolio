@@ -3,7 +3,6 @@
 import { Button } from '@/components/Button'
 import Image from 'next/image'
 import { useState } from 'react'
-import { supabase, EbookLead } from '@/lib/supabase'
 
 export default function EbookContent() {
   const [email, setEmail] = useState('')

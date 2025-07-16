@@ -1,9 +1,8 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  // Otimizações de performance
+  // Configuração básica
   experimental: {
-    optimizePackageImports: ['react-icons', 'aos'],
     turbo: {
       rules: {
         '*.svg': {
@@ -14,16 +13,9 @@ const nextConfig: NextConfig = {
     },
   },
   
-  // Compressão e otimização
-  compress: true,
-  poweredByHeader: false,
-  
   // Otimização de imagens
   images: {
     formats: ['image/webp', 'image/avif'],
-    deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
-    imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
-    minimumCacheTTL: 31536000, // 1 ano
     dangerouslyAllowSVG: true,
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
     remotePatterns: [
@@ -34,140 +26,8 @@ const nextConfig: NextConfig = {
     ],
   },
   
-  // Headers de segurança e performance
-  async headers() {
-    return [
-      {
-        source: '/(.*)',
-        headers: [
-          // Segurança
-          {
-            key: 'X-Frame-Options',
-            value: 'DENY',
-          },
-          {
-            key: 'X-Content-Type-Options',
-            value: 'nosniff',
-          },
-          {
-            key: 'X-XSS-Protection',
-            value: '1; mode=block',
-          },
-          {
-            key: 'Referrer-Policy',
-            value: 'strict-origin-when-cross-origin',
-          },
-          {
-            key: 'Permissions-Policy',
-            value: 'camera=(), microphone=(), geolocation=()',
-          },
-          
-          // Performance
-          {
-            key: 'X-DNS-Prefetch-Control',
-            value: 'on',
-          },
-          
-          // SEO
-          {
-            key: 'X-Robots-Tag',
-            value: 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1',
-          },
-        ],
-      },
-      
-      // Cache para assets estáticos
-      {
-        source: '/favicon.ico',
-        headers: [
-          {
-            key: 'Cache-Control',
-            value: 'public, max-age=31536000, immutable',
-          },
-        ],
-      },
-      {
-        source: '/_next/static/(.*)',
-        headers: [
-          {
-            key: 'Cache-Control',
-            value: 'public, max-age=31536000, immutable',
-          },
-        ],
-      },
-      {
-        source: '/images/(.*)',
-        headers: [
-          {
-            key: 'Cache-Control',
-            value: 'public, max-age=31536000, immutable',
-          },
-        ],
-      },
-      
-      // Cache para páginas
-      {
-        source: '/((?!api|_next/static|_next/image|favicon.ico).*)',
-        headers: [
-          {
-            key: 'Cache-Control',
-            value: 'public, max-age=3600, stale-while-revalidate=86400',
-          },
-        ],
-      },
-    ]
-  },
-  
-  // Redirects para SEO
-  async redirects() {
-    return [
-      // Redirect de URLs antigas se houver
-      {
-        source: '/old-page',
-        destination: '/new-page',
-        permanent: true,
-      },
-      
-      // Redirect para páginas principais sem trailing slash
-      {
-        source: '/trafego-pago-barueri/',
-        destination: '/trafego-pago-barueri',
-        permanent: true,
-      },
-    ]
-  },
-  
-  // Rewrites para URLs amigáveis
-  async rewrites() {
-    return [
-      // Adicionar rewrites se necessário
-    ]
-  },
-  
   // Webpack otimizations
-  webpack: (config: any, { dev, isServer }: { dev: boolean; isServer: boolean }) => {
-    // Otimizações de produção
-    if (!dev && !isServer) {
-      config.optimization = {
-        ...config.optimization,
-        splitChunks: {
-          chunks: 'all',
-          cacheGroups: {
-            vendor: {
-              test: /[\\/]node_modules[\\/]/,
-              name: 'vendors',
-              chunks: 'all',
-            },
-            common: {
-              name: 'common',
-              minChunks: 2,
-              chunks: 'all',
-            },
-          },
-        },
-      }
-    }
-    
+  webpack: (config: any) => {
     // Otimização para SVGs
     config.module.rules.push({
       test: /\.svg$/,
@@ -176,9 +36,6 @@ const nextConfig: NextConfig = {
     
     return config
   },
-  
-  // Output config
-  output: 'standalone',
   
   // Typescript config
   typescript: {
@@ -191,4 +48,4 @@ const nextConfig: NextConfig = {
   },
 }
 
-export default nextConfig;
+export default nextConfig; 

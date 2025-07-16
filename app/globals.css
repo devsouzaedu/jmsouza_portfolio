@@ -1,0 +1,347 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Otimizações de performance */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+  }
+  
+  body {
+    font-display: swap;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-feature-settings: 'kern' 1;
+    font-kerning: normal;
+  }
+  
+  /* Otimização para imagens */
+  img {
+    height: auto;
+    max-width: 100%;
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+  }
+  
+  /* Otimização para vídeos */
+  video {
+    height: auto;
+    max-width: 100%;
+  }
+  
+  /* Preload de fontes críticas */
+  @font-face {
+    font-family: 'Inter';
+    font-display: swap;
+  }
+}
+
+/* Classes utilitárias para SEO */
+@layer utilities {
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+  
+  .focus-visible {
+    outline: 2px solid #3b82f6;
+    outline-offset: 2px;
+  }
+  
+  /* Otimização para Core Web Vitals */
+  .layout-shift-prevention {
+    contain: layout style paint;
+  }
+  
+  .performance-optimized {
+    will-change: transform;
+    transform: translateZ(0);
+  }
+}
+
+/* Estilos específicos para acessibilidade */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Otimização para print */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  
+  * {
+    color: black !important;
+    background: white !important;
+  }
+}
+
+/* Estilos para loading states */
+.loading-skeleton {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: loading 1.5s infinite;
+}
+
+@keyframes loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* Otimizações específicas para o site */
+.hero-section {
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+@media (max-width: 768px) {
+  .hero-section {
+    background-attachment: scroll; /* Melhor performance em mobile */
+  }
+}
+
+/* Estilos para botões CTA otimizados */
+.cta-button {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.cta-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  transition: left 0.5s;
+}
+
+.cta-button:hover::before {
+  left: 100%;
+}
+
+/* Otimização para AOS animations */
+[data-aos] {
+  pointer-events: none;
+}
+
+[data-aos].aos-animate {
+  pointer-events: auto;
+}
+
+/* Estilos para melhor UX */
+.smooth-scroll {
+  scroll-behavior: smooth;
+}
+
+/* Otimização para formulários */
+input, textarea, select {
+  font-family: inherit;
+}
+
+/* Prevenção de FOUC (Flash of Unstyled Content) */
+.fade-in {
+  opacity: 0;
+  animation: fadeIn 0.5s ease-in forwards;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+/* Estilos para cards de projetos */
+.project-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+}
+
+/* Otimização para imagens lazy loading */
+.lazy-image {
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.lazy-image.loaded {
+  opacity: 1;
+}
+
+/* Estilos para melhor acessibilidade */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 6px;
+  background: #000;
+  color: #fff;
+  padding: 8px;
+  text-decoration: none;
+  z-index: 1000;
+}
+
+.skip-link:focus {
+  top: 6px;
+}
+
+/* Otimização para dispositivos de alta densidade */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .high-dpi-optimized {
+    image-rendering: -webkit-optimize-contrast;
+  }
+}
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: Arial, Helvetica, sans-serif;
+  overflow-x: hidden;
+}
+
+/* Animações principais - apenas máquina de escrever ativa */
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+
+@keyframes blink-caret {
+  from, to { border-color: transparent }
+  50% { border-color: rgba(59, 130, 246, 0.5) }
+}
+
+@layer utilities {
+  .animate-typing {
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    border-right: 3px solid transparent;
+    animation: 
+      typing 3.5s steps(40, end),
+      blink-caret .75s step-end infinite;
+  }
+  
+  .animate-fadeIn {
+    opacity: 1;
+  }
+  
+  .animate-slideUp {
+    opacity: 1;
+  }
+
+  .animate-slideDown {
+    opacity: 1;
+  }
+
+  .animate-slideInLeft {
+    opacity: 1;
+  }
+
+  .animate-slideInRight {
+    opacity: 1;
+  }
+
+  .animate-slideInBottom {
+    opacity: 1;
+  }
+
+  .animate-slideRight {
+    opacity: 1;
+  }
+
+  .animate-slideLeft {
+    opacity: 1;
+  }
+
+  .animate-scaleUp {
+    opacity: 1;
+  }
+
+  /* A classe animate-pulse foi desativada */
+  .animate-pulse {
+    transform: none;
+  }
+
+  .transition-smooth {
+    transition: all 0.3s ease-in-out;
+  }
+  
+  /* Animation Delays */
+  .animation-delay-100 {
+    animation-delay: 100ms;
+  }
+  
+  .animation-delay-200 {
+    animation-delay: 200ms;
+  }
+  
+  .animation-delay-300 {
+    animation-delay: 300ms;
+  }
+  
+  .animation-delay-400 {
+    animation-delay: 400ms;
+  }
+  
+  .animation-delay-500 {
+    animation-delay: 500ms;
+  }
+  
+  .animation-delay-600 {
+    animation-delay: 600ms;
+  }
+  
+  .animation-delay-700 {
+    animation-delay: 700ms;
+  }
+  
+  .animation-delay-800 {
+    animation-delay: 800ms;
+  }
+  
+  .animation-delay-900 {
+    animation-delay: 900ms;
+  }
+  
+  .animation-delay-1000 {
+    animation-delay: 1000ms;
+  }
+}
+
